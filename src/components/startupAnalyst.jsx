@@ -823,14 +823,6 @@ const StartupAnalystPlatform = () => {
                     <Rocket className="text-purple-400" size={20} />
                     <h3 className="text-xl font-bold text-white">Growth Potential</h3>
                   </div>
-                  
-                  {/* Growth Score */}
-                  <div className="bg-purple-900/30 border border-purple-700 p-6 rounded-2xl text-center hover:border-purple-600 transition-all duration-300">
-                    <div className="text-5xl font-bold text-purple-400 mb-2">
-                      {growthPotentialData.score}/10
-                    </div>
-                    <p className="text-gray-300">Growth Potential Score</p>
-                  </div>
 
                   {/* Growth Factors */}
                   <div className="grid grid-cols-2 gap-4">
