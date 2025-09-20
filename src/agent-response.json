@@ -1,0 +1,472 @@
+{
+  "startup": {
+    "name": "NeuralFlow AI",
+    "tagline": "AI-Powered Workflow Automation for Enterprise",
+    "sector": "AI/ML",
+    "stage": "Series A",
+    "founded": "2022",
+    "location": "San Francisco, CA",
+    "employees": 28,
+    "website": "neuralflow.ai",
+    "investmentScore": 8.4,
+    "recommendation": "Strong Buy"
+  },
+  "keyMetrics": {
+    "arr": {
+      "value": "$2.8M",
+      "change": "+220%"
+    },
+    "customers": {
+      "value": "1,450",
+      "change": "+65%"
+    },
+    "runway": {
+      "value": "22 mo",
+      "change": "+4mo"
+    },
+    "cac": {
+      "value": "$420",
+      "change": "-18%"
+    }
+  },
+  "competitorAnalysis": [
+    {
+      "name": "AutomateFlow Pro",
+      "sector": "AI/ML Automation",
+      "funding": "$45M Series B",
+      "valuation": "$180M",
+      "arr": "$8.2M",
+      "growth": "180%",
+      "employees": 85,
+      "strengths": [
+        "Enterprise focus",
+        "Strong partnerships",
+        "Established market presence"
+      ],
+      "weaknesses": [
+        "Higher CAC",
+        "Limited SMB presence",
+        "Slower innovation cycle"
+      ]
+    },
+    {
+      "name": "WorkflowAI",
+      "sector": "AI/ML Automation",
+      "funding": "$25M Series A",
+      "valuation": "$95M",
+      "arr": "$4.1M",
+      "growth": "240%",
+      "employees": 52,
+      "strengths": [
+        "Rapid growth",
+        "Strong product-market fit",
+        "Innovative AI features"
+      ],
+      "weaknesses": [
+        "Customer concentration",
+        "Limited international presence",
+        "Scaling challenges"
+      ]
+    },
+    {
+      "name": "SmartProcess",
+      "sector": "Process Automation",
+      "funding": "$60M Series B",
+      "valuation": "$220M",
+      "arr": "$12M",
+      "growth": "120%",
+      "employees": 120,
+      "strengths": [
+        "Market leader",
+        "Strong brand recognition",
+        "Extensive integrations"
+      ],
+      "weaknesses": [
+        "Slower innovation",
+        "Legacy tech stack",
+        "High pricing"
+      ]
+    },
+    {
+      "name": "FlowGenius",
+      "sector": "AI Automation",
+      "funding": "$15M Seed",
+      "valuation": "$45M",
+      "arr": "$1.8M",
+      "growth": "320%",
+      "employees": 28,
+      "strengths": [
+        "Innovative AI",
+        "Strong team",
+        "Agile development"
+      ],
+      "weaknesses": [
+        "Early stage",
+        "Limited resources",
+        "Market validation needed"
+      ]
+    }
+  ],
+  "riskAssessment": [
+    {
+      "type": "Financial",
+      "issue": "Customer concentration risk",
+      "severity": "High",
+      "description": "Top 3 customers represent 58% of ARR",
+      "evidence": "Slide 12: Customer breakdown shows heavy reliance on enterprise accounts",
+      "mitigation": "Diversify customer base, focus on mid-market expansion"
+    },
+    {
+      "type": "Market",
+      "issue": "Competitive pressure increasing",
+      "severity": "Medium",
+      "description": "New well-funded competitors entering space",
+      "evidence": "Market analysis shows 3 new Series B+ competitors in Q4 2023",
+      "mitigation": "Accelerate product development, strengthen IP position"
+    },
+    {
+      "type": "Technical",
+      "issue": "Third-party AI model dependency",
+      "severity": "Medium",
+      "description": "Core functionality relies on OpenAI GPT models",
+      "evidence": "Technical architecture diagram (Slide 8)",
+      "mitigation": "Develop proprietary models, multi-vendor strategy"
+    },
+    {
+      "type": "Regulatory",
+      "issue": "Data privacy compliance",
+      "severity": "Low",
+      "description": "Potential GDPR/CCPA implications for EU expansion",
+      "evidence": "Expansion roadmap mentions EU market entry (Slide 15)",
+      "mitigation": "Implement privacy-by-design, hire compliance officer"
+    }
+  ],
+  "growthPotential": {
+    "score": 8.7,
+    "factors": [
+      {
+        "name": "Market Size",
+        "score": 9.2,
+        "weight": 25,
+        "description": "TAM of $50B with 15% CAGR"
+      },
+      {
+        "name": "Product Innovation",
+        "score": 8.8,
+        "weight": 20,
+        "description": "Proprietary AI models with strong IP"
+      },
+      {
+        "name": "Team Execution",
+        "score": 8.5,
+        "weight": 20,
+        "description": "Proven leadership with enterprise experience"
+      },
+      {
+        "name": "Financial Health",
+        "score": 8.9,
+        "weight": 15,
+        "description": "Strong unit economics and growth metrics"
+      },
+      {
+        "name": "Competitive Position",
+        "score": 8.1,
+        "weight": 10,
+        "description": "Differentiated offering in crowded market"
+      },
+      {
+        "name": "Scalability",
+        "score": 9.0,
+        "weight": 10,
+        "description": "Platform architecture supports rapid scaling"
+      }
+    ],
+    "recommendations": [
+      {
+        "category": "Strategic",
+        "priority": "High",
+        "title": "Accelerate International Expansion",
+        "description": "Enter European market within 12 months to capture first-mover advantage",
+        "impact": "Could increase TAM by 40% and reduce customer concentration risk",
+        "timeline": "6-12 months"
+      },
+      {
+        "category": "Financial",
+        "priority": "High",
+        "title": "Optimize Customer Acquisition",
+        "description": "Invest in mid-market segment to diversify customer base",
+        "impact": "Reduce customer concentration from 58% to <40%",
+        "timeline": "3-6 months"
+      },
+      {
+        "category": "Product",
+        "priority": "Medium",
+        "title": "Develop Proprietary AI Models",
+        "description": "Reduce dependency on third-party AI providers",
+        "impact": "Improve margins by 15-20% and strengthen competitive moat",
+        "timeline": "9-15 months"
+      },
+      {
+        "category": "Operational",
+        "priority": "Medium",
+        "title": "Scale Customer Success Team",
+        "description": "Hire 5-8 customer success managers to improve retention",
+        "impact": "Increase NRR from 125% to 135%+",
+        "timeline": "2-4 months"
+      }
+    ]
+  },
+  "financialData": {
+    "revenue": {
+      "current": "$2.4M",
+      "growth": "+180%",
+      "projection": "$8.5M",
+      "breakdown": [
+        {
+          "month": "Jan",
+          "value": 180000
+        },
+        {
+          "month": "Feb",
+          "value": 195000
+        },
+        {
+          "month": "Mar",
+          "value": 210000
+        },
+        {
+          "month": "Apr",
+          "value": 225000
+        },
+        {
+          "month": "May",
+          "value": 240000
+        },
+        {
+          "month": "Jun",
+          "value": 260000
+        }
+      ]
+    },
+    "metrics": [
+      {
+        "label": "ARR",
+        "value": "$2.4M",
+        "change": "+180%",
+        "positive": true
+      },
+      {
+        "label": "MRR",
+        "value": "$200K",
+        "change": "+15%",
+        "positive": true
+      },
+      {
+        "label": "Gross Margin",
+        "value": "85%",
+        "change": "+5%",
+        "positive": true
+      },
+      {
+        "label": "Burn Rate",
+        "value": "$85K/mo",
+        "change": "-12%",
+        "positive": true
+      },
+      {
+        "label": "Runway",
+        "value": "18 months",
+        "change": "+3mo",
+        "positive": true
+      },
+      {
+        "label": "CAC",
+        "value": "$450",
+        "change": "-20%",
+        "positive": true
+      }
+    ],
+    "funding": {
+      "totalRaised": "$15M",
+      "lastRound": "Series A",
+      "investors": [
+        "Sequoia Capital",
+        "Andreessen Horowitz",
+        "First Round"
+      ],
+      "valuation": "$50M"
+    }
+  },
+  "teamData": {
+    "size": 28,
+    "growth": "+40%",
+    "departments": [
+      {
+        "name": "Engineering",
+        "count": 12,
+        "percentage": 43
+      },
+      {
+        "name": "Sales & Marketing",
+        "count": 8,
+        "percentage": 29
+      },
+      {
+        "name": "Product",
+        "count": 4,
+        "percentage": 14
+      },
+      {
+        "name": "Operations",
+        "count": 4,
+        "percentage": 14
+      }
+    ],
+    "leadership": [
+      {
+        "name": "Sarah Chen",
+        "role": "CEO & Co-founder",
+        "experience": "15 years",
+        "background": "Former VP at Google, Stanford MBA",
+        "linkedin": "#"
+      },
+      {
+        "name": "Michael Rodriguez",
+        "role": "CTO & Co-founder",
+        "experience": "12 years",
+        "background": "Ex-Tesla Senior Engineer, MIT PhD",
+        "linkedin": "#"
+      },
+      {
+        "name": "Emily Watson",
+        "role": "VP of Sales",
+        "experience": "10 years",
+        "background": "Former Salesforce Director, Wharton MBA",
+        "linkedin": "#"
+      }
+    ],
+    "culture": {
+      "satisfaction": "4.8/5",
+      "retention": "95%",
+      "diversity": "45% women, 60% minorities"
+    }
+  },
+  "marketData": {
+    "size": {
+      "tam": "$50B",
+      "sam": "$8B",
+      "som": "$800M"
+    },
+    "competition": [
+      {
+        "name": "Competitor A",
+        "marketShare": "25%",
+        "funding": "$100M",
+        "strength": "Enterprise focus"
+      },
+      {
+        "name": "Competitor B",
+        "marketShare": "18%",
+        "funding": "$75M",
+        "strength": "AI capabilities"
+      },
+      {
+        "name": "Competitor C",
+        "marketShare": "12%",
+        "funding": "$50M",
+        "strength": "Price point"
+      }
+    ],
+    "trends": [
+      {
+        "trend": "AI Automation Adoption",
+        "impact": "High",
+        "timeline": "2024-2025"
+      },
+      {
+        "trend": "Remote Work Tools",
+        "impact": "Medium",
+        "timeline": "2024"
+      },
+      {
+        "trend": "Enterprise Digital Transformation",
+        "impact": "High",
+        "timeline": "2024-2026"
+      }
+    ],
+    "customerSegments": [
+      {
+        "segment": "Enterprise (1000+ employees)",
+        "percentage": 45,
+        "revenue": "$1.08M"
+      },
+      {
+        "segment": "Mid-market (100-1000 employees)",
+        "percentage": 35,
+        "revenue": "$840K"
+      },
+      {
+        "segment": "SMB (<100 employees)",
+        "percentage": 20,
+        "revenue": "$480K"
+      }
+    ]
+  },
+  "benchmarks": [
+    {
+      "metric": "Revenue Growth",
+      "value": "450%",
+      "benchmark": "280%",
+      "status": "outperform"
+    },
+    {
+      "metric": "CAC/LTV Ratio",
+      "value": "1:4.2",
+      "benchmark": "1:3.0",
+      "status": "outperform"
+    },
+    {
+      "metric": "Churn Rate",
+      "value": "8%",
+      "benchmark": "12%",
+      "status": "outperform"
+    },
+    {
+      "metric": "Burn Rate",
+      "value": "$85k/mo",
+      "benchmark": "$120k/mo",
+      "status": "outperform"
+    }
+  ],
+  "aiSummary": {
+    "investmentRecommendation": "Strong Buy",
+    "confidenceScore": 8.4,
+    "keyHighlights": [
+      "Exceptional revenue growth of 220% YoY with strong unit economics",
+      "Experienced leadership team with proven track record in enterprise AI",
+      "Large addressable market ($50B TAM) with favorable tailwinds",
+      "Strong competitive positioning with proprietary AI technology"
+    ],
+    "mainConcerns": [
+      "High customer concentration risk (top 3 customers = 58% ARR)",
+      "Increasing competitive pressure from well-funded startups",
+      "Dependency on third-party AI models for core functionality"
+    ],
+    "investmentThesis": "NeuralFlow AI represents a compelling investment opportunity in the rapidly growing AI automation space. The company demonstrates exceptional execution with 220% revenue growth, strong unit economics, and a proven leadership team. While customer concentration presents a near-term risk, the company's expansion into mid-market segments and international markets should mitigate this concern. The large TAM and strong competitive moat through proprietary AI technology position NeuralFlow for significant scale.",
+    "nextSteps": [
+      "Conduct detailed technical due diligence on AI models and IP",
+      "Meet with top 3 customers to assess relationship strength",
+      "Review international expansion strategy and timeline",
+      "Analyze competitive landscape and differentiation strategy"
+    ]
+  },
+  "metadata": {
+    "analysisId": "analysis_20241220_neuralflow",
+    "analysisDate": "2024-12-20T11:28:34Z",
+    "version": "2.1.0",
+    "processingTime": "8.2s",
+    "confidence": 0.94,
+    "dataSource": "pitch_deck_slides_15",
+    "lastUpdated": "2024-12-20T11:28:34Z"
+  }
+}

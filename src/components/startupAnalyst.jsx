@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PDFExport from './PDFExport';
+import { uploadFile, analyzeStartup } from '../api';
+import agentResponseData from '../agent-response.json';
 import { 
   FileText, 
   TrendingUp, 
@@ -126,108 +128,13 @@ const StartupAnalystPlatform = () => {
     { label: 'Generating investment recommendations...', icon: CheckCircle2, duration: 1500 }
   ];
 
-  // Enhanced mock data for the analyzed startup
-  const analyzedStartup = {
-    name: 'NeuralFlow AI',
-    tagline: 'AI-Powered Workflow Automation for Enterprise',
-    sector: 'AI/ML',
-    stage: 'Series A',
-    founded: '2022',
-    location: 'San Francisco, CA',
-    employees: 28,
-    website: 'neuralflow.ai',
-    investmentScore: 8.4,
-    recommendation: 'Strong Buy'
-  };
+  // Use agent response data
+  const analyzedStartup = agentResponseData.startup;
+  const keyMetrics = agentResponseData.keyMetrics;
 
-  const keyMetrics = {
-    arr: { value: '$2.8M', change: '+220%' },
-    customers: { value: '1,450', change: '+65%' },
-    runway: { value: '22 mo', change: '+4mo' },
-    cac: { value: '$420', change: '-18%' }
-  };
+  const competitorComparisons = agentResponseData.competitorAnalysis;
 
-  const competitorComparisons = [
-    {
-      name: 'AutomateFlow Pro',
-      sector: 'AI/ML Automation',
-      funding: '$45M Series B',
-      valuation: '$180M',
-      arr: '$8.2M',
-      growth: '180%',
-      employees: 85,
-      strengths: ['Enterprise focus', 'Strong partnerships'],
-      weaknesses: ['Higher CAC', 'Limited SMB presence']
-    },
-    {
-      name: 'WorkflowAI',
-      sector: 'AI/ML Automation', 
-      funding: '$25M Series A',
-      valuation: '$95M',
-      arr: '$4.1M',
-      growth: '240%',
-      employees: 52,
-      strengths: ['Rapid growth', 'Strong product-market fit'],
-      weaknesses: ['Customer concentration', 'Limited international presence']
-    },
-    {
-      name: 'SmartProcess',
-      sector: 'Process Automation',
-      funding: '$60M Series B',
-      valuation: '$220M', 
-      arr: '$12M',
-      growth: '120%',
-      employees: 120,
-      strengths: ['Market leader', 'Strong brand'],
-      weaknesses: ['Slower innovation', 'Legacy tech stack']
-    },
-    {
-      name: 'FlowGenius',
-      sector: 'AI Automation',
-      funding: '$15M Seed',
-      valuation: '$45M',
-      arr: '$1.8M', 
-      growth: '320%',
-      employees: 28,
-      strengths: ['Innovative AI', 'Strong team'],
-      weaknesses: ['Early stage', 'Limited resources']
-    }
-  ];
-
-  const enhancedRiskFlags = [
-    { 
-      type: 'Financial', 
-      issue: 'Customer concentration risk', 
-      severity: 'High',
-      description: 'Top 3 customers represent 58% of ARR',
-      evidence: 'Slide 12: Customer breakdown shows heavy reliance on enterprise accounts',
-      mitigation: 'Diversify customer base, focus on mid-market expansion'
-    },
-    { 
-      type: 'Market', 
-      issue: 'Competitive pressure increasing', 
-      severity: 'Medium',
-      description: 'New well-funded competitors entering space',
-      evidence: 'Market analysis shows 3 new Series B+ competitors in Q4 2023',
-      mitigation: 'Accelerate product development, strengthen IP position'
-    },
-    { 
-      type: 'Technical', 
-      issue: 'Third-party AI model dependency', 
-      severity: 'Medium',
-      description: 'Core functionality relies on OpenAI GPT models',
-      evidence: 'Technical architecture diagram (Slide 8)',
-      mitigation: 'Develop proprietary models, multi-vendor strategy'
-    },
-    { 
-      type: 'Regulatory', 
-      issue: 'Data privacy compliance', 
-      severity: 'Low',
-      description: 'Potential GDPR/CCPA implications for EU expansion',
-      evidence: 'Expansion roadmap mentions EU market entry (Slide 15)',
-      mitigation: 'Implement privacy-by-design, hire compliance officer'
-    }
-  ];
+  const enhancedRiskFlags = agentResponseData.riskAssessment;
 
   const startups = [
     {
@@ -259,98 +166,11 @@ const StartupAnalystPlatform = () => {
     }
   ];
 
-  // Mock data for different tabs
-  const financialData = {
-    revenue: {
-      current: '$2.4M',
-      growth: '+180%',
-      projection: '$8.5M',
-      breakdown: [
-        { month: 'Jan', value: 180000 },
-        { month: 'Feb', value: 195000 },
-        { month: 'Mar', value: 210000 },
-        { month: 'Apr', value: 225000 },
-        { month: 'May', value: 240000 },
-        { month: 'Jun', value: 260000 }
-      ]
-    },
-    metrics: [
-      { label: 'ARR', value: '$2.4M', change: '+180%', positive: true },
-      { label: 'MRR', value: '$200K', change: '+15%', positive: true },
-      { label: 'Gross Margin', value: '85%', change: '+5%', positive: true },
-      { label: 'Burn Rate', value: '$85K/mo', change: '-12%', positive: true },
-      { label: 'Runway', value: '18 months', change: '+3mo', positive: true },
-      { label: 'CAC', value: '$450', change: '-20%', positive: true }
-    ],
-    funding: {
-      totalRaised: '$15M',
-      lastRound: 'Series A',
-      investors: ['Sequoia Capital', 'Andreessen Horowitz', 'First Round'],
-      valuation: '$50M'
-    }
-  };
+  const financialData = agentResponseData.financialData;
 
-  const teamData = {
-    size: 28,
-    growth: '+40%',
-    departments: [
-      { name: 'Engineering', count: 12, percentage: 43 },
-      { name: 'Sales & Marketing', count: 8, percentage: 29 },
-      { name: 'Product', count: 4, percentage: 14 },
-      { name: 'Operations', count: 4, percentage: 14 }
-    ],
-    leadership: [
-      {
-        name: 'Sarah Chen',
-        role: 'CEO & Co-founder',
-        experience: '15 years',
-        background: 'Former VP at Google, Stanford MBA',
-        linkedin: '#'
-      },
-      {
-        name: 'Michael Rodriguez',
-        role: 'CTO & Co-founder',
-        experience: '12 years',
-        background: 'Ex-Tesla Senior Engineer, MIT PhD',
-        linkedin: '#'
-      },
-      {
-        name: 'Emily Watson',
-        role: 'VP of Sales',
-        experience: '10 years',
-        background: 'Former Salesforce Director, Wharton MBA',
-        linkedin: '#'
-      }
-    ],
-    culture: {
-      satisfaction: '4.8/5',
-      retention: '95%',
-      diversity: '45% women, 60% minorities'
-    }
-  };
+  const teamData = agentResponseData.teamData;
 
-  const marketData = {
-    size: {
-      tam: '$50B',
-      sam: '$8B',
-      som: '$800M'
-    },
-    competition: [
-      { name: 'Competitor A', marketShare: '25%', funding: '$100M', strength: 'Enterprise focus' },
-      { name: 'Competitor B', marketShare: '18%', funding: '$75M', strength: 'AI capabilities' },
-      { name: 'Competitor C', marketShare: '12%', funding: '$50M', strength: 'Price point' }
-    ],
-    trends: [
-      { trend: 'AI Automation Adoption', impact: 'High', timeline: '2024-2025' },
-      { trend: 'Remote Work Tools', impact: 'Medium', timeline: '2024' },
-      { trend: 'Enterprise Digital Transformation', impact: 'High', timeline: '2024-2026' }
-    ],
-    customerSegments: [
-      { segment: 'Enterprise (1000+ employees)', percentage: 45, revenue: '$1.08M' },
-      { segment: 'Mid-market (100-1000 employees)', percentage: 35, revenue: '$840K' },
-      { segment: 'SMB (<100 employees)', percentage: 20, revenue: '$480K' }
-    ]
-  };
+  const marketData = agentResponseData.marketData;
 
   const riskFlags = [
     { type: 'Financial', issue: 'High customer concentration (top 3 customers = 60% revenue)', severity: 'High' },
@@ -359,58 +179,9 @@ const StartupAnalystPlatform = () => {
     { type: 'Regulatory', issue: 'Potential data privacy regulations', severity: 'Low' }
   ];
 
-  const benchmarks = [
-    { metric: 'Revenue Growth', value: '450%', benchmark: '280%', status: 'outperform' },
-    { metric: 'CAC/LTV Ratio', value: '1:4.2', benchmark: '1:3.0', status: 'outperform' },
-    { metric: 'Churn Rate', value: '8%', benchmark: '12%', status: 'outperform' },
-    { metric: 'Burn Rate', value: '$85k/mo', benchmark: '$120k/mo', status: 'outperform' }
-  ];
+  const benchmarks = agentResponseData.benchmarks;
 
-  const growthPotentialData = {
-    score: 8.7,
-    factors: [
-      { name: 'Market Size', score: 9.2, weight: 25, description: 'TAM of $50B with 15% CAGR' },
-      { name: 'Product Innovation', score: 8.8, weight: 20, description: 'Proprietary AI models with strong IP' },
-      { name: 'Team Execution', score: 8.5, weight: 20, description: 'Proven leadership with enterprise experience' },
-      { name: 'Financial Health', score: 8.9, weight: 15, description: 'Strong unit economics and growth metrics' },
-      { name: 'Competitive Position', score: 8.1, weight: 10, description: 'Differentiated offering in crowded market' },
-      { name: 'Scalability', score: 9.0, weight: 10, description: 'Platform architecture supports rapid scaling' }
-    ],
-    recommendations: [
-      {
-        category: 'Strategic',
-        priority: 'High',
-        title: 'Accelerate International Expansion',
-        description: 'Enter European market within 12 months to capture first-mover advantage',
-        impact: 'Could increase TAM by 40% and reduce customer concentration risk',
-        timeline: '6-12 months'
-      },
-      {
-        category: 'Financial', 
-        priority: 'High',
-        title: 'Optimize Customer Acquisition',
-        description: 'Invest in mid-market segment to diversify customer base',
-        impact: 'Reduce customer concentration from 58% to <40%',
-        timeline: '3-6 months'
-      },
-      {
-        category: 'Product',
-        priority: 'Medium', 
-        title: 'Develop Proprietary AI Models',
-        description: 'Reduce dependency on third-party AI providers',
-        impact: 'Improve margins by 15-20% and strengthen competitive moat',
-        timeline: '9-15 months'
-      },
-      {
-        category: 'Operational',
-        priority: 'Medium',
-        title: 'Scale Customer Success Team',
-        description: 'Hire 5-8 customer success managers to improve retention',
-        impact: 'Increase NRR from 125% to 135%+',
-        timeline: '2-4 months'
-      }
-    ]
-  };
+  const growthPotentialData = agentResponseData.growthPotential;
 
   // PDF Export function
   const exportToPDF = () => {
@@ -714,9 +485,33 @@ const StartupAnalystPlatform = () => {
                       <Brain className="text-blue-400" size={20} />
                       <h3 className="text-xl font-bold text-white">AI Investment Summary</h3>
                     </div>
-                    <p className="text-gray-300 leading-relaxed">
-                      Strong growth metrics with healthy unit economics. Proven leadership team and solid product-market fit in the AI automation space.
+                    <p className="text-gray-300 leading-relaxed mb-4">
+                      {agentResponseData.aiSummary.investmentThesis}
                     </p>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <h4 className="text-green-400 font-semibold mb-2">Key Highlights</h4>
+                        <ul className="text-sm text-gray-300 space-y-1">
+                          {agentResponseData.aiSummary.keyHighlights.slice(0, 2).map((highlight, i) => (
+                            <li key={i} className="flex items-start space-x-2">
+                              <CheckCircle size={12} className="text-green-400 mt-1 flex-shrink-0" />
+                              <span>{highlight}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 className="text-red-400 font-semibold mb-2">Main Concerns</h4>
+                        <ul className="text-sm text-gray-300 space-y-1">
+                          {agentResponseData.aiSummary.mainConcerns.slice(0, 2).map((concern, i) => (
+                            <li key={i} className="flex items-start space-x-2">
+                              <AlertCircle size={12} className="text-red-400 mt-1 flex-shrink-0" />
+                              <span>{concern}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
                   </div>
                 </div>
               )}
