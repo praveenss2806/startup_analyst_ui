@@ -590,7 +590,7 @@ const StartupAnalystPlatform = () => {
                         <h3 className="text-xl font-bold text-white">Performance Benchmarks</h3>
                       </div>
                       <div className="grid grid-cols-2 gap-4">
-                        {benchmarks.slice(0, 4).map((benchmark, idx) => (
+                        {benchmarks.map((benchmark, idx) => (
                           <div key={idx} className="bg-gray-800/50 p-4 rounded-xl">
                             <div className="flex items-center justify-between mb-2">
                               <p className="text-gray-300 text-sm">{benchmark.metric}</p>
@@ -625,7 +625,7 @@ const StartupAnalystPlatform = () => {
                       <div>
                         <h4 className="text-green-400 font-semibold mb-2">Key Highlights</h4>
                         <ul className="text-sm text-gray-300 space-y-1">
-                          {(analysisData?.analysis?.aiSummary?.keyHighlights || []).slice(0, 2).map((highlight, i) => (
+                          {(analysisData?.analysis?.aiSummary?.keyHighlights || []).map((highlight, i) => (
                             <li key={i} className="flex items-start space-x-2">
                               <CheckCircle size={12} className="text-green-400 mt-1 flex-shrink-0" />
                               <span>{highlight}</span>
@@ -636,7 +636,7 @@ const StartupAnalystPlatform = () => {
                       <div>
                         <h4 className="text-red-400 font-semibold mb-2">Main Concerns</h4>
                         <ul className="text-sm text-gray-300 space-y-1">
-                          {(analysisData?.analysis?.aiSummary?.mainConcerns || []).slice(0, 2).map((concern, i) => (
+                          {(analysisData?.analysis?.aiSummary?.mainConcerns || []).map((concern, i) => (
                             <li key={i} className="flex items-start space-x-2">
                               <AlertCircle size={12} className="text-red-400 mt-1 flex-shrink-0" />
                               <span>{concern}</span>
@@ -656,7 +656,7 @@ const StartupAnalystPlatform = () => {
                     <h3 className="text-xl font-bold text-white">Competitor Analysis</h3>
                   </div>
                   <div className="grid gap-4">
-                    {competitorComparisons.slice(0, 2).map((competitor, idx) => (
+                    {competitorComparisons.map((competitor, idx) => (
                       <div key={idx} className="bg-gray-700/50 p-4 rounded-xl border border-gray-600 hover:border-blue-500 transition-all duration-300">
                         <div className="flex items-start justify-between mb-4">
                           <div>
@@ -682,7 +682,7 @@ const StartupAnalystPlatform = () => {
                           <div>
                             <p className="text-sm font-semibold text-green-400 mb-2">Strengths</p>
                             <ul className="text-sm text-gray-300 space-y-1">
-                              {competitor.strengths.slice(0, 1).map((strength, i) => (
+                              {competitor.strengths.map((strength, i) => (
                                 <li key={i} className="flex items-center space-x-2">
                                   <CheckCircle size={10} className="text-green-400" />
                                   <span>{strength}</span>
@@ -693,7 +693,7 @@ const StartupAnalystPlatform = () => {
                           <div>
                             <p className="text-sm font-semibold text-red-400 mb-2">Weaknesses</p>
                             <ul className="text-sm text-gray-300 space-y-1">
-                              {competitor.weaknesses.slice(0, 1).map((weakness, i) => (
+                              {competitor.weaknesses.map((weakness, i) => (
                                 <li key={i} className="flex items-center space-x-2">
                                   <XCircle size={10} className="text-red-400" />
                                   <span>{weakness}</span>
@@ -714,7 +714,7 @@ const StartupAnalystPlatform = () => {
                     <AlertTriangle className="text-red-400" size={20} />
                     <h3 className="text-xl font-bold text-white">Risk Assessment</h3>
                   </div>
-                  {enhancedRiskFlags.slice(0, 2).map((risk, idx) => (
+                  {enhancedRiskFlags.map((risk, idx) => (
                     <div key={idx} className="bg-gray-700/50 p-4 rounded-xl border border-gray-600 hover:border-red-500 transition-all duration-300">
                       <div className="flex items-start justify-between mb-3">
                         <div className="flex items-center space-x-3">
@@ -754,7 +754,7 @@ const StartupAnalystPlatform = () => {
 
                   {/* Growth Factors */}
                   <div className="grid grid-cols-2 gap-4">
-                    {growthPotentialData.factors.slice(0, 2).map((factor, idx) => (
+                    {growthPotentialData.factors.map((factor, idx) => (
                       <div key={idx} className="bg-gray-700/50 p-4 rounded-xl border border-gray-600 hover:border-purple-500 transition-all duration-300">
                         <div className="flex items-center justify-between mb-2">
                           <h4 className="font-bold text-white text-sm">{factor.name}</h4>
@@ -778,7 +778,7 @@ const StartupAnalystPlatform = () => {
                       <span>Key Recommendations</span>
                     </h4>
                     <div className="space-y-3">
-                      {growthPotentialData.recommendations.slice(0, 1).map((rec, idx) => (
+                      {growthPotentialData.recommendations.map((rec, idx) => (
                         <div key={idx} className="bg-gray-700/50 p-4 rounded-xl border border-gray-600 hover:border-yellow-500 transition-all duration-300">
                           <div className="flex items-start justify-between mb-3">
                             <div>
@@ -891,7 +891,7 @@ const StartupAnalystPlatform = () => {
                       <div>
                         <p className="text-gray-300 text-sm mb-2">Key Investors</p>
                         <div className="flex flex-wrap gap-2">
-                          {(financialData.funding.investors || []).slice(0, 6).map((investor, idx) => (
+                          {(financialData.funding.investors || []).map((investor, idx) => (
                             <span key={idx} className="bg-gray-800/50 px-3 py-1 rounded-lg text-xs text-gray-300">
                               {investor}
                             </span>
