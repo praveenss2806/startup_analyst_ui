@@ -12,8 +12,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "VentureScope AI",
-  description: "AI-powered startup analysis and investment intelligence platform",
+  title: "InvestIQ",
+  description: "AI-powered investment analysis platform for startup evaluation",
+  icons: {
+    icon: '/favicon.svg',
+  },
 };
 
 export default function RootLayout({ children }) {

@@ -50,8 +50,8 @@ import {
   Hexagon
 } from 'lucide-react';
 
-// Custom SVG Logo Component
-const VentureScopeLogo = ({ size = 32, className = "" }) => (
+// Professional LAX Logo Component - Clean & Modern Design
+const LAXLogo = ({ size = 32, className = "" }) => (
   <svg 
     width={size} 
     height={size} 
@@ -59,22 +59,35 @@ const VentureScopeLogo = ({ size = 32, className = "" }) => (
     className={className}
     xmlns="http://www.w3.org/2000/svg"
   >
-    <circle cx="50" cy="50" r="45" fill="#6366F1" opacity="0.1" />
-    <path 
-      d="M25 35 L50 20 L75 35 L75 65 L50 80 L25 65 Z" 
-      fill="none" 
-      stroke="#6366F1" 
-      strokeWidth="3" 
-      strokeLinejoin="round"
+    {/* Background rectangle */}
+    <rect 
+      x="10" 
+      y="20" 
+      width="80" 
+      height="60" 
+      rx="8" 
+      fill="#192452"
     />
-    <circle cx="50" cy="40" r="8" fill="#6366F1" />
-    <circle cx="35" cy="55" r="6" fill="#06B6D4" />
-    <circle cx="65" cy="55" r="6" fill="#10B981" />
-    <path 
-      d="M42 40 L35 55 M58 40 L65 55 M35 55 L65 55" 
-      stroke="#6366F1" 
-      strokeWidth="2" 
-      strokeLinecap="round"
+    {/* LAX Text */}
+    <text 
+      x="50" 
+      y="58" 
+      textAnchor="middle" 
+      fontSize="28" 
+      fontWeight="bold" 
+      fill="#f7ffff"
+      fontFamily="Arial, sans-serif"
+    >
+      LAX
+    </text>
+    {/* Accent line */}
+    <rect 
+      x="15" 
+      y="72" 
+      width="70" 
+      height="3" 
+      rx="1.5" 
+      fill="#0099ff"
     />
   </svg>
 );
@@ -484,43 +497,43 @@ const StartupAnalystPlatform = () => {
 
   function renderUploadPage() {
     return (
-      <div className="h-screen bg-slate-900 flex items-center justify-center p-6 overflow-hidden">
-        <div className="max-w-2xl w-full animate-fade-in">
+      <div className="h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center p-6 overflow-hidden">
+        <div className="max-w-2xl w-full">
           <div className="text-center mb-12">
-            <div className="inline-flex items-center justify-center w-20 h-20 bg-slate-800 border-2 border-purple-500 rounded-3xl mb-6 animate-float">
-              <VentureScopeLogo size={40} />
+            <div className="inline-flex items-center justify-center w-20 h-20 bg-gray-800 border-2 border-orange-500 rounded-3xl mb-6">
+              <LAXLogo size={40} />
             </div>
-            <h1 className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 mb-4 animate-slide-up">
-              VentureScope AI
+            <h1 className="text-5xl font-bold text-white mb-4">
+              LetsAnalyse
             </h1>
-            <p className="text-xl text-slate-300 max-w-lg mx-auto animate-slide-up-delay">
+            <p className="text-xl text-gray-300 max-w-lg mx-auto">
               Upload your pitch deck and get instant AI-powered investment analysis
             </p>
           </div>
 
           <div 
-            className={`border-2 border-dashed rounded-3xl p-12 text-center transition-all duration-500 bg-slate-800/50 backdrop-blur-sm animate-slide-up-delay-2 ${
+            className={`border-2 border-dashed rounded-3xl p-12 text-center transition-all duration-500 bg-gray-800/50 ${
               isDragOver 
-                ? 'border-cyan-400 bg-cyan-400/20 scale-105 shadow-2xl shadow-cyan-500/25' 
-                : 'border-slate-600 hover:border-purple-500 hover:shadow-xl hover:shadow-purple-500/20'
+                ? 'border-orange-400 bg-orange-900/20 scale-105 shadow-2xl shadow-orange-500/25' 
+                : 'border-gray-600 hover:border-orange-500 hover:shadow-xl hover:shadow-orange-500/20'
             }`}
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}
           >
             <CloudUpload className={`w-16 h-16 mx-auto mb-6 transition-all duration-300 ${
-              isDragOver ? 'text-cyan-400 animate-bounce' : 'text-slate-400 hover:text-purple-400'
+              isDragOver ? 'text-orange-500' : 'text-gray-400 hover:text-orange-500'
             }`} />
             
             <h3 className="text-2xl font-semibold text-white mb-3">
               {isDragOver ? 'Drop your pitch deck here' : 'Upload Pitch Deck'}
             </h3>
             
-            <p className="text-slate-400 mb-8 text-lg">
+            <p className="text-gray-300 mb-8 text-lg">
               Drag and drop your PDF here, or click to browse
             </p>
             
-            <label className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold rounded-2xl cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25 animate-pulse-slow">
+            <label className="inline-flex items-center px-8 py-4 bg-orange-600 hover:bg-orange-700 text-white font-semibold rounded-2xl cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-orange-500/25">
               <Upload size={20} className="mr-3" />
               Choose File
               <input 
@@ -531,8 +544,8 @@ const StartupAnalystPlatform = () => {
               />
             </label>
             
-            <p className="text-slate-500 text-sm mt-6 flex items-center justify-center space-x-2">
-              <Shield size={14} className="text-emerald-400" />
+            <p className="text-gray-400 text-sm mt-6 flex items-center justify-center space-x-2">
+              <Shield size={14} className="text-green-400" />
               <span>Supports PDF files up to 50MB • Your data is processed securely</span>
             </p>
           </div>
@@ -546,18 +559,18 @@ const StartupAnalystPlatform = () => {
     const StageIcon = currentStageData.icon;
     
     return (
-      <div className="h-screen bg-slate-900 flex items-center justify-center p-6 overflow-hidden">
+      <div className="h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center p-6 overflow-hidden">
         <div className="max-w-2xl w-full text-center">
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-slate-800 border-2 border-cyan-500 rounded-3xl mb-8 animate-float">
-            <VentureScopeLogo size={40} />
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-gray-800 border-2 border-orange-500 rounded-3xl mb-8">
+            <LAXLogo size={40} />
           </div>
           
           <div className="mb-8">
-            <div className="inline-flex items-center justify-center w-24 h-24 bg-slate-800/50 border border-cyan-500 rounded-3xl mb-6 animate-pulse-glow">
-              <StageIcon size={48} className="text-cyan-400 animate-spin-slow" />
+            <div className="inline-flex items-center justify-center w-24 h-24 bg-gray-800 border border-orange-500 rounded-3xl mb-6">
+              <StageIcon size={48} className="text-orange-500" />
             </div>
-            <h2 className="text-4xl font-bold text-white mb-2 animate-slide-up">{currentStageData.label}</h2>
-            <p className="text-slate-400 text-lg animate-slide-up-delay">AI is analyzing your startup's potential</p>
+            <h2 className="text-4xl font-bold text-white mb-2">{currentStageData.label}</h2>
+            <p className="text-gray-300 text-lg">AI is analyzing your startup's potential</p>
           </div>
           
           <div className="flex justify-center space-x-3">
@@ -565,9 +578,8 @@ const StartupAnalystPlatform = () => {
               <div
                 key={i}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  i <= loadingStage ? 'bg-cyan-400 animate-pulse' : 'bg-slate-600'
+                  i <= loadingStage ? 'bg-orange-500' : 'bg-gray-600'
                 }`}
-                style={{ animationDelay: `${i * 0.1}s` }}
               />
             ))}
           </div>
@@ -578,30 +590,30 @@ const StartupAnalystPlatform = () => {
 
   function renderDashboard() {
     return (
-      <div className="h-screen bg-slate-900 text-white flex flex-col overflow-hidden">
+      <div className="h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white flex flex-col overflow-hidden">
         {/* Header */}
-        <header className="bg-slate-800/90 backdrop-blur-xl border-b border-slate-700/50 px-6 py-4 flex-shrink-0 animate-slide-down">
+        <header className="bg-gray-800/80 border-b border-gray-700 px-6 py-4 flex-shrink-0 shadow-lg backdrop-blur-sm">
           <div className="flex items-center justify-between w-full">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center animate-float">
-                <VentureScopeLogo size={24} />
+              <div className="w-10 h-10 bg-gray-700 rounded-2xl flex items-center justify-center">
+                <LAXLogo size={24} />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-white">VentureScope AI</h1>
-                <p className="text-xs text-slate-400">Investment Intelligence</p>
+                <h1 className="text-xl font-bold text-white">LetsAnalyse</h1>
+                <p className="text-xs text-gray-300">AI Investment Analysis</p>
               </div>
             </div>
             <div className="flex items-center space-x-3">
               <button 
                 onClick={exportToPDF}
-                className="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-4 py-2 rounded-xl flex items-center space-x-2 transition-all duration-300 font-medium shadow-lg hover:scale-105 hover:shadow-emerald-500/25"
+                className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-xl flex items-center space-x-2 transition-all duration-300 font-medium shadow-lg hover:scale-105"
               >
                 <Download size={14} />
-                <span>Export</span>
+                <span>Export PDF</span>
               </button>
               <button 
                 onClick={() => setAppState('upload')}
-                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-4 py-2 rounded-xl flex items-center space-x-2 transition-all duration-300 font-medium shadow-lg hover:scale-105 hover:shadow-purple-500/25"
+                className="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-xl flex items-center space-x-2 transition-all duration-300 font-medium shadow-lg hover:scale-105"
               >
                 <Upload size={14} />
                 <span>New</span>
@@ -613,16 +625,16 @@ const StartupAnalystPlatform = () => {
         {/* Main Content */}
         <div className="flex-1 flex flex-col p-6 w-full overflow-hidden">
           {/* Compact Startup Header */}
-          <div className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-6 mb-6 flex-shrink-0 animate-slide-up shadow-2xl">
+          <div className="bg-gray-800/60 border border-gray-700 rounded-2xl p-6 mb-6 flex-shrink-0 shadow-lg backdrop-blur-sm">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-indigo-600 rounded-2xl flex items-center justify-center animate-pulse-glow">
+                <div className="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center">
                   <Building className="text-white" size={20} />
                 </div>
                 <div>
                   <h2 className="text-2xl font-bold text-white">{analyzedStartup.name}</h2>
-                  <p className="text-sm text-slate-300">{analyzedStartup.tagline}</p>
-                  <div className="flex items-center space-x-4 text-xs text-slate-400 mt-1">
+                  <p className="text-sm text-gray-300">{analyzedStartup.tagline}</p>
+                  <div className="flex items-center space-x-4 text-xs text-gray-400 mt-1">
                     <span className="flex items-center space-x-1">
                       <MapPin size={12} />
                       <span>{analyzedStartup.location}</span>
@@ -639,11 +651,11 @@ const StartupAnalystPlatform = () => {
                 </div>
               </div>
               <div className="text-right">
-                <div className="text-3xl font-bold text-emerald-400 mb-1 animate-number-count">
+                <div className="text-3xl font-bold text-green-400 mb-1">
                   {analyzedStartup.investmentScore}/10
                 </div>
-                <div className="text-xs text-slate-400 mb-2">Investment Score</div>
-                <span className="inline-flex items-center px-3 py-1 rounded-xl text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                <div className="text-xs text-gray-400 mb-2">Investment Score</div>
+                <span className="inline-flex items-center px-3 py-1 rounded-xl text-xs font-bold bg-green-900/40 text-green-400 border border-green-700">
                   <Crown size={12} className="mr-1" />
                   {analyzedStartup.recommendation}
                 </span>
@@ -652,8 +664,8 @@ const StartupAnalystPlatform = () => {
           </div>
 
           {/* Tabs */}
-          <div className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl flex-1 flex flex-col overflow-hidden animate-slide-up-delay shadow-2xl">
-            <div className="border-b border-slate-700/50 flex-shrink-0">
+          <div className="bg-gray-800/60 border border-gray-700 rounded-2xl flex-1 flex flex-col overflow-hidden shadow-lg backdrop-blur-sm">
+            <div className="border-b border-gray-700 flex-shrink-0">
               <nav className="flex space-x-1 px-6 py-2">
                 {[
                   { id: 'overview', label: 'Overview', icon: Eye },
@@ -664,10 +676,10 @@ const StartupAnalystPlatform = () => {
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`flex items-center space-x-2 px-4 py-3 rounded-xl font-semibold text-sm transition-all duration-300 hover:scale-105 ${
+                    className={`flex items-center space-x-2 px-4 py-3 rounded-xl font-semibold text-sm transition-all duration-300 ${
                       activeTab === tab.id
-                        ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg shadow-purple-500/25'
-                        : 'text-slate-400 hover:text-white hover:bg-slate-700/50'
+                        ? 'bg-orange-600 text-white shadow-lg'
+                        : 'text-gray-300 hover:text-white hover:bg-gray-700'
                     }`}
                   >
                     <tab.icon size={14} />
@@ -677,32 +689,32 @@ const StartupAnalystPlatform = () => {
               </nav>
             </div>
 
-            <div className="p-6 flex-1 overflow-y-auto scrollbar-thin scrollbar-track-slate-800 scrollbar-thumb-slate-600">
+            <div className="p-6 flex-1 overflow-y-auto scrollbar-thin scrollbar-track-gray-700 scrollbar-thumb-gray-500 hover:scrollbar-thumb-gray-400" style={{scrollbarWidth: 'thin'}}>
               {activeTab === 'overview' && (
-                <div className="space-y-6 animate-fade-in">
+                <div className="space-y-6">
                   {/* Key Metrics Grid */}
                   <div className="grid grid-cols-4 gap-4">
                     {Object.entries(keyMetrics).map(([key, metric], index) => (
-                      <div key={key} className="bg-slate-700/50 backdrop-blur-xl border border-slate-600/50 rounded-xl p-4 hover:border-purple-500/50 transition-all duration-300 hover:scale-105 animate-slide-up" style={{animationDelay: `${index * 0.1}s`}}>
+                      <div key={key} className="bg-gray-700/50 border border-gray-600 rounded-xl p-4 hover:border-orange-500 transition-all duration-300">
                         <div className="flex items-center justify-between mb-2">
-                          <h4 className="font-bold text-slate-300 uppercase text-xs tracking-wider">
+                          <h4 className="font-bold text-gray-300 uppercase text-xs tracking-wider">
                             {key === 'arr' ? 'ARR' : key === 'cac' ? 'CAC' : key.charAt(0).toUpperCase() + key.slice(1)}
                           </h4>
-                          <ArrowUp className="text-emerald-400 animate-bounce-slow" size={14} />
+                          <ArrowUp className="text-green-400" size={14} />
                         </div>
-                        <p className="text-2xl font-bold text-white mb-1 animate-number-count">{metric.value}</p>
-                        <p className="text-xs text-emerald-400 font-semibold">{metric.change}</p>
+                        <p className="text-2xl font-bold text-white mb-1">{metric.value}</p>
+                        <p className="text-xs text-green-400 font-semibold">{metric.change}</p>
                       </div>
                     ))}
                   </div>
 
                   {/* AI Investment Summary */}
-                  <div className="bg-slate-700/30 border border-cyan-500/30 p-6 rounded-2xl hover:border-cyan-500/50 transition-all duration-300 animate-slide-up-delay">
+                  <div className="bg-blue-900/30 border border-blue-700 p-6 rounded-2xl hover:border-blue-600 transition-all duration-300">
                     <div className="flex items-center space-x-3 mb-4">
-                      <Brain className="text-cyan-400 animate-pulse-glow" size={20} />
+                      <Brain className="text-blue-400" size={20} />
                       <h3 className="text-xl font-bold text-white">AI Investment Summary</h3>
                     </div>
-                    <p className="text-slate-300 leading-relaxed">
+                    <p className="text-gray-300 leading-relaxed">
                       Strong growth metrics with healthy unit economics. Proven leadership team and solid product-market fit in the AI automation space.
                     </p>
                   </div>
@@ -710,41 +722,41 @@ const StartupAnalystPlatform = () => {
               )}
 
               {activeTab === 'competitors' && (
-                <div className="space-y-4 animate-fade-in">
+                <div className="space-y-4">
                   <div className="flex items-center space-x-3 mb-4">
-                    <BarChart3 className="text-cyan-400 animate-pulse-glow" size={20} />
+                    <BarChart3 className="text-blue-400" size={20} />
                     <h3 className="text-xl font-bold text-white">Competitor Analysis</h3>
                   </div>
                   <div className="grid gap-4">
                     {competitorComparisons.slice(0, 2).map((competitor, idx) => (
-                      <div key={idx} className="bg-slate-700/50 p-4 rounded-xl border border-slate-600/50 hover:border-purple-500/50 transition-all duration-300 hover:scale-[1.02] animate-slide-up" style={{animationDelay: `${idx * 0.1}s`}}>
+                      <div key={idx} className="bg-gray-700/50 p-4 rounded-xl border border-gray-600 hover:border-blue-500 transition-all duration-300">
                         <div className="flex items-start justify-between mb-4">
                           <div>
                             <h4 className="text-lg font-bold text-white mb-1">{competitor.name}</h4>
-                            <p className="text-purple-300 text-sm">{competitor.sector}</p>
+                            <p className="text-blue-400 text-sm">{competitor.sector}</p>
                           </div>
                           <div className="text-right">
-                            <div className="text-lg font-bold text-emerald-400">{competitor.arr} ARR</div>
-                            <div className="text-sm text-purple-300">{competitor.growth} growth</div>
+                            <div className="text-lg font-bold text-green-400">{competitor.arr} ARR</div>
+                            <div className="text-sm text-blue-400">{competitor.growth} growth</div>
                           </div>
                         </div>
                         <div className="grid grid-cols-2 gap-3 mb-3">
                           <div>
-                            <p className="text-xs text-slate-400 uppercase tracking-wide">Funding</p>
+                            <p className="text-xs text-gray-400 uppercase tracking-wide">Funding</p>
                             <p className="text-white font-semibold text-sm">{competitor.funding}</p>
                           </div>
                           <div>
-                            <p className="text-xs text-slate-400 uppercase tracking-wide">Valuation</p>
+                            <p className="text-xs text-gray-400 uppercase tracking-wide">Valuation</p>
                             <p className="text-white font-semibold text-sm">{competitor.valuation}</p>
                           </div>
                         </div>
                         <div className="grid grid-cols-2 gap-3">
                           <div>
-                            <p className="text-sm font-semibold text-emerald-400 mb-2">Strengths</p>
-                            <ul className="text-sm text-slate-300 space-y-1">
+                            <p className="text-sm font-semibold text-green-400 mb-2">Strengths</p>
+                            <ul className="text-sm text-gray-300 space-y-1">
                               {competitor.strengths.slice(0, 1).map((strength, i) => (
                                 <li key={i} className="flex items-center space-x-2">
-                                  <CheckCircle size={10} className="text-emerald-400" />
+                                  <CheckCircle size={10} className="text-green-400" />
                                   <span>{strength}</span>
                                 </li>
                               ))}
@@ -752,7 +764,7 @@ const StartupAnalystPlatform = () => {
                           </div>
                           <div>
                             <p className="text-sm font-semibold text-red-400 mb-2">Weaknesses</p>
-                            <ul className="text-sm text-slate-300 space-y-1">
+                            <ul className="text-sm text-gray-300 space-y-1">
                               {competitor.weaknesses.slice(0, 1).map((weakness, i) => (
                                 <li key={i} className="flex items-center space-x-2">
                                   <XCircle size={10} className="text-red-400" />
@@ -769,36 +781,36 @@ const StartupAnalystPlatform = () => {
               )}
 
               {activeTab === 'risks' && (
-                <div className="space-y-4 animate-fade-in">
+                <div className="space-y-4">
                   <div className="flex items-center space-x-3 mb-4">
-                    <AlertTriangle className="text-red-400 animate-pulse-glow" size={20} />
+                    <AlertTriangle className="text-red-400" size={20} />
                     <h3 className="text-xl font-bold text-white">Risk Assessment</h3>
                   </div>
                   {enhancedRiskFlags.slice(0, 2).map((risk, idx) => (
-                    <div key={idx} className="bg-slate-700/50 p-4 rounded-xl border border-slate-600/50 hover:border-red-500/50 transition-all duration-300 hover:scale-[1.02] animate-slide-up" style={{animationDelay: `${idx * 0.1}s`}}>
+                    <div key={idx} className="bg-gray-700/50 p-4 rounded-xl border border-gray-600 hover:border-red-500 transition-all duration-300">
                       <div className="flex items-start justify-between mb-3">
                         <div className="flex items-center space-x-3">
-                          <div className={`w-3 h-3 rounded-full animate-pulse ${
-                            risk.severity === 'High' ? 'bg-red-400' :
-                            risk.severity === 'Medium' ? 'bg-yellow-400' : 'bg-emerald-400'
+                          <div className={`w-3 h-3 rounded-full ${
+                            risk.severity === 'High' ? 'bg-red-500' :
+                            risk.severity === 'Medium' ? 'bg-yellow-500' : 'bg-green-500'
                           }`} />
                           <div>
                             <h4 className="text-lg font-bold text-white">{risk.issue}</h4>
-                            <p className="text-sm text-slate-400">{risk.type}</p>
+                            <p className="text-sm text-gray-300">{risk.type}</p>
                           </div>
                         </div>
                         <span className={`px-2 py-1 rounded-lg text-xs font-bold ${
-                          risk.severity === 'High' ? 'bg-red-500/20 text-red-400 border border-red-500/30' :
-                          risk.severity === 'Medium' ? 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30' :
-                          'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+                          risk.severity === 'High' ? 'bg-red-900/40 text-red-400 border border-red-700' :
+                          risk.severity === 'Medium' ? 'bg-yellow-900/40 text-yellow-400 border border-yellow-700' :
+                          'bg-green-900/40 text-green-400 border border-green-700'
                         }`}>
                           {risk.severity}
                         </span>
                       </div>
-                      <p className="text-slate-300 mb-3">{risk.description}</p>
-                      <div className="bg-slate-800/50 p-3 rounded-xl border border-slate-600/30">
-                        <p className="text-slate-300 text-sm mb-2"><strong className="text-cyan-400">Evidence:</strong> {risk.evidence}</p>
-                        <p className="text-slate-300 text-sm"><strong className="text-emerald-400">Mitigation:</strong> {risk.mitigation}</p>
+                      <p className="text-gray-300 mb-3">{risk.description}</p>
+                      <div className="bg-gray-800/50 p-3 rounded-xl border border-gray-600">
+                        <p className="text-gray-300 text-sm mb-2"><strong className="text-blue-400">Evidence:</strong> {risk.evidence}</p>
+                        <p className="text-gray-300 text-sm"><strong className="text-green-400">Mitigation:</strong> {risk.mitigation}</p>
                       </div>
                     </div>
                   ))}
@@ -806,35 +818,35 @@ const StartupAnalystPlatform = () => {
               )}
 
               {activeTab === 'growth' && (
-                <div className="space-y-6 animate-fade-in">
+                <div className="space-y-6">
                   <div className="flex items-center space-x-3 mb-4">
-                    <Rocket className="text-purple-400 animate-pulse-glow" size={20} />
+                    <Rocket className="text-purple-400" size={20} />
                     <h3 className="text-xl font-bold text-white">Growth Potential</h3>
                   </div>
                   
                   {/* Growth Score */}
-                  <div className="bg-slate-700/30 border border-purple-500/30 p-6 rounded-2xl text-center hover:border-purple-500/50 transition-all duration-300 animate-slide-up">
-                    <div className="text-5xl font-bold text-purple-400 mb-2 animate-number-count">
+                  <div className="bg-purple-900/30 border border-purple-700 p-6 rounded-2xl text-center hover:border-purple-600 transition-all duration-300">
+                    <div className="text-5xl font-bold text-purple-400 mb-2">
                       {growthPotentialData.score}/10
                     </div>
-                    <p className="text-slate-400">Growth Potential Score</p>
+                    <p className="text-gray-300">Growth Potential Score</p>
                   </div>
 
                   {/* Growth Factors */}
                   <div className="grid grid-cols-2 gap-4">
                     {growthPotentialData.factors.slice(0, 2).map((factor, idx) => (
-                      <div key={idx} className="bg-slate-700/50 p-4 rounded-xl border border-slate-600/50 hover:border-purple-500/50 transition-all duration-300 hover:scale-105 animate-slide-up" style={{animationDelay: `${idx * 0.1}s`}}>
+                      <div key={idx} className="bg-gray-700/50 p-4 rounded-xl border border-gray-600 hover:border-purple-500 transition-all duration-300">
                         <div className="flex items-center justify-between mb-2">
                           <h4 className="font-bold text-white text-sm">{factor.name}</h4>
                           <div className="text-lg font-bold text-purple-400">{factor.score}/10</div>
                         </div>
-                        <div className="w-full bg-slate-600 rounded-full h-2 mb-2">
+                        <div className="w-full bg-gray-600 rounded-full h-2 mb-2">
                           <div 
-                            className="bg-purple-500 h-2 rounded-full transition-all duration-1000 animate-progress" 
+                            className="bg-purple-500 h-2 rounded-full transition-all duration-1000" 
                             style={{ width: `${factor.score * 10}%` }}
                           />
                         </div>
-                        <p className="text-slate-300 text-xs">{factor.description}</p>
+                        <p className="text-gray-300 text-xs">{factor.description}</p>
                       </div>
                     ))}
                   </div>
@@ -842,34 +854,34 @@ const StartupAnalystPlatform = () => {
                   {/* Recommendations */}
                   <div>
                     <h4 className="text-lg font-bold text-white mb-4 flex items-center space-x-2">
-                      <Lightbulb className="text-yellow-400 animate-pulse-glow" size={18} />
+                      <Lightbulb className="text-yellow-400" size={18} />
                       <span>Key Recommendations</span>
                     </h4>
                     <div className="space-y-3">
                       {growthPotentialData.recommendations.slice(0, 1).map((rec, idx) => (
-                        <div key={idx} className="bg-slate-700/50 p-4 rounded-xl border border-slate-600/50 hover:border-cyan-500/50 transition-all duration-300 hover:scale-[1.02] animate-slide-up" style={{animationDelay: `${idx * 0.1}s`}}>
+                        <div key={idx} className="bg-gray-700/50 p-4 rounded-xl border border-gray-600 hover:border-yellow-500 transition-all duration-300">
                           <div className="flex items-start justify-between mb-3">
                             <div>
                               <div className="flex items-center space-x-2 mb-2">
                                 <span className={`px-2 py-1 rounded-lg text-xs font-bold ${
-                                  rec.priority === 'High' ? 'bg-red-500/20 text-red-400 border border-red-500/30' : 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30'
+                                  rec.priority === 'High' ? 'bg-red-900/40 text-red-400 border border-red-700' : 'bg-yellow-900/40 text-yellow-400 border border-yellow-700'
                                 }`}>
                                   {rec.priority}
                                 </span>
-                                <span className="px-2 py-1 rounded-lg text-xs font-bold bg-cyan-500/20 text-cyan-400 border border-cyan-500/30">
+                                <span className="px-2 py-1 rounded-lg text-xs font-bold bg-blue-900/40 text-blue-400 border border-blue-700">
                                   {rec.category}
                                 </span>
                               </div>
                               <h5 className="text-lg font-bold text-white">{rec.title}</h5>
                             </div>
-                            <div className="text-right text-sm text-slate-400">
+                            <div className="text-right text-sm text-gray-300">
                               <Clock size={12} className="inline mr-1" />
                               {rec.timeline}
                             </div>
                           </div>
-                          <p className="text-slate-300 mb-3 text-sm">{rec.description}</p>
-                          <div className="bg-slate-800/50 p-3 rounded-xl border border-slate-600/30">
-                            <p className="text-slate-300 text-sm"><strong className="text-emerald-400">Expected Impact:</strong> {rec.impact}</p>
+                          <p className="text-gray-300 mb-3 text-sm">{rec.description}</p>
+                          <div className="bg-gray-800/50 p-3 rounded-xl border border-gray-600">
+                            <p className="text-gray-300 text-sm"><strong className="text-green-400">Expected Impact:</strong> {rec.impact}</p>
                           </div>
                         </div>
                       ))}
