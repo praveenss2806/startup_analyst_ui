@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PDFExport from './PDFExport';
 import { uploadFile, analyzeStartup } from '../api';
-import agentResponseData from '../agent-response.json';
 import { 
   FileText, 
   TrendingUp, 
@@ -103,6 +102,9 @@ const StartupAnalystPlatform = () => {
   const [loadingStage, setLoadingStage] = useState(0);
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [uploadError, setUploadError] = useState(null);
+  const [analysisData, setAnalysisData] = useState(null);
+  const [analysisError, setAnalysisError] = useState(null);
+  const analysisStartedRef = useRef(false);
   
   // Dashboard state
   const [activeTab, setActiveTab] = useState('overview');
@@ -130,13 +132,13 @@ const StartupAnalystPlatform = () => {
     { label: 'Generating investment recommendations...', icon: CheckCircle2, duration: 1500 }
   ];
 
-  // Use agent response data
-  const analyzedStartup = agentResponseData.startup;
-  const keyMetrics = agentResponseData.keyMetrics;
+  // Use real analysis data or fallback to empty structure
+  const analyzedStartup = analysisData?.analysis?.startup || {};
+  const keyMetrics = analysisData?.analysis?.keyMetrics || {};
 
-  const competitorComparisons = agentResponseData.competitorAnalysis;
+  const competitorComparisons = analysisData?.analysis?.competitorAnalysis || [];
 
-  const enhancedRiskFlags = agentResponseData.riskAssessment;
+  const enhancedRiskFlags = analysisData?.analysis?.riskAssessment || [];
 
   const startups = [
     {
@@ -168,11 +170,11 @@ const StartupAnalystPlatform = () => {
     }
   ];
 
-  const financialData = agentResponseData.financialData;
+  const financialData = analysisData?.analysis?.financialData || {};
 
-  const teamData = agentResponseData.teamData;
+  const teamData = analysisData?.analysis?.teamData || {};
 
-  const marketData = agentResponseData.marketData;
+  const marketData = analysisData?.analysis?.marketData || {};
 
   const riskFlags = [
     { type: 'Financial', issue: 'High customer concentration (top 3 customers = 60% revenue)', severity: 'High' },
@@ -181,27 +183,48 @@ const StartupAnalystPlatform = () => {
     { type: 'Regulatory', issue: 'Potential data privacy regulations', severity: 'Low' }
   ];
 
-  const benchmarks = agentResponseData.benchmarks;
+  const benchmarks = analysisData?.analysis?.benchmarks || [];
 
-  const growthPotentialData = agentResponseData.growthPotential;
+  const growthPotentialData = analysisData?.analysis?.growthPotential || {};
 
   // PDF Export function
   const exportToPDF = () => {
     setShowPDFExport(true);
   };
 
-  // Loading simulation effect
+  // Loading and analysis effect
   useEffect(() => {
-    if (appState === 'loading') {
+    if (appState === 'loading' && uploadResponse?.gcsUri && !analysisStartedRef.current) {
+      analysisStartedRef.current = true;
       let currentStage = 0;
+      let analysisCompleted = false;
       
-      const stageInterval = setInterval(() => {
+      const stageInterval = setInterval(async () => {
         if (currentStage < loadingStages.length - 1) {
           currentStage++;
           setLoadingStage(currentStage);
+          
+          // Start analysis when we reach stage 2 (Processing) and not already completed
+          if (currentStage === 2 && !analysisCompleted) {
+            analysisCompleted = true;
+            try {
+              const result = await analyzeStartup(uploadResponse.gcsUri);
+              if (result.success) {
+                setAnalysisData(result.data);
+              } else {
+                setAnalysisError(result.error);
+              }
+            } catch (error) {
+              console.error('Analysis failed:', error);
+              setAnalysisError('Analysis failed. Please try again.');
+            }
+          }
         } else {
           clearInterval(stageInterval);
-          setTimeout(() => setAppState('dashboard'), 1000);
+          // Transition to dashboard after stages complete
+          setTimeout(() => {
+            setAppState('dashboard');
+          }, 1000);
         }
       }, 2500);
       
@@ -209,7 +232,7 @@ const StartupAnalystPlatform = () => {
         clearInterval(stageInterval);
       };
     }
-  }, [appState, loadingStages.length]);
+  }, [appState, uploadResponse?.gcsUri, loadingStages.length]);
 
   const handleFileUpload = async (file) => {
     if (!file || file.type !== 'application/pdf') {
@@ -226,6 +249,9 @@ const StartupAnalystPlatform = () => {
     setUploadedFile(file);
     setLoadingStage(0);
     setLoadingProgress(0);
+    setAnalysisData(null);
+    setAnalysisError(null);
+    analysisStartedRef.current = false;
     setAppState('loading');
 
     try {
@@ -397,6 +423,43 @@ const StartupAnalystPlatform = () => {
   }
 
   function renderDashboard() {
+    // Show error state if analysis failed
+    if (analysisError) {
+      return (
+        <div className="h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center p-6">
+          <div className="max-w-md w-full text-center">
+            <div className="inline-flex items-center justify-center w-20 h-20 bg-red-900/50 border-2 border-red-500 rounded-3xl mb-6">
+              <AlertCircle size={40} className="text-red-400" />
+            </div>
+            <h2 className="text-2xl font-bold text-white mb-4">Analysis Failed</h2>
+            <p className="text-gray-300 mb-6">{analysisError}</p>
+            <button 
+              onClick={() => setAppState('upload')}
+              className="bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-xl flex items-center space-x-2 mx-auto transition-all duration-300 font-medium"
+            >
+              <Upload size={16} />
+              <span>Try Again</span>
+            </button>
+          </div>
+        </div>
+      );
+    }
+
+    // Show loading state if analysis data is not yet available
+    if (!analysisData) {
+      return (
+        <div className="h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center p-6">
+          <div className="max-w-md w-full text-center">
+            <div className="inline-flex items-center justify-center w-20 h-20 bg-blue-900/50 border-2 border-blue-500 rounded-3xl mb-6">
+              <Loader2 size={40} className="text-blue-400 animate-spin" />
+            </div>
+            <h2 className="text-2xl font-bold text-white mb-4">Processing Analysis</h2>
+            <p className="text-gray-300">Please wait while we analyze your startup...</p>
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div className="h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white flex flex-col overflow-hidden">
         {/* Header */}
@@ -479,7 +542,10 @@ const StartupAnalystPlatform = () => {
                   { id: 'overview', label: 'Overview', icon: Eye },
                   { id: 'competitors', label: 'Competitors', icon: BarChart3 },
                   { id: 'risks', label: 'Risks', icon: AlertTriangle },
-                  { id: 'growth', label: 'Growth', icon: Rocket }
+                  { id: 'growth', label: 'Growth', icon: Rocket },
+                  { id: 'financials', label: 'Financials', icon: DollarSign },
+                  { id: 'team', label: 'Team', icon: Users },
+                  { id: 'market', label: 'Market', icon: TrendingUp }
                 ].map(tab => (
                   <button
                     key={tab.id}
@@ -516,6 +582,36 @@ const StartupAnalystPlatform = () => {
                     ))}
                   </div>
 
+                  {/* Benchmarks */}
+                  {benchmarks && benchmarks.length > 0 && (
+                    <div className="bg-purple-900/30 border border-purple-700 p-6 rounded-2xl hover:border-purple-600 transition-all duration-300">
+                      <div className="flex items-center space-x-3 mb-4">
+                        <BarChart3 className="text-purple-400" size={20} />
+                        <h3 className="text-xl font-bold text-white">Performance Benchmarks</h3>
+                      </div>
+                      <div className="grid grid-cols-2 gap-4">
+                        {benchmarks.slice(0, 4).map((benchmark, idx) => (
+                          <div key={idx} className="bg-gray-800/50 p-4 rounded-xl">
+                            <div className="flex items-center justify-between mb-2">
+                              <p className="text-gray-300 text-sm">{benchmark.metric}</p>
+                              <span className={`px-2 py-1 rounded-lg text-xs font-bold ${
+                                benchmark.status === 'Outperforming' || benchmark.status === 'Leading' ? 
+                                'bg-green-900/40 text-green-400 border border-green-700' :
+                                benchmark.status === 'Significantly Outperforming' ?
+                                'bg-blue-900/40 text-blue-400 border border-blue-700' :
+                                'bg-yellow-900/40 text-yellow-400 border border-yellow-700'
+                              }`}>
+                                {benchmark.status}
+                              </span>
+                            </div>
+                            <p className="text-white font-bold">{benchmark.value}</p>
+                            <p className="text-gray-400 text-xs">vs {benchmark.benchmark}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
                   {/* AI Investment Summary */}
                   <div className="bg-blue-900/30 border border-blue-700 p-6 rounded-2xl hover:border-blue-600 transition-all duration-300">
                     <div className="flex items-center space-x-3 mb-4">
@@ -523,13 +619,13 @@ const StartupAnalystPlatform = () => {
                       <h3 className="text-xl font-bold text-white">AI Investment Summary</h3>
                     </div>
                     <p className="text-gray-300 leading-relaxed mb-4">
-                      {agentResponseData.aiSummary.investmentThesis}
+                      {analysisData?.analysis?.aiSummary?.investmentThesis || 'Analysis in progress...'}
                     </p>
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <h4 className="text-green-400 font-semibold mb-2">Key Highlights</h4>
                         <ul className="text-sm text-gray-300 space-y-1">
-                          {agentResponseData.aiSummary.keyHighlights.slice(0, 2).map((highlight, i) => (
+                          {(analysisData?.analysis?.aiSummary?.keyHighlights || []).slice(0, 2).map((highlight, i) => (
                             <li key={i} className="flex items-start space-x-2">
                               <CheckCircle size={12} className="text-green-400 mt-1 flex-shrink-0" />
                               <span>{highlight}</span>
@@ -540,7 +636,7 @@ const StartupAnalystPlatform = () => {
                       <div>
                         <h4 className="text-red-400 font-semibold mb-2">Main Concerns</h4>
                         <ul className="text-sm text-gray-300 space-y-1">
-                          {agentResponseData.aiSummary.mainConcerns.slice(0, 2).map((concern, i) => (
+                          {(analysisData?.analysis?.aiSummary?.mainConcerns || []).slice(0, 2).map((concern, i) => (
                             <li key={i} className="flex items-start space-x-2">
                               <AlertCircle size={12} className="text-red-400 mt-1 flex-shrink-0" />
                               <span>{concern}</span>
@@ -711,6 +807,289 @@ const StartupAnalystPlatform = () => {
                       ))}
                     </div>
                   </div>
+                </div>
+              )}
+
+              {activeTab === 'financials' && (
+                <div className="space-y-6">
+                  <div className="flex items-center space-x-3 mb-4">
+                    <DollarSign className="text-green-400" size={20} />
+                    <h3 className="text-xl font-bold text-white">Financial Analysis</h3>
+                  </div>
+
+                  {/* Revenue Overview */}
+                  <div className="bg-gray-700/50 p-6 rounded-2xl border border-gray-600">
+                    <h4 className="text-lg font-bold text-white mb-4 flex items-center space-x-2">
+                      <TrendingUp className="text-green-400" size={16} />
+                      <span>Revenue Overview</span>
+                    </h4>
+                    <div className="grid grid-cols-2 gap-4 mb-4">
+                      <div>
+                        <p className="text-gray-300 text-sm">Current Revenue</p>
+                        <p className="text-2xl font-bold text-green-400">{financialData?.revenue?.current || 'N/A'}</p>
+                        <p className="text-green-400 text-sm">{financialData?.revenue?.growth || 'N/A'} growth</p>
+                      </div>
+                      <div>
+                        <p className="text-gray-300 text-sm">Projection</p>
+                        <p className="text-xl font-bold text-blue-400">{financialData?.revenue?.projection || 'N/A'}</p>
+                      </div>
+                    </div>
+                    
+                    {/* Revenue Breakdown */}
+                    {financialData?.revenue?.breakdown && (
+                      <div>
+                        <h5 className="text-white font-semibold mb-3">Monthly Breakdown</h5>
+                        <div className="grid grid-cols-3 gap-3">
+                          {financialData.revenue.breakdown.map((item, idx) => (
+                            <div key={idx} className="bg-gray-800/50 p-3 rounded-xl">
+                              <p className="text-gray-300 text-xs">{item.month}</p>
+                              <p className="text-white font-bold">${(item.value / 1000000).toFixed(1)}M</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Financial Metrics */}
+                  <div className="bg-gray-700/50 p-6 rounded-2xl border border-gray-600">
+                    <h4 className="text-lg font-bold text-white mb-4">Key Financial Metrics</h4>
+                    <div className="grid grid-cols-2 gap-4">
+                      {(financialData?.metrics || []).map((metric, idx) => (
+                        <div key={idx} className="bg-gray-800/50 p-4 rounded-xl">
+                          <div className="flex items-center justify-between mb-2">
+                            <p className="text-gray-300 text-sm">{metric.label}</p>
+                            {metric.positive ? (
+                              <ArrowUp className="text-green-400" size={14} />
+                            ) : (
+                              <ArrowDown className="text-red-400" size={14} />
+                            )}
+                          </div>
+                          <p className="text-white font-bold text-lg">{metric.value}</p>
+                          <p className={`text-sm ${metric.positive ? 'text-green-400' : 'text-red-400'}`}>
+                            {metric.change}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Funding Information */}
+                  {financialData?.funding && (
+                    <div className="bg-gray-700/50 p-6 rounded-2xl border border-gray-600">
+                      <h4 className="text-lg font-bold text-white mb-4">Funding History</h4>
+                      <div className="grid grid-cols-2 gap-4 mb-4">
+                        <div>
+                          <p className="text-gray-300 text-sm">Total Raised</p>
+                          <p className="text-xl font-bold text-purple-400">{financialData.funding.totalRaised}</p>
+                        </div>
+                        <div>
+                          <p className="text-gray-300 text-sm">Last Round</p>
+                          <p className="text-lg font-bold text-blue-400">{financialData.funding.lastRound}</p>
+                        </div>
+                      </div>
+                      <div>
+                        <p className="text-gray-300 text-sm mb-2">Key Investors</p>
+                        <div className="flex flex-wrap gap-2">
+                          {(financialData.funding.investors || []).slice(0, 6).map((investor, idx) => (
+                            <span key={idx} className="bg-gray-800/50 px-3 py-1 rounded-lg text-xs text-gray-300">
+                              {investor}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {activeTab === 'team' && (
+                <div className="space-y-6">
+                  <div className="flex items-center space-x-3 mb-4">
+                    <Users className="text-blue-400" size={20} />
+                    <h3 className="text-xl font-bold text-white">Team Analysis</h3>
+                  </div>
+
+                  {/* Team Overview */}
+                  <div className="bg-gray-700/50 p-6 rounded-2xl border border-gray-600">
+                    <h4 className="text-lg font-bold text-white mb-4">Team Overview</h4>
+                    <div className="grid grid-cols-2 gap-4 mb-4">
+                      <div>
+                        <p className="text-gray-300 text-sm">Team Size</p>
+                        <p className="text-2xl font-bold text-blue-400">{teamData?.size || 'N/A'}</p>
+                      </div>
+                      <div>
+                        <p className="text-gray-300 text-sm">Growth</p>
+                        <p className="text-lg text-green-400">{teamData?.growth || 'N/A'}</p>
+                      </div>
+                    </div>
+                    
+                    {/* Department Breakdown */}
+                    {teamData?.departments && (
+                      <div>
+                        <h5 className="text-white font-semibold mb-3">Department Breakdown</h5>
+                        <div className="space-y-3">
+                          {teamData.departments.map((dept, idx) => (
+                            <div key={idx} className="bg-gray-800/50 p-3 rounded-xl">
+                              <div className="flex justify-between items-center mb-2">
+                                <span className="text-white font-medium">{dept.name}</span>
+                                <span className="text-blue-400 font-bold">{dept.count}</span>
+                              </div>
+                              <div className="w-full bg-gray-600 rounded-full h-2">
+                                <div 
+                                  className="bg-blue-500 h-2 rounded-full transition-all duration-1000" 
+                                  style={{ width: `${dept.percentage}%` }}
+                                />
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Leadership Team */}
+                  {teamData?.leadership && (
+                    <div className="bg-gray-700/50 p-6 rounded-2xl border border-gray-600">
+                      <h4 className="text-lg font-bold text-white mb-4">Leadership Team</h4>
+                      <div className="space-y-4">
+                        {teamData.leadership.map((leader, idx) => (
+                          <div key={idx} className="bg-gray-800/50 p-4 rounded-xl border border-gray-600">
+                            <div className="flex items-start justify-between mb-3">
+                              <div>
+                                <h5 className="text-white font-bold">{leader.name}</h5>
+                                <p className="text-orange-400 font-medium">{leader.role}</p>
+                              </div>
+                              <User className="text-gray-400" size={20} />
+                            </div>
+                            <p className="text-gray-300 text-sm mb-2">{leader.experience}</p>
+                            <p className="text-gray-400 text-xs">{leader.background}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Culture & Retention */}
+                  {teamData?.culture && (
+                    <div className="bg-gray-700/50 p-6 rounded-2xl border border-gray-600">
+                      <h4 className="text-lg font-bold text-white mb-4">Culture & Retention</h4>
+                      <div className="space-y-3">
+                        <div>
+                          <p className="text-gray-300 text-sm">Culture</p>
+                          <p className="text-white">{teamData.culture.satisfaction}</p>
+                        </div>
+                        <div>
+                          <p className="text-gray-300 text-sm">Retention</p>
+                          <p className="text-white">{teamData.culture.retention}</p>
+                        </div>
+                        <div>
+                          <p className="text-gray-300 text-sm">Diversity</p>
+                          <p className="text-white">{teamData.culture.diversity}</p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {activeTab === 'market' && (
+                <div className="space-y-6">
+                  <div className="flex items-center space-x-3 mb-4">
+                    <TrendingUp className="text-purple-400" size={20} />
+                    <h3 className="text-xl font-bold text-white">Market Analysis</h3>
+                  </div>
+
+                  {/* Market Size */}
+                  {marketData?.size && (
+                    <div className="bg-gray-700/50 p-6 rounded-2xl border border-gray-600">
+                      <h4 className="text-lg font-bold text-white mb-4">Market Size</h4>
+                      <div className="grid grid-cols-3 gap-4">
+                        <div className="bg-gray-800/50 p-4 rounded-xl text-center">
+                          <p className="text-gray-300 text-sm mb-2">TAM</p>
+                          <p className="text-purple-400 font-bold text-lg">Total Addressable</p>
+                          <p className="text-white text-sm">{marketData.size.tam}</p>
+                        </div>
+                        <div className="bg-gray-800/50 p-4 rounded-xl text-center">
+                          <p className="text-gray-300 text-sm mb-2">SAM</p>
+                          <p className="text-blue-400 font-bold text-lg">Serviceable Available</p>
+                          <p className="text-white text-sm">{marketData.size.sam}</p>
+                        </div>
+                        <div className="bg-gray-800/50 p-4 rounded-xl text-center">
+                          <p className="text-gray-300 text-sm mb-2">SOM</p>
+                          <p className="text-green-400 font-bold text-lg">Serviceable Obtainable</p>
+                          <p className="text-white text-sm">{marketData.size.som}</p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Market Trends */}
+                  {marketData?.trends && (
+                    <div className="bg-gray-700/50 p-6 rounded-2xl border border-gray-600">
+                      <h4 className="text-lg font-bold text-white mb-4">Market Trends</h4>
+                      <div className="space-y-3">
+                        {marketData.trends.map((trend, idx) => (
+                          <div key={idx} className="bg-gray-800/50 p-4 rounded-xl border border-gray-600">
+                            <div className="flex items-center justify-between mb-2">
+                              <h5 className="text-white font-medium">{trend.trend}</h5>
+                              <span className={`px-2 py-1 rounded-lg text-xs font-bold ${
+                                trend.impact === 'High' ? 'bg-red-900/40 text-red-400 border border-red-700' :
+                                trend.impact === 'Medium' ? 'bg-yellow-900/40 text-yellow-400 border border-yellow-700' :
+                                'bg-green-900/40 text-green-400 border border-green-700'
+                              }`}>
+                                {trend.impact} Impact
+                              </span>
+                            </div>
+                            <p className="text-gray-300 text-sm">{trend.timeline}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Customer Segments */}
+                  {marketData?.customerSegments && (
+                    <div className="bg-gray-700/50 p-6 rounded-2xl border border-gray-600">
+                      <h4 className="text-lg font-bold text-white mb-4">Customer Segments</h4>
+                      <div className="space-y-3">
+                        {marketData.customerSegments.map((segment, idx) => (
+                          <div key={idx} className="bg-gray-800/50 p-4 rounded-xl">
+                            <div className="flex justify-between items-center mb-2">
+                              <span className="text-white font-medium">{segment.segment}</span>
+                              <span className="text-purple-400 font-bold">{segment.percentage}%</span>
+                            </div>
+                            <div className="w-full bg-gray-600 rounded-full h-2">
+                              <div 
+                                className="bg-purple-500 h-2 rounded-full transition-all duration-1000" 
+                                style={{ width: `${segment.percentage}%` }}
+                              />
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Competition Overview */}
+                  {marketData?.competition && (
+                    <div className="bg-gray-700/50 p-6 rounded-2xl border border-gray-600">
+                      <h4 className="text-lg font-bold text-white mb-4">Competition Overview</h4>
+                      <div className="grid grid-cols-2 gap-4">
+                        {marketData.competition.map((competitor, idx) => (
+                          <div key={idx} className="bg-gray-800/50 p-4 rounded-xl border border-gray-600">
+                            <div className="flex items-center justify-between mb-2">
+                              <h5 className="text-white font-bold">{competitor.name}</h5>
+                              <Building className="text-gray-400" size={16} />
+                            </div>
+                            <p className="text-gray-300 text-sm mb-1">Market Share: {competitor.marketShare}</p>
+                            <p className="text-gray-300 text-sm mb-2">Funding: {competitor.funding}</p>
+                            <p className="text-blue-400 text-sm font-medium">{competitor.strength}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
             </div>

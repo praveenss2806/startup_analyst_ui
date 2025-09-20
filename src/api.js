@@ -1,16 +1,12 @@
 import axios from 'axios';
-import agentResponseData from './agent-response.json';
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8080';
 
 // Create axios instance instead of modifying defaults
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
-  timeout: 30000,
+  timeout: 600000, // 10 minutes timeout for analysis
 });
-
-// Mock delay to simulate real API calls
-const mockDelay = (ms = 1000) => new Promise(resolve => setTimeout(resolve, ms));
 
 /**
  * Upload pitch deck file to the server
@@ -70,36 +66,30 @@ export const uploadFile = async (file) => {
 
 /**
  * Analyze startup pitch deck using AI agent
- * @param {string} fileId - The uploaded file ID
+ * @param {string} gcsUrl - The GCS URL of the uploaded file
  * @returns {Promise<Object>} Analysis results
  */
-export const analyzeStartup = async (fileId) => {
+export const analyzeStartup = async (gcsUrl) => {
   try {
-    if (!fileId) {
-      throw new Error('File ID is required for analysis');
+    if (!gcsUrl) {
+      throw new Error('GCS URL is required for analysis');
     }
 
-    // Simulate analysis delay (5-10 seconds)
-    await mockDelay(8000);
+    // Create form data as required by the agent API
+    const formData = new FormData();
+    formData.append('gcs_url', gcsUrl);
 
-    // Return mock response data
-    return {
-      success: true,
-      data: agentResponseData
-    };
-
-    // Real API call (uncomment when ready to use)
-    /*
-    const response = await apiClient.post('/analyze', {
-      file_id: fileId,
-      analysis_type: 'comprehensive'
+    const response = await apiClient.post('/agent', formData, {
+      headers: {
+        'accept': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
+      }
     });
 
     return {
       success: true,
       data: response.data
     };
-    */
 
   } catch (error) {
     console.error('Agent API Error:', error);
