@@ -1,7 +1,7 @@
 import axios from 'axios';
 import agentResponseData from './agent-response.json';
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8000/api';
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8080';
 
 // Create axios instance instead of modifying defaults
 const apiClient = axios.create({
@@ -28,26 +28,13 @@ export const uploadFile = async (file) => {
       throw new Error('File size exceeds 50MB limit.');
     }
 
-    // Simulate upload delay
-    await mockDelay(2000);
-
-    // Mock successful upload response
-    return {
-      success: true,
-      data: {
-        fileId: `upload_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-        fileName: file.name,
-        fileSize: file.size,
-        uploadedAt: new Date().toISOString(),
-        status: 'uploaded',
-        message: 'Pitch deck uploaded successfully'
-      }
-    };
-
-    // Real API call (uncomment when ready to use)
-    /*
+    // Real API call to upload endpoint
     const formData = new FormData();
-    formData.append('pitch_deck', file);
+    formData.append('file', file);
+    
+    // Extract filename without extension for the file_name parameter
+    const fileNameWithoutExt = file.name.replace(/\.[^/.]+$/, "");
+    formData.append('file_name', fileNameWithoutExt);
     
     const response = await apiClient.post('/upload', formData, {
       headers: {
@@ -55,11 +42,22 @@ export const uploadFile = async (file) => {
       }
     });
 
+    // Transform API response to match expected format
+    const apiData = response.data;
     return {
       success: true,
-      data: response.data
+      data: {
+        fileId: apiData.saved_filename || apiData.original_filename,
+        fileName: apiData.saved_filename,
+        originalFileName: apiData.original_filename,
+        fileSize: file.size,
+        uploadedAt: new Date().toISOString(),
+        status: apiData.status,
+        message: apiData.message,
+        gcsUri: apiData.gcs_uri,
+        publicUrl: apiData.public_url
+      }
     };
-    */
 
   } catch (error) {
     console.error('Upload API Error:', error);

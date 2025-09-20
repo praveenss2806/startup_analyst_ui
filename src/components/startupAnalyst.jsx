@@ -97,10 +97,12 @@ const LAXLogo = ({ size = 32, className = "" }) => (
 const StartupAnalystPlatform = () => {
   // App state management
   const [appState, setAppState] = useState('upload'); // 'upload', 'loading', 'dashboard'
-  const [uploadFile, setUploadFile] = useState(null);
+  const [uploadedFile, setUploadedFile] = useState(null);
+  const [uploadResponse, setUploadResponse] = useState(null);
   const [isDragOver, setIsDragOver] = useState(false);
   const [loadingStage, setLoadingStage] = useState(0);
   const [loadingProgress, setLoadingProgress] = useState(0);
+  const [uploadError, setUploadError] = useState(null);
   
   // Dashboard state
   const [activeTab, setActiveTab] = useState('overview');
@@ -209,14 +211,40 @@ const StartupAnalystPlatform = () => {
     }
   }, [appState, loadingStages.length]);
 
-  const handleFileUpload = (file) => {
-    if (file && file.type === 'application/pdf' && file.size <= 50 * 1024 * 1024) {
-      setUploadFile(file);
-      setLoadingStage(0);
-      setLoadingProgress(0);
-      setAppState('loading');
-    } else {
-      alert('Please upload a PDF file under 50MB');
+  const handleFileUpload = async (file) => {
+    if (!file || file.type !== 'application/pdf') {
+      setUploadError('Please upload a PDF file');
+      return;
+    }
+    
+    if (file.size > 50 * 1024 * 1024) {
+      setUploadError('File size exceeds 50MB limit');
+      return;
+    }
+
+    setUploadError(null);
+    setUploadedFile(file);
+    setLoadingStage(0);
+    setLoadingProgress(0);
+    setAppState('loading');
+
+    try {
+      // Call the real upload API
+      const result = await uploadFile(file);
+      
+      if (result.success) {
+        setUploadResponse(result.data);
+        console.log('Upload successful:', result.data);
+        // Continue with the loading stages simulation
+        // The loading stages will eventually transition to dashboard
+      } else {
+        setUploadError(result.error);
+        setAppState('upload');
+      }
+    } catch (error) {
+      console.error('Upload failed:', error);
+      setUploadError('Upload failed. Please try again.');
+      setAppState('upload');
     }
   };
 
@@ -319,6 +347,15 @@ const StartupAnalystPlatform = () => {
               <Shield size={14} className="text-green-400" />
               <span>Supports PDF files up to 50MB • Your data is processed securely</span>
             </p>
+            
+            {uploadError && (
+              <div className="mt-6 p-4 bg-red-900/50 border border-red-500 rounded-xl">
+                <div className="flex items-center space-x-2">
+                  <AlertCircle size={16} className="text-red-400" />
+                  <span className="text-red-300 text-sm">{uploadError}</span>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
