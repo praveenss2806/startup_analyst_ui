@@ -320,76 +320,79 @@ const PDFExport = ({ startupData, onClose }) => {
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="bg-gray-800 border border-gray-700 rounded-2xl max-w-md w-full p-6 shadow-2xl">
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center">
-              <Download className="text-white" size={20} />
+      <div className="border rounded-2xl max-w-md w-full mx-4 p-4 lg:p-6 shadow-2xl" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
+        <div className="flex items-center justify-between mb-4 lg:mb-6">
+          <div className="flex items-center space-x-2 lg:space-x-3">
+            <div className="w-8 h-8 lg:w-10 lg:h-10 rounded-xl flex items-center justify-center" style={{backgroundColor: '#08ce6b'}}>
+              <Download className="text-white" size={16} />
             </div>
             <div>
-              <h3 className="text-xl font-bold text-white">Export PDF Report</h3>
-              <p className="text-sm text-gray-400">Generate comprehensive analysis</p>
+              <h3 className="text-lg lg:text-xl font-bold" style={{color: '#f7ffff'}}>Export PDF Report</h3>
+              <p className="text-xs lg:text-sm" style={{color: '#f7ffff', opacity: 0.7}}>Generate comprehensive analysis</p>
             </div>
           </div>
           <button 
             onClick={onClose}
-            className="text-gray-400 hover:text-white transition-colors"
+            className="transition-colors p-1 rounded-lg hover:bg-white/10"
+            style={{color: '#f7ffff', opacity: 0.7}}
           >
             ✕
           </button>
         </div>
 
-        <div className="space-y-4 mb-6">
-          <div className="bg-gray-700/50 p-4 rounded-xl border border-gray-600/50">
-            <div className="flex items-center space-x-3 mb-3">
-              <Building className="text-orange-400" size={16} />
-              <span className="text-white font-semibold">Startup Overview</span>
+        <div className="space-y-3 lg:space-y-4 mb-4 lg:mb-6">
+          <div className="p-3 lg:p-4 rounded-xl border" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
+            <div className="flex items-center space-x-2 lg:space-x-3 mb-2">
+              <Building style={{color: '#fa8524'}} size={14} />
+              <span className="font-semibold text-sm lg:text-base" style={{color: '#f7ffff'}}>Startup Overview</span>
             </div>
-            <p className="text-gray-300 text-sm">Company details, metrics, and investment score</p>
+            <p className="text-xs lg:text-sm" style={{color: '#f7ffff', opacity: 0.7}}>Company details, metrics, and investment score</p>
           </div>
 
-          <div className="bg-gray-700/50 p-4 rounded-xl border border-gray-600/50">
-            <div className="flex items-center space-x-3 mb-3">
-              <BarChart3 className="text-blue-400" size={16} />
-              <span className="text-white font-semibold">Competitive Analysis</span>
+          <div className="p-3 lg:p-4 rounded-xl border" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
+            <div className="flex items-center space-x-2 lg:space-x-3 mb-2">
+              <BarChart3 style={{color: '#0099ff'}} size={14} />
+              <span className="font-semibold text-sm lg:text-base" style={{color: '#f7ffff'}}>Competitive Analysis</span>
             </div>
-            <p className="text-gray-300 text-sm">Market positioning and competitor comparison</p>
+            <p className="text-xs lg:text-sm" style={{color: '#f7ffff', opacity: 0.7}}>Market positioning and competitor comparison</p>
           </div>
 
-          <div className="bg-gray-700/50 p-4 rounded-xl border border-gray-600/50">
-            <div className="flex items-center space-x-3 mb-3">
-              <AlertTriangle className="text-red-400" size={16} />
-              <span className="text-white font-semibold">Risk Assessment</span>
+          <div className="p-3 lg:p-4 rounded-xl border" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
+            <div className="flex items-center space-x-2 lg:space-x-3 mb-2">
+              <AlertTriangle style={{color: '#ef4444'}} size={14} />
+              <span className="font-semibold text-sm lg:text-base" style={{color: '#f7ffff'}}>Risk Assessment</span>
             </div>
-            <p className="text-gray-300 text-sm">Key risks and mitigation strategies</p>
+            <p className="text-xs lg:text-sm" style={{color: '#f7ffff', opacity: 0.7}}>Key risks and mitigation strategies</p>
           </div>
 
-          <div className="bg-gray-700/50 p-4 rounded-xl border border-gray-600/50">
-            <div className="flex items-center space-x-3 mb-3">
-              <Rocket className="text-purple-400" size={16} />
-              <span className="text-white font-semibold">Growth Potential</span>
+          <div className="p-3 lg:p-4 rounded-xl border" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
+            <div className="flex items-center space-x-2 lg:space-x-3 mb-2">
+              <Rocket style={{color: '#8d51ff'}} size={14} />
+              <span className="font-semibold text-sm lg:text-base" style={{color: '#f7ffff'}}>Growth Potential</span>
             </div>
-            <p className="text-gray-300 text-sm">Growth score and investment recommendations</p>
+            <p className="text-xs lg:text-sm" style={{color: '#f7ffff', opacity: 0.7}}>Growth score and investment recommendations</p>
           </div>
         </div>
 
-        <div className="flex space-x-3">
+        <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">
           <button
             onClick={onClose}
-            className="flex-1 px-4 py-3 bg-gray-700 hover:bg-gray-600 text-white rounded-xl font-semibold transition-all duration-300"
+            className="flex-1 px-4 py-2 lg:py-3 rounded-xl font-semibold transition-all duration-300 text-sm lg:text-base"
+            style={{backgroundColor: 'rgba(247, 255, 255, 0.1)', color: '#f7ffff'}}
           >
             Cancel
           </button>
           <button
             onClick={generatePDF}
-            className="flex-1 px-4 py-3 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-green-500/25 flex items-center justify-center space-x-2"
+            className="flex-1 px-4 py-2 lg:py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg flex items-center justify-center space-x-2 text-sm lg:text-base"
+            style={{backgroundColor: '#08ce6b', color: '#f7ffff'}}
           >
-            <Download size={16} />
+            <Download size={14} />
             <span>Generate PDF</span>
           </button>
         </div>
 
-        <p className="text-xs text-gray-500 text-center mt-4">
+        <p className="text-xs text-center mt-3 lg:mt-4" style={{color: '#f7ffff', opacity: 0.6}}>
           PDF will be downloaded directly to your device
         </p>
       </div>

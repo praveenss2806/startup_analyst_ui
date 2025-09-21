@@ -332,28 +332,28 @@ const StartupAnalystPlatform = () => {
 
   function renderUploadPage() {
     return (
-      <div className="h-screen flex overflow-hidden" style={{backgroundColor: '#192452'}}>
+      <div className="h-screen flex flex-col lg:flex-row overflow-hidden" style={{backgroundColor: '#192452'}}>
         {/* Left side with logo */}
-        <div className="w-1/3 flex items-center justify-center" style={{backgroundColor: '#192452'}}>
+        <div className="w-full lg:w-1/3 flex items-center justify-center p-4 lg:p-0" style={{backgroundColor: '#192452'}}>
           <div className="w-full h-full flex items-center justify-center">
-            <LAXLogo size={200} className="w-full h-auto max-w-xs" />
+            <LAXLogo size={120} className="w-full h-auto max-w-xs lg:max-w-none lg:w-48 lg:h-48" />
           </div>
         </div>
         
         {/* Right side with upload form */}
-        <div className="w-2/3 flex items-center justify-center p-6" style={{backgroundColor: '#f7ffff'}}>
+        <div className="w-full lg:w-2/3 flex items-center justify-center p-4 lg:p-6" style={{backgroundColor: '#f7ffff'}}>
           <div className="max-w-xl w-full">
-            <div className="text-center mb-12">
-              <h1 className="text-5xl font-bold mb-4" style={{color: '#192452'}}>
+            <div className="text-center mb-8 lg:mb-12">
+              <h1 className="text-3xl lg:text-5xl font-bold mb-4" style={{color: '#192452'}}>
                 LetsAnalyse
               </h1>
-              <p className="text-xl max-w-lg mx-auto" style={{color: '#192452', opacity: 0.8}}>
+              <p className="text-lg lg:text-xl max-w-lg mx-auto" style={{color: '#192452', opacity: 0.8}}>
                 Upload your pitch deck and get instant AI-powered Startup analysis
               </p>
             </div>
 
             <div 
-              className={`border-2 border-dashed rounded-3xl p-12 text-center transition-all duration-500 ${
+              className={`border-2 border-dashed rounded-3xl p-6 lg:p-12 text-center transition-all duration-500 ${
                 isDragOver 
                   ? 'scale-105 shadow-2xl' 
                   : 'hover:shadow-xl'
@@ -366,20 +366,20 @@ const StartupAnalystPlatform = () => {
               onDragLeave={handleDragLeave}
               onDrop={handleDrop}
             >
-              <CloudUpload className={`w-16 h-16 mx-auto mb-6 transition-all duration-300`} 
+              <CloudUpload className={`w-12 h-12 lg:w-16 lg:h-16 mx-auto mb-4 lg:mb-6 transition-all duration-300`} 
                 style={{color: isDragOver ? '#0099ff' : '#8d51ff'}} />
               
-              <h3 className="text-2xl font-semibold mb-3" style={{color: '#192452'}}>
+              <h3 className="text-xl lg:text-2xl font-semibold mb-3" style={{color: '#192452'}}>
                 {isDragOver ? 'Drop your pitch deck here' : 'Upload Pitch Deck'}
               </h3>
               
-              <p className="mb-8 text-lg" style={{color: '#192452', opacity: 0.7}}>
+              <p className="mb-6 lg:mb-8 text-base lg:text-lg" style={{color: '#192452', opacity: 0.7}}>
                 Drag and drop your PDF here, or click to browse
               </p>
               
-              <label className="inline-flex items-center px-8 py-4 text-white font-semibold rounded-2xl cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-lg"
+              <label className="inline-flex items-center px-6 lg:px-8 py-3 lg:py-4 text-white font-semibold rounded-2xl cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-lg"
                 style={{backgroundColor: '#0099ff'}}>
-                <Upload size={20} className="mr-3" />
+                <Upload size={16} className="mr-2 lg:mr-3" />
                 Choose File
                 <input 
                   type="file" 
@@ -516,32 +516,33 @@ const StartupAnalystPlatform = () => {
     return (
       <div className="h-screen text-white flex flex-col overflow-hidden" style={{backgroundColor: '#192452'}}>
         {/* Header */}
-        <header className="border-b px-6 py-4 flex-shrink-0 shadow-lg" style={{backgroundColor: '#192452', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
+        <header className="border-b px-4 lg:px-6 py-4 flex-shrink-0 shadow-lg" style={{backgroundColor: '#192452', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
           <div className="flex items-center justify-between w-full">
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-2 lg:space-x-3">
               <div className="flex items-center justify-center">
-                <LAXLogo size={32} />
+                <LAXLogo size={24} className="lg:w-8 lg:h-8" />
               </div>
               <div>
-                <h1 className="text-xl font-bold" style={{color: '#f7ffff'}}>LetsAnalyse</h1>
-                <p className="text-xs" style={{color: '#f7ffff', opacity: 0.7}}>AI Startup Analysis</p>
+                <h1 className="text-lg lg:text-xl font-bold" style={{color: '#f7ffff'}}>LetsAnalyse</h1>
+                <p className="text-xs hidden lg:block" style={{color: '#f7ffff', opacity: 0.7}}>AI Startup Analysis</p>
               </div>
             </div>
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-2 lg:space-x-3">
               <button 
                 onClick={exportToPDF}
-                className="text-white px-4 py-2 rounded-xl flex items-center space-x-2 transition-all duration-300 font-medium shadow-lg hover:scale-105"
+                className="text-white px-3 lg:px-4 py-2 rounded-xl flex items-center space-x-1 lg:space-x-2 transition-all duration-300 font-medium shadow-lg hover:scale-105 text-sm lg:text-base"
                 style={{backgroundColor: '#08ce6b'}}
               >
-                <Download size={14} />
-                <span>Export PDF</span>
+                <Download size={12} className="lg:w-4 lg:h-4" />
+                <span className="hidden sm:inline">Export PDF</span>
+                <span className="sm:hidden">PDF</span>
               </button>
               <button 
                 onClick={() => setAppState('upload')}
-                className="text-white px-4 py-2 rounded-xl flex items-center space-x-2 transition-all duration-300 font-medium shadow-lg hover:scale-105"
+                className="text-white px-3 lg:px-4 py-2 rounded-xl flex items-center space-x-1 lg:space-x-2 transition-all duration-300 font-medium shadow-lg hover:scale-105 text-sm lg:text-base"
                 style={{backgroundColor: '#0099ff'}}
               >
-                <Upload size={14} />
+                <Upload size={12} className="lg:w-4 lg:h-4" />
                 <span>New</span>
               </button>
             </div>
@@ -549,41 +550,41 @@ const StartupAnalystPlatform = () => {
         </header>
 
         {/* Main Content */}
-        <div className="flex-1 flex flex-col p-6 w-full overflow-hidden">
+        <div className="flex-1 flex flex-col p-4 lg:p-6 w-full overflow-hidden">
           {/* Compact Startup Header */}
-          <div className="border rounded-2xl p-6 mb-6 flex-shrink-0 shadow-lg" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 rounded-2xl flex items-center justify-center" style={{backgroundColor: '#0099ff'}}>
-                  <Building className="text-white" size={20} />
+          <div className="border rounded-2xl p-4 lg:p-6 mb-4 lg:mb-6 flex-shrink-0 shadow-lg" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between space-y-4 lg:space-y-0">
+              <div className="flex items-center space-x-3 lg:space-x-4">
+                <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-2xl flex items-center justify-center" style={{backgroundColor: '#0099ff'}}>
+                  <Building className="text-white" size={16} />
                 </div>
-                <div>
-                  <h2 className="text-2xl font-bold" style={{color: '#f7ffff'}}>{analyzedStartup.name}</h2>
-                  <p className="text-sm" style={{color: '#f7ffff', opacity: 0.8}}>{analyzedStartup.tagline}</p>
-                  <div className="flex items-center space-x-4 text-xs mt-1" style={{color: '#f7ffff', opacity: 0.6}}>
+                <div className="min-w-0 flex-1">
+                  <h2 className="text-xl lg:text-2xl font-bold truncate" style={{color: '#f7ffff'}}>{analyzedStartup.name}</h2>
+                  <p className="text-sm truncate" style={{color: '#f7ffff', opacity: 0.8}}>{analyzedStartup.tagline}</p>
+                  <div className="flex flex-wrap items-center gap-2 lg:gap-4 text-xs mt-1" style={{color: '#f7ffff', opacity: 0.6}}>
                     <span className="flex items-center space-x-1">
-                      <MapPin size={12} />
+                      <MapPin size={10} />
                       <span>{analyzedStartup.location}</span>
                     </span>
                     <span className="flex items-center space-x-1">
-                      <Calendar size={12} />
+                      <Calendar size={10} />
                       <span>{analyzedStartup.founded}</span>
                     </span>
                     <span className="flex items-center space-x-1">
-                      <Users size={12} />
+                      <Users size={10} />
                       <span>{analyzedStartup.employees} employees</span>
                     </span>
                   </div>
                 </div>
               </div>
-              <div className="text-right">
-                <div className="text-3xl font-bold mb-1" style={{color: '#08ce6b'}}>
+              <div className="text-center lg:text-right">
+                <div className="text-2xl lg:text-3xl font-bold mb-1" style={{color: '#08ce6b'}}>
                   {analyzedStartup.investmentScore}/10
                 </div>
                 <div className="text-xs mb-2" style={{color: '#f7ffff', opacity: 0.6}}>Investment Score</div>
-                <span className="inline-flex items-center px-3 py-1 rounded-xl text-xs font-bold border" style={{backgroundColor: 'rgba(8, 206, 107, 0.2)', color: '#08ce6b', borderColor: '#08ce6b'}}>
-                  <Crown size={12} className="mr-1" />
-                  {analyzedStartup.recommendation}
+                <span className="inline-flex items-center px-2 lg:px-3 py-1 rounded-xl text-xs font-bold border" style={{backgroundColor: 'rgba(8, 206, 107, 0.2)', color: '#08ce6b', borderColor: '#08ce6b'}}>
+                  <Crown size={10} className="mr-1" />
+                  <span className="truncate">{analyzedStartup.recommendation}</span>
                 </span>
               </div>
             </div>
@@ -592,7 +593,7 @@ const StartupAnalystPlatform = () => {
           {/* Tabs */}
           <div className="border rounded-2xl flex-1 flex flex-col overflow-hidden shadow-lg" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
             <div className="border-b flex-shrink-0" style={{borderColor: 'rgba(247, 255, 255, 0.1)'}}>
-              <nav className="flex space-x-1 px-6 py-2">
+              <nav className="flex overflow-x-auto scrollbar-thin space-x-1 px-4 lg:px-6 py-2">
                 {[
                   { id: 'overview', label: 'Overview', icon: Eye },
                   { id: 'competitors', label: 'Competitors', icon: BarChart3 },
@@ -605,34 +606,34 @@ const StartupAnalystPlatform = () => {
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`flex items-center space-x-2 px-4 py-3 rounded-xl font-semibold text-sm transition-all duration-300`}
+                    className={`flex items-center space-x-1 lg:space-x-2 px-3 lg:px-4 py-2 lg:py-3 rounded-xl font-semibold text-xs lg:text-sm transition-all duration-300 whitespace-nowrap flex-shrink-0`}
                     style={{
                       backgroundColor: activeTab === tab.id ? '#0099ff' : 'transparent',
                       color: activeTab === tab.id ? '#f7ffff' : '#f7ffff',
                       opacity: activeTab === tab.id ? 1 : 0.7
                     }}
                   >
-                    <tab.icon size={14} />
+                    <tab.icon size={12} className="lg:w-4 lg:h-4" />
                     <span>{tab.label}</span>
                   </button>
                 ))}
               </nav>
             </div>
 
-            <div className="p-6 flex-1 overflow-y-auto scrollbar-thin" style={{scrollbarWidth: 'thin'}}>
+            <div className="p-4 lg:p-6 flex-1 overflow-y-scroll" style={{scrollbarWidth: 'auto', scrollbarColor: 'rgba(247, 255, 255, 0.3) rgba(247, 255, 255, 0.1)'}}>
               {activeTab === 'overview' && (
                 <div className="space-y-6">
                   {/* Key Metrics Grid */}
-                  <div className="grid grid-cols-4 gap-4">
+                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
                     {Object.entries(keyMetrics).map(([key, metric], index) => (
-                      <div key={key} className="border rounded-xl p-4 transition-all duration-300" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
+                      <div key={key} className="border rounded-xl p-3 lg:p-4 transition-all duration-300" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
                         <div className="flex items-center justify-between mb-2">
                           <h4 className="font-bold uppercase text-xs tracking-wider" style={{color: '#f7ffff', opacity: 0.7}}>
                             {key === 'arr' ? 'ARR' : key === 'cac' ? 'CAC' : key.charAt(0).toUpperCase() + key.slice(1)}
                           </h4>
-                          <ArrowUp style={{color: '#08ce6b'}} size={14} />
+                          <ArrowUp style={{color: '#08ce6b'}} size={12} className="lg:w-4 lg:h-4" />
                         </div>
-                        <p className="text-2xl font-bold mb-1" style={{color: '#f7ffff'}}>{metric.value}</p>
+                        <p className="text-lg lg:text-2xl font-bold mb-1" style={{color: '#f7ffff'}}>{metric.value}</p>
                         <p className="text-xs font-semibold" style={{color: '#08ce6b'}}>{metric.change}</p>
                       </div>
                     ))}
@@ -645,12 +646,12 @@ const StartupAnalystPlatform = () => {
                         <BarChart3 style={{color: '#8d51ff'}} size={20} />
                         <h3 className="text-xl font-bold" style={{color: '#f7ffff'}}>Performance Benchmarks</h3>
                       </div>
-                      <div className="grid grid-cols-2 gap-4">
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-4">
                         {benchmarks.map((benchmark, idx) => (
-                          <div key={idx} className="p-4 rounded-xl" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)'}}>
-                            <div className="flex items-center justify-between mb-2">
+                          <div key={idx} className="p-3 lg:p-4 rounded-xl" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)'}}>
+                            <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-2 space-y-1 lg:space-y-0">
                               <p className="text-sm" style={{color: '#f7ffff', opacity: 0.8}}>{benchmark.metric}</p>
-                              <span className="px-2 py-1 rounded-lg text-xs font-bold border" style={{
+                              <span className="px-2 py-1 rounded-lg text-xs font-bold border self-start lg:self-auto" style={{
                                 backgroundColor: benchmark.status === 'Outperforming' || benchmark.status === 'Leading' ? 'rgba(8, 206, 107, 0.2)' :
                                                 benchmark.status === 'Significantly Outperforming' ? 'rgba(0, 153, 255, 0.2)' : 'rgba(250, 133, 36, 0.2)',
                                 color: benchmark.status === 'Outperforming' || benchmark.status === 'Leading' ? '#08ce6b' :
@@ -678,7 +679,7 @@ const StartupAnalystPlatform = () => {
                     <p className="leading-relaxed mb-4" style={{color: '#f7ffff', opacity: 0.8}}>
                       {analysisData?.analysis?.aiSummary?.investmentThesis || 'Analysis in progress...'}
                     </p>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
                       <div>
                         <h4 className="font-semibold mb-2" style={{color: '#08ce6b'}}>Key Highlights</h4>
                         <ul className="text-sm space-y-1" style={{color: '#f7ffff', opacity: 0.8}}>
