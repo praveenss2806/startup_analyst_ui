@@ -313,7 +313,17 @@ const StartupAnalystPlatform = () => {
       {appState === 'dashboard' && renderDashboard()}
       {showPDFExport && (
         <PDFExport 
-          startupData={analyzedStartup} 
+          startupData={{
+            ...analyzedStartup,
+            keyMetrics,
+            competitorAnalysis: competitorComparisons,
+            riskAssessment: enhancedRiskFlags,
+            growthPotential: growthPotentialData,
+            financialData,
+            teamData,
+            marketData,
+            aiSummary: analysisData?.analysis?.aiSummary
+          }} 
           onClose={() => setShowPDFExport(false)} 
         />
       )}
@@ -338,7 +348,7 @@ const StartupAnalystPlatform = () => {
                 LetsAnalyse
               </h1>
               <p className="text-xl max-w-lg mx-auto" style={{color: '#192452', opacity: 0.8}}>
-                Upload your pitch deck and get instant AI-powered investment analysis
+                Upload your pitch deck and get instant AI-powered Startup analysis
               </p>
             </div>
 
@@ -381,7 +391,7 @@ const StartupAnalystPlatform = () => {
               
               <p className="text-sm mt-6 flex items-center justify-center space-x-2" style={{color: '#192452', opacity: 0.6}}>
                 <Shield size={14} style={{color: '#08ce6b'}} />
-                <span>Supports PDF files up to 50MB • Your data is processed securely</span>
+                <span>Supports PDF files up to 50MB</span>
               </p>
               
               {uploadError && (
@@ -524,7 +534,7 @@ const StartupAnalystPlatform = () => {
               </div>
               <div>
                 <h1 className="text-xl font-bold" style={{color: '#f7ffff'}}>LetsAnalyse</h1>
-                <p className="text-xs" style={{color: '#f7ffff', opacity: 0.7}}>AI Investment Analysis</p>
+                <p className="text-xs" style={{color: '#f7ffff', opacity: 0.7}}>AI Startup Analysis</p>
               </div>
             </div>
             <div className="flex items-center space-x-3">

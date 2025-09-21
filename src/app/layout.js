@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "LetsAnalyse",
-  description: "AI-powered investment analysis platform for startup evaluation",
+  description: "AI-powered Startup analysis platform for startup evaluation",
   icons: {
     icon: '/favicon.svg',
   },
