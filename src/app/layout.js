@@ -12,7 +12,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "InvestIQ",
+  title: "LetsAnalyse",
   description: "AI-powered investment analysis platform for startup evaluation",
   icons: {
     icon: '/favicon.svg',

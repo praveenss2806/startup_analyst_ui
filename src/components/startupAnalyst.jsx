@@ -322,66 +322,77 @@ const StartupAnalystPlatform = () => {
 
   function renderUploadPage() {
     return (
-      <div className="h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center p-6 overflow-hidden">
-        <div className="max-w-2xl w-full">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center justify-center w-20 h-20 bg-gray-800 border-2 border-orange-500 rounded-3xl mb-6">
-              <LAXLogo size={40} />
-            </div>
-            <h1 className="text-5xl font-bold text-white mb-4">
-              LetsAnalyse
-            </h1>
-            <p className="text-xl text-gray-300 max-w-lg mx-auto">
-              Upload your pitch deck and get instant AI-powered investment analysis
-            </p>
+      <div className="h-screen flex overflow-hidden" style={{backgroundColor: '#192452'}}>
+        {/* Left side with logo */}
+        <div className="w-1/3 flex items-center justify-center" style={{backgroundColor: '#192452'}}>
+          <div className="w-full h-full flex items-center justify-center">
+            <LAXLogo size={200} className="w-full h-auto max-w-xs" />
           </div>
+        </div>
+        
+        {/* Right side with upload form */}
+        <div className="w-2/3 flex items-center justify-center p-6" style={{backgroundColor: '#f7ffff'}}>
+          <div className="max-w-xl w-full">
+            <div className="text-center mb-12">
+              <h1 className="text-5xl font-bold mb-4" style={{color: '#192452'}}>
+                LetsAnalyse
+              </h1>
+              <p className="text-xl max-w-lg mx-auto" style={{color: '#192452', opacity: 0.8}}>
+                Upload your pitch deck and get instant AI-powered investment analysis
+              </p>
+            </div>
 
-          <div 
-            className={`border-2 border-dashed rounded-3xl p-12 text-center transition-all duration-500 bg-gray-800/50 ${
-              isDragOver 
-                ? 'border-orange-400 bg-orange-900/20 scale-105 shadow-2xl shadow-orange-500/25' 
-                : 'border-gray-600 hover:border-orange-500 hover:shadow-xl hover:shadow-orange-500/20'
-            }`}
-            onDragOver={handleDragOver}
-            onDragLeave={handleDragLeave}
-            onDrop={handleDrop}
-          >
-            <CloudUpload className={`w-16 h-16 mx-auto mb-6 transition-all duration-300 ${
-              isDragOver ? 'text-orange-500' : 'text-gray-400 hover:text-orange-500'
-            }`} />
-            
-            <h3 className="text-2xl font-semibold text-white mb-3">
-              {isDragOver ? 'Drop your pitch deck here' : 'Upload Pitch Deck'}
-            </h3>
-            
-            <p className="text-gray-300 mb-8 text-lg">
-              Drag and drop your PDF here, or click to browse
-            </p>
-            
-            <label className="inline-flex items-center px-8 py-4 bg-orange-600 hover:bg-orange-700 text-white font-semibold rounded-2xl cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-orange-500/25">
-              <Upload size={20} className="mr-3" />
-              Choose File
-              <input 
-                type="file" 
-                className="hidden" 
-                accept=".pdf"
-                onChange={(e) => e.target.files[0] && handleFileUpload(e.target.files[0])}
-              />
-            </label>
-            
-            <p className="text-gray-400 text-sm mt-6 flex items-center justify-center space-x-2">
-              <Shield size={14} className="text-green-400" />
-              <span>Supports PDF files up to 50MB • Your data is processed securely</span>
-            </p>
-            
-            {uploadError && (
-              <div className="mt-6 p-4 bg-red-900/50 border border-red-500 rounded-xl">
-                <div className="flex items-center space-x-2">
-                  <AlertCircle size={16} className="text-red-400" />
-                  <span className="text-red-300 text-sm">{uploadError}</span>
+            <div 
+              className={`border-2 border-dashed rounded-3xl p-12 text-center transition-all duration-500 ${
+                isDragOver 
+                  ? 'scale-105 shadow-2xl' 
+                  : 'hover:shadow-xl'
+              }`}
+              style={{
+                backgroundColor: isDragOver ? 'rgba(0, 153, 255, 0.1)' : 'rgba(25, 36, 82, 0.05)',
+                borderColor: isDragOver ? '#0099ff' : '#8d51ff'
+              }}
+              onDragOver={handleDragOver}
+              onDragLeave={handleDragLeave}
+              onDrop={handleDrop}
+            >
+              <CloudUpload className={`w-16 h-16 mx-auto mb-6 transition-all duration-300`} 
+                style={{color: isDragOver ? '#0099ff' : '#8d51ff'}} />
+              
+              <h3 className="text-2xl font-semibold mb-3" style={{color: '#192452'}}>
+                {isDragOver ? 'Drop your pitch deck here' : 'Upload Pitch Deck'}
+              </h3>
+              
+              <p className="mb-8 text-lg" style={{color: '#192452', opacity: 0.7}}>
+                Drag and drop your PDF here, or click to browse
+              </p>
+              
+              <label className="inline-flex items-center px-8 py-4 text-white font-semibold rounded-2xl cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                style={{backgroundColor: '#0099ff'}}>
+                <Upload size={20} className="mr-3" />
+                Choose File
+                <input 
+                  type="file" 
+                  className="hidden" 
+                  accept=".pdf"
+                  onChange={(e) => e.target.files[0] && handleFileUpload(e.target.files[0])}
+                />
+              </label>
+              
+              <p className="text-sm mt-6 flex items-center justify-center space-x-2" style={{color: '#192452', opacity: 0.6}}>
+                <Shield size={14} style={{color: '#08ce6b'}} />
+                <span>Supports PDF files up to 50MB • Your data is processed securely</span>
+              </p>
+              
+              {uploadError && (
+                <div className="mt-6 p-4 border rounded-xl" style={{backgroundColor: 'rgba(239, 68, 68, 0.1)', borderColor: '#ef4444'}}>
+                  <div className="flex items-center space-x-2">
+                    <AlertCircle size={16} style={{color: '#ef4444'}} />
+                    <span className="text-sm" style={{color: '#ef4444'}}>{uploadError}</span>
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -389,31 +400,72 @@ const StartupAnalystPlatform = () => {
   }
 
   function renderLoadingPage() {
-    const currentStageData = loadingStages[loadingStage];
-    const StageIcon = currentStageData.icon;
-    
     return (
-      <div className="h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center p-6 overflow-hidden">
-        <div className="max-w-2xl w-full text-center">
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-gray-800 border-2 border-orange-500 rounded-3xl mb-8">
-            <LAXLogo size={40} />
-          </div>
-          
-          <div className="mb-8">
-            <div className="inline-flex items-center justify-center w-24 h-24 bg-gray-800 border border-orange-500 rounded-3xl mb-6">
-              <StageIcon size={48} className="text-orange-500" />
+      <div className="h-screen flex items-center justify-center overflow-hidden" style={{backgroundColor: '#192452'}}>
+        <div className="text-center">
+          {/* Animated Brain/Analysis Icon */}
+          <div className="relative mb-12">
+            <div className="w-32 h-32 mx-auto relative">
+              {/* Outer rotating ring */}
+              <div className="absolute inset-0 rounded-full border-4 border-transparent animate-spin" 
+                style={{
+                  borderTopColor: '#0099ff',
+                  borderRightColor: '#8d51ff',
+                  animation: 'spin 3s linear infinite'
+                }}>
+              </div>
+              
+              {/* Middle pulsing ring */}
+              <div className="absolute inset-2 rounded-full border-2 border-transparent animate-pulse" 
+                style={{
+                  borderTopColor: '#fa8524',
+                  borderBottomColor: '#08ce6b',
+                  animation: 'spin 2s linear infinite reverse'
+                }}>
+              </div>
+              
+              {/* Inner brain icon */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Brain size={48} style={{color: '#f7ffff'}} className="animate-pulse" />
+              </div>
+              
+              {/* Floating particles */}
+              <div className="absolute -top-2 -left-2 w-2 h-2 rounded-full animate-bounce" 
+                style={{backgroundColor: '#0099ff', animationDelay: '0s'}}></div>
+              <div className="absolute -top-2 -right-2 w-2 h-2 rounded-full animate-bounce" 
+                style={{backgroundColor: '#8d51ff', animationDelay: '0.5s'}}></div>
+              <div className="absolute -bottom-2 -left-2 w-2 h-2 rounded-full animate-bounce" 
+                style={{backgroundColor: '#fa8524', animationDelay: '1s'}}></div>
+              <div className="absolute -bottom-2 -right-2 w-2 h-2 rounded-full animate-bounce" 
+                style={{backgroundColor: '#08ce6b', animationDelay: '1.5s'}}></div>
             </div>
-            <h2 className="text-4xl font-bold text-white mb-2">{currentStageData.label}</h2>
-            <p className="text-gray-300 text-lg">AI is analyzing your startup's potential</p>
           </div>
           
-          <div className="flex justify-center space-x-3">
-            {[0, 1, 2, 3, 4].map((i) => (
+          {/* Loading Text */}
+          <div className="mb-8">
+            <h2 className="text-4xl font-bold mb-4" style={{color: '#f7ffff'}}>
+              Analyzing Your Startup
+            </h2>
+            <p className="text-xl mb-2" style={{color: '#f7ffff', opacity: 0.8}}>
+              Our AI is diving deep into your pitch deck
+            </p>
+            <p className="text-lg" style={{color: '#0099ff'}}>
+              This may take 3-5 minutes for comprehensive analysis
+            </p>
+          </div>
+          
+          {/* Animated Progress Waves */}
+          <div className="flex justify-center space-x-2 mb-8">
+            {[0, 1, 2, 3, 4, 5, 6].map((i) => (
               <div
                 key={i}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  i <= loadingStage ? 'bg-orange-500' : 'bg-gray-600'
-                }`}
+                className="w-1 rounded-full animate-pulse"
+                style={{
+                  height: '40px',
+                  backgroundColor: ['#0099ff', '#8d51ff', '#fa8524', '#08ce6b'][i % 4],
+                  animationDelay: `${i * 0.2}s`,
+                  animation: `pulse 1.5s ease-in-out infinite ${i * 0.2}s`
+                }}
               />
             ))}
           </div>
@@ -426,16 +478,17 @@ const StartupAnalystPlatform = () => {
     // Show error state if analysis failed
     if (analysisError) {
       return (
-        <div className="h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center p-6">
+        <div className="h-screen flex items-center justify-center p-6" style={{backgroundColor: '#192452'}}>
           <div className="max-w-md w-full text-center">
-            <div className="inline-flex items-center justify-center w-20 h-20 bg-red-900/50 border-2 border-red-500 rounded-3xl mb-6">
-              <AlertCircle size={40} className="text-red-400" />
+            <div className="inline-flex items-center justify-center w-20 h-20 border-2 rounded-3xl mb-6" style={{backgroundColor: 'rgba(239, 68, 68, 0.2)', borderColor: '#ef4444'}}>
+              <AlertCircle size={40} style={{color: '#ef4444'}} />
             </div>
-            <h2 className="text-2xl font-bold text-white mb-4">Analysis Failed</h2>
-            <p className="text-gray-300 mb-6">{analysisError}</p>
+            <h2 className="text-2xl font-bold mb-4" style={{color: '#f7ffff'}}>Analysis Failed</h2>
+            <p className="mb-6" style={{color: '#f7ffff', opacity: 0.8}}>{analysisError}</p>
             <button 
               onClick={() => setAppState('upload')}
-              className="bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-xl flex items-center space-x-2 mx-auto transition-all duration-300 font-medium"
+              className="text-white px-6 py-3 rounded-xl flex items-center space-x-2 mx-auto transition-all duration-300 font-medium"
+              style={{backgroundColor: '#0099ff'}}
             >
               <Upload size={16} />
               <span>Try Again</span>
@@ -448,43 +501,45 @@ const StartupAnalystPlatform = () => {
     // Show loading state if analysis data is not yet available
     if (!analysisData) {
       return (
-        <div className="h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center p-6">
+        <div className="h-screen flex items-center justify-center p-6" style={{backgroundColor: '#192452'}}>
           <div className="max-w-md w-full text-center">
-            <div className="inline-flex items-center justify-center w-20 h-20 bg-blue-900/50 border-2 border-blue-500 rounded-3xl mb-6">
-              <Loader2 size={40} className="text-blue-400 animate-spin" />
+            <div className="inline-flex items-center justify-center w-20 h-20 border-2 rounded-3xl mb-6" style={{backgroundColor: 'rgba(0, 153, 255, 0.2)', borderColor: '#0099ff'}}>
+              <Loader2 size={40} style={{color: '#0099ff'}} className="animate-spin" />
             </div>
-            <h2 className="text-2xl font-bold text-white mb-4">Processing Analysis</h2>
-            <p className="text-gray-300">Please wait while we analyze your startup...</p>
+            <h2 className="text-2xl font-bold mb-4" style={{color: '#f7ffff'}}>Processing Analysis</h2>
+            <p style={{color: '#f7ffff', opacity: 0.8}}>Please wait while we analyze your startup...</p>
           </div>
         </div>
       );
     }
 
     return (
-      <div className="h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white flex flex-col overflow-hidden">
+      <div className="h-screen text-white flex flex-col overflow-hidden" style={{backgroundColor: '#192452'}}>
         {/* Header */}
-        <header className="bg-gray-800/80 border-b border-gray-700 px-6 py-4 flex-shrink-0 shadow-lg backdrop-blur-sm">
+        <header className="border-b px-6 py-4 flex-shrink-0 shadow-lg" style={{backgroundColor: '#192452', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
           <div className="flex items-center justify-between w-full">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gray-700 rounded-2xl flex items-center justify-center">
-                <LAXLogo size={24} />
+              <div className="flex items-center justify-center">
+                <LAXLogo size={32} />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-white">LetsAnalyse</h1>
-                <p className="text-xs text-gray-300">AI Investment Analysis</p>
+                <h1 className="text-xl font-bold" style={{color: '#f7ffff'}}>LetsAnalyse</h1>
+                <p className="text-xs" style={{color: '#f7ffff', opacity: 0.7}}>AI Investment Analysis</p>
               </div>
             </div>
             <div className="flex items-center space-x-3">
               <button 
                 onClick={exportToPDF}
-                className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-xl flex items-center space-x-2 transition-all duration-300 font-medium shadow-lg hover:scale-105"
+                className="text-white px-4 py-2 rounded-xl flex items-center space-x-2 transition-all duration-300 font-medium shadow-lg hover:scale-105"
+                style={{backgroundColor: '#08ce6b'}}
               >
                 <Download size={14} />
                 <span>Export PDF</span>
               </button>
               <button 
                 onClick={() => setAppState('upload')}
-                className="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-xl flex items-center space-x-2 transition-all duration-300 font-medium shadow-lg hover:scale-105"
+                className="text-white px-4 py-2 rounded-xl flex items-center space-x-2 transition-all duration-300 font-medium shadow-lg hover:scale-105"
+                style={{backgroundColor: '#0099ff'}}
               >
                 <Upload size={14} />
                 <span>New</span>
@@ -496,16 +551,16 @@ const StartupAnalystPlatform = () => {
         {/* Main Content */}
         <div className="flex-1 flex flex-col p-6 w-full overflow-hidden">
           {/* Compact Startup Header */}
-          <div className="bg-gray-800/60 border border-gray-700 rounded-2xl p-6 mb-6 flex-shrink-0 shadow-lg backdrop-blur-sm">
+          <div className="border rounded-2xl p-6 mb-6 flex-shrink-0 shadow-lg" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center">
+                <div className="w-12 h-12 rounded-2xl flex items-center justify-center" style={{backgroundColor: '#0099ff'}}>
                   <Building className="text-white" size={20} />
                 </div>
                 <div>
-                  <h2 className="text-2xl font-bold text-white">{analyzedStartup.name}</h2>
-                  <p className="text-sm text-gray-300">{analyzedStartup.tagline}</p>
-                  <div className="flex items-center space-x-4 text-xs text-gray-400 mt-1">
+                  <h2 className="text-2xl font-bold" style={{color: '#f7ffff'}}>{analyzedStartup.name}</h2>
+                  <p className="text-sm" style={{color: '#f7ffff', opacity: 0.8}}>{analyzedStartup.tagline}</p>
+                  <div className="flex items-center space-x-4 text-xs mt-1" style={{color: '#f7ffff', opacity: 0.6}}>
                     <span className="flex items-center space-x-1">
                       <MapPin size={12} />
                       <span>{analyzedStartup.location}</span>
@@ -522,11 +577,11 @@ const StartupAnalystPlatform = () => {
                 </div>
               </div>
               <div className="text-right">
-                <div className="text-3xl font-bold text-green-400 mb-1">
+                <div className="text-3xl font-bold mb-1" style={{color: '#08ce6b'}}>
                   {analyzedStartup.investmentScore}/10
                 </div>
-                <div className="text-xs text-gray-400 mb-2">Investment Score</div>
-                <span className="inline-flex items-center px-3 py-1 rounded-xl text-xs font-bold bg-green-900/40 text-green-400 border border-green-700">
+                <div className="text-xs mb-2" style={{color: '#f7ffff', opacity: 0.6}}>Investment Score</div>
+                <span className="inline-flex items-center px-3 py-1 rounded-xl text-xs font-bold border" style={{backgroundColor: 'rgba(8, 206, 107, 0.2)', color: '#08ce6b', borderColor: '#08ce6b'}}>
                   <Crown size={12} className="mr-1" />
                   {analyzedStartup.recommendation}
                 </span>
@@ -535,8 +590,8 @@ const StartupAnalystPlatform = () => {
           </div>
 
           {/* Tabs */}
-          <div className="bg-gray-800/60 border border-gray-700 rounded-2xl flex-1 flex flex-col overflow-hidden shadow-lg backdrop-blur-sm">
-            <div className="border-b border-gray-700 flex-shrink-0">
+          <div className="border rounded-2xl flex-1 flex flex-col overflow-hidden shadow-lg" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
+            <div className="border-b flex-shrink-0" style={{borderColor: 'rgba(247, 255, 255, 0.1)'}}>
               <nav className="flex space-x-1 px-6 py-2">
                 {[
                   { id: 'overview', label: 'Overview', icon: Eye },
@@ -550,11 +605,12 @@ const StartupAnalystPlatform = () => {
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`flex items-center space-x-2 px-4 py-3 rounded-xl font-semibold text-sm transition-all duration-300 ${
-                      activeTab === tab.id
-                        ? 'bg-orange-600 text-white shadow-lg'
-                        : 'text-gray-300 hover:text-white hover:bg-gray-700'
-                    }`}
+                    className={`flex items-center space-x-2 px-4 py-3 rounded-xl font-semibold text-sm transition-all duration-300`}
+                    style={{
+                      backgroundColor: activeTab === tab.id ? '#0099ff' : 'transparent',
+                      color: activeTab === tab.id ? '#f7ffff' : '#f7ffff',
+                      opacity: activeTab === tab.id ? 1 : 0.7
+                    }}
                   >
                     <tab.icon size={14} />
                     <span>{tab.label}</span>
@@ -563,49 +619,50 @@ const StartupAnalystPlatform = () => {
               </nav>
             </div>
 
-            <div className="p-6 flex-1 overflow-y-auto scrollbar-thin scrollbar-track-gray-700 scrollbar-thumb-gray-500 hover:scrollbar-thumb-gray-400" style={{scrollbarWidth: 'thin'}}>
+            <div className="p-6 flex-1 overflow-y-auto scrollbar-thin" style={{scrollbarWidth: 'thin'}}>
               {activeTab === 'overview' && (
                 <div className="space-y-6">
                   {/* Key Metrics Grid */}
                   <div className="grid grid-cols-4 gap-4">
                     {Object.entries(keyMetrics).map(([key, metric], index) => (
-                      <div key={key} className="bg-gray-700/50 border border-gray-600 rounded-xl p-4 hover:border-orange-500 transition-all duration-300">
+                      <div key={key} className="border rounded-xl p-4 transition-all duration-300" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
                         <div className="flex items-center justify-between mb-2">
-                          <h4 className="font-bold text-gray-300 uppercase text-xs tracking-wider">
+                          <h4 className="font-bold uppercase text-xs tracking-wider" style={{color: '#f7ffff', opacity: 0.7}}>
                             {key === 'arr' ? 'ARR' : key === 'cac' ? 'CAC' : key.charAt(0).toUpperCase() + key.slice(1)}
                           </h4>
-                          <ArrowUp className="text-green-400" size={14} />
+                          <ArrowUp style={{color: '#08ce6b'}} size={14} />
                         </div>
-                        <p className="text-2xl font-bold text-white mb-1">{metric.value}</p>
-                        <p className="text-xs text-green-400 font-semibold">{metric.change}</p>
+                        <p className="text-2xl font-bold mb-1" style={{color: '#f7ffff'}}>{metric.value}</p>
+                        <p className="text-xs font-semibold" style={{color: '#08ce6b'}}>{metric.change}</p>
                       </div>
                     ))}
                   </div>
 
                   {/* Benchmarks */}
                   {benchmarks && benchmarks.length > 0 && (
-                    <div className="bg-purple-900/30 border border-purple-700 p-6 rounded-2xl hover:border-purple-600 transition-all duration-300">
+                    <div className="border p-6 rounded-2xl transition-all duration-300" style={{backgroundColor: 'rgba(141, 81, 255, 0.1)', borderColor: '#8d51ff'}}>
                       <div className="flex items-center space-x-3 mb-4">
-                        <BarChart3 className="text-purple-400" size={20} />
-                        <h3 className="text-xl font-bold text-white">Performance Benchmarks</h3>
+                        <BarChart3 style={{color: '#8d51ff'}} size={20} />
+                        <h3 className="text-xl font-bold" style={{color: '#f7ffff'}}>Performance Benchmarks</h3>
                       </div>
                       <div className="grid grid-cols-2 gap-4">
                         {benchmarks.map((benchmark, idx) => (
-                          <div key={idx} className="bg-gray-800/50 p-4 rounded-xl">
+                          <div key={idx} className="p-4 rounded-xl" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)'}}>
                             <div className="flex items-center justify-between mb-2">
-                              <p className="text-gray-300 text-sm">{benchmark.metric}</p>
-                              <span className={`px-2 py-1 rounded-lg text-xs font-bold ${
-                                benchmark.status === 'Outperforming' || benchmark.status === 'Leading' ? 
-                                'bg-green-900/40 text-green-400 border border-green-700' :
-                                benchmark.status === 'Significantly Outperforming' ?
-                                'bg-blue-900/40 text-blue-400 border border-blue-700' :
-                                'bg-yellow-900/40 text-yellow-400 border border-yellow-700'
-                              }`}>
+                              <p className="text-sm" style={{color: '#f7ffff', opacity: 0.8}}>{benchmark.metric}</p>
+                              <span className="px-2 py-1 rounded-lg text-xs font-bold border" style={{
+                                backgroundColor: benchmark.status === 'Outperforming' || benchmark.status === 'Leading' ? 'rgba(8, 206, 107, 0.2)' :
+                                                benchmark.status === 'Significantly Outperforming' ? 'rgba(0, 153, 255, 0.2)' : 'rgba(250, 133, 36, 0.2)',
+                                color: benchmark.status === 'Outperforming' || benchmark.status === 'Leading' ? '#08ce6b' :
+                                       benchmark.status === 'Significantly Outperforming' ? '#0099ff' : '#fa8524',
+                                borderColor: benchmark.status === 'Outperforming' || benchmark.status === 'Leading' ? '#08ce6b' :
+                                            benchmark.status === 'Significantly Outperforming' ? '#0099ff' : '#fa8524'
+                              }}>
                                 {benchmark.status}
                               </span>
                             </div>
-                            <p className="text-white font-bold">{benchmark.value}</p>
-                            <p className="text-gray-400 text-xs">vs {benchmark.benchmark}</p>
+                            <p className="font-bold" style={{color: '#f7ffff'}}>{benchmark.value}</p>
+                            <p className="text-xs" style={{color: '#f7ffff', opacity: 0.6}}>vs {benchmark.benchmark}</p>
                           </div>
                         ))}
                       </div>
@@ -613,32 +670,32 @@ const StartupAnalystPlatform = () => {
                   )}
 
                   {/* AI Investment Summary */}
-                  <div className="bg-blue-900/30 border border-blue-700 p-6 rounded-2xl hover:border-blue-600 transition-all duration-300">
+                  <div className="border p-6 rounded-2xl transition-all duration-300" style={{backgroundColor: 'rgba(0, 153, 255, 0.1)', borderColor: '#0099ff'}}>
                     <div className="flex items-center space-x-3 mb-4">
-                      <Brain className="text-blue-400" size={20} />
-                      <h3 className="text-xl font-bold text-white">AI Investment Summary</h3>
+                      <Brain style={{color: '#0099ff'}} size={20} />
+                      <h3 className="text-xl font-bold" style={{color: '#f7ffff'}}>AI Investment Summary</h3>
                     </div>
-                    <p className="text-gray-300 leading-relaxed mb-4">
+                    <p className="leading-relaxed mb-4" style={{color: '#f7ffff', opacity: 0.8}}>
                       {analysisData?.analysis?.aiSummary?.investmentThesis || 'Analysis in progress...'}
                     </p>
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <h4 className="text-green-400 font-semibold mb-2">Key Highlights</h4>
-                        <ul className="text-sm text-gray-300 space-y-1">
+                        <h4 className="font-semibold mb-2" style={{color: '#08ce6b'}}>Key Highlights</h4>
+                        <ul className="text-sm space-y-1" style={{color: '#f7ffff', opacity: 0.8}}>
                           {(analysisData?.analysis?.aiSummary?.keyHighlights || []).map((highlight, i) => (
                             <li key={i} className="flex items-start space-x-2">
-                              <CheckCircle size={12} className="text-green-400 mt-1 flex-shrink-0" />
+                              <CheckCircle size={12} style={{color: '#08ce6b'}} className="mt-1 flex-shrink-0" />
                               <span>{highlight}</span>
                             </li>
                           ))}
                         </ul>
                       </div>
                       <div>
-                        <h4 className="text-red-400 font-semibold mb-2">Main Concerns</h4>
-                        <ul className="text-sm text-gray-300 space-y-1">
+                        <h4 className="font-semibold mb-2" style={{color: '#ef4444'}}>Main Concerns</h4>
+                        <ul className="text-sm space-y-1" style={{color: '#f7ffff', opacity: 0.8}}>
                           {(analysisData?.analysis?.aiSummary?.mainConcerns || []).map((concern, i) => (
                             <li key={i} className="flex items-start space-x-2">
-                              <AlertCircle size={12} className="text-red-400 mt-1 flex-shrink-0" />
+                              <AlertCircle size={12} style={{color: '#ef4444'}} className="mt-1 flex-shrink-0" />
                               <span>{concern}</span>
                             </li>
                           ))}
@@ -652,50 +709,50 @@ const StartupAnalystPlatform = () => {
               {activeTab === 'competitors' && (
                 <div className="space-y-4">
                   <div className="flex items-center space-x-3 mb-4">
-                    <BarChart3 className="text-blue-400" size={20} />
-                    <h3 className="text-xl font-bold text-white">Competitor Analysis</h3>
+                    <BarChart3 style={{color: '#0099ff'}} size={20} />
+                    <h3 className="text-xl font-bold" style={{color: '#f7ffff'}}>Competitor Analysis</h3>
                   </div>
                   <div className="grid gap-4">
                     {competitorComparisons.map((competitor, idx) => (
-                      <div key={idx} className="bg-gray-700/50 p-4 rounded-xl border border-gray-600 hover:border-blue-500 transition-all duration-300">
+                      <div key={idx} className="p-4 rounded-xl border transition-all duration-300" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
                         <div className="flex items-start justify-between mb-4">
                           <div>
-                            <h4 className="text-lg font-bold text-white mb-1">{competitor.name}</h4>
-                            <p className="text-blue-400 text-sm">{competitor.sector}</p>
+                            <h4 className="text-lg font-bold mb-1" style={{color: '#f7ffff'}}>{competitor.name}</h4>
+                            <p className="text-sm" style={{color: '#0099ff'}}>{competitor.sector}</p>
                           </div>
                           <div className="text-right">
-                            <div className="text-lg font-bold text-green-400">{competitor.arr} ARR</div>
-                            <div className="text-sm text-blue-400">{competitor.growth} growth</div>
+                            <div className="text-lg font-bold" style={{color: '#08ce6b'}}>{competitor.arr} ARR</div>
+                            <div className="text-sm" style={{color: '#0099ff'}}>{competitor.growth} growth</div>
                           </div>
                         </div>
                         <div className="grid grid-cols-2 gap-3 mb-3">
                           <div>
-                            <p className="text-xs text-gray-400 uppercase tracking-wide">Funding</p>
-                            <p className="text-white font-semibold text-sm">{competitor.funding}</p>
+                            <p className="text-xs uppercase tracking-wide" style={{color: '#f7ffff', opacity: 0.6}}>Funding</p>
+                            <p className="font-semibold text-sm" style={{color: '#f7ffff'}}>{competitor.funding}</p>
                           </div>
                           <div>
-                            <p className="text-xs text-gray-400 uppercase tracking-wide">Valuation</p>
-                            <p className="text-white font-semibold text-sm">{competitor.valuation}</p>
+                            <p className="text-xs uppercase tracking-wide" style={{color: '#f7ffff', opacity: 0.6}}>Valuation</p>
+                            <p className="font-semibold text-sm" style={{color: '#f7ffff'}}>{competitor.valuation}</p>
                           </div>
                         </div>
                         <div className="grid grid-cols-2 gap-3">
                           <div>
-                            <p className="text-sm font-semibold text-green-400 mb-2">Strengths</p>
-                            <ul className="text-sm text-gray-300 space-y-1">
+                            <p className="text-sm font-semibold mb-2" style={{color: '#08ce6b'}}>Strengths</p>
+                            <ul className="text-sm space-y-1" style={{color: '#f7ffff', opacity: 0.8}}>
                               {competitor.strengths.map((strength, i) => (
                                 <li key={i} className="flex items-center space-x-2">
-                                  <CheckCircle size={10} className="text-green-400" />
+                                  <CheckCircle size={10} style={{color: '#08ce6b'}} />
                                   <span>{strength}</span>
                                 </li>
                               ))}
                             </ul>
                           </div>
                           <div>
-                            <p className="text-sm font-semibold text-red-400 mb-2">Weaknesses</p>
-                            <ul className="text-sm text-gray-300 space-y-1">
+                            <p className="text-sm font-semibold mb-2" style={{color: '#ef4444'}}>Weaknesses</p>
+                            <ul className="text-sm space-y-1" style={{color: '#f7ffff', opacity: 0.8}}>
                               {competitor.weaknesses.map((weakness, i) => (
                                 <li key={i} className="flex items-center space-x-2">
-                                  <XCircle size={10} className="text-red-400" />
+                                  <XCircle size={10} style={{color: '#ef4444'}} />
                                   <span>{weakness}</span>
                                 </li>
                               ))}
@@ -711,34 +768,37 @@ const StartupAnalystPlatform = () => {
               {activeTab === 'risks' && (
                 <div className="space-y-4">
                   <div className="flex items-center space-x-3 mb-4">
-                    <AlertTriangle className="text-red-400" size={20} />
-                    <h3 className="text-xl font-bold text-white">Risk Assessment</h3>
+                    <AlertTriangle style={{color: '#ef4444'}} size={20} />
+                    <h3 className="text-xl font-bold" style={{color: '#f7ffff'}}>Risk Assessment</h3>
                   </div>
                   {enhancedRiskFlags.map((risk, idx) => (
-                    <div key={idx} className="bg-gray-700/50 p-4 rounded-xl border border-gray-600 hover:border-red-500 transition-all duration-300">
+                    <div key={idx} className="p-4 rounded-xl border transition-all duration-300" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
                       <div className="flex items-start justify-between mb-3">
                         <div className="flex items-center space-x-3">
-                          <div className={`w-3 h-3 rounded-full ${
-                            risk.severity === 'High' ? 'bg-red-500' :
-                            risk.severity === 'Medium' ? 'bg-yellow-500' : 'bg-green-500'
-                          }`} />
+                          <div className="w-3 h-3 rounded-full" style={{
+                            backgroundColor: risk.severity === 'High' ? '#ef4444' :
+                                           risk.severity === 'Medium' ? '#fa8524' : '#08ce6b'
+                          }} />
                           <div>
-                            <h4 className="text-lg font-bold text-white">{risk.issue}</h4>
-                            <p className="text-sm text-gray-300">{risk.type}</p>
+                            <h4 className="text-lg font-bold" style={{color: '#f7ffff'}}>{risk.issue}</h4>
+                            <p className="text-sm" style={{color: '#f7ffff', opacity: 0.8}}>{risk.type}</p>
                           </div>
                         </div>
-                        <span className={`px-2 py-1 rounded-lg text-xs font-bold ${
-                          risk.severity === 'High' ? 'bg-red-900/40 text-red-400 border border-red-700' :
-                          risk.severity === 'Medium' ? 'bg-yellow-900/40 text-yellow-400 border border-yellow-700' :
-                          'bg-green-900/40 text-green-400 border border-green-700'
-                        }`}>
+                        <span className="px-2 py-1 rounded-lg text-xs font-bold border" style={{
+                          backgroundColor: risk.severity === 'High' ? 'rgba(239, 68, 68, 0.2)' :
+                                          risk.severity === 'Medium' ? 'rgba(250, 133, 36, 0.2)' : 'rgba(8, 206, 107, 0.2)',
+                          color: risk.severity === 'High' ? '#ef4444' :
+                                 risk.severity === 'Medium' ? '#fa8524' : '#08ce6b',
+                          borderColor: risk.severity === 'High' ? '#ef4444' :
+                                      risk.severity === 'Medium' ? '#fa8524' : '#08ce6b'
+                        }}>
                           {risk.severity}
                         </span>
                       </div>
-                      <p className="text-gray-300 mb-3">{risk.description}</p>
-                      <div className="bg-gray-800/50 p-3 rounded-xl border border-gray-600">
-                        <p className="text-gray-300 text-sm mb-2"><strong className="text-blue-400">Evidence:</strong> {risk.evidence}</p>
-                        <p className="text-gray-300 text-sm"><strong className="text-green-400">Mitigation:</strong> {risk.mitigation}</p>
+                      <p className="mb-3" style={{color: '#f7ffff', opacity: 0.8}}>{risk.description}</p>
+                      <div className="p-3 rounded-xl border" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
+                        <p className="text-sm mb-2" style={{color: '#f7ffff', opacity: 0.8}}><strong style={{color: '#0099ff'}}>Evidence:</strong> {risk.evidence}</p>
+                        <p className="text-sm" style={{color: '#f7ffff', opacity: 0.8}}><strong style={{color: '#08ce6b'}}>Mitigation:</strong> {risk.mitigation}</p>
                       </div>
                     </div>
                   ))}
@@ -748,60 +808,62 @@ const StartupAnalystPlatform = () => {
               {activeTab === 'growth' && (
                 <div className="space-y-6">
                   <div className="flex items-center space-x-3 mb-4">
-                    <Rocket className="text-purple-400" size={20} />
-                    <h3 className="text-xl font-bold text-white">Growth Potential</h3>
+                    <Rocket style={{color: '#8d51ff'}} size={20} />
+                    <h3 className="text-xl font-bold" style={{color: '#f7ffff'}}>Growth Potential</h3>
                   </div>
 
                   {/* Growth Factors */}
                   <div className="grid grid-cols-2 gap-4">
                     {growthPotentialData.factors.map((factor, idx) => (
-                      <div key={idx} className="bg-gray-700/50 p-4 rounded-xl border border-gray-600 hover:border-purple-500 transition-all duration-300">
+                      <div key={idx} className="p-4 rounded-xl border transition-all duration-300" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
                         <div className="flex items-center justify-between mb-2">
-                          <h4 className="font-bold text-white text-sm">{factor.name}</h4>
-                          <div className="text-lg font-bold text-purple-400">{factor.score}/10</div>
+                          <h4 className="font-bold text-sm" style={{color: '#f7ffff'}}>{factor.name}</h4>
+                          <div className="text-lg font-bold" style={{color: '#8d51ff'}}>{factor.score}/10</div>
                         </div>
-                        <div className="w-full bg-gray-600 rounded-full h-2 mb-2">
+                        <div className="w-full rounded-full h-2 mb-2" style={{backgroundColor: 'rgba(247, 255, 255, 0.1)'}}>
                           <div 
-                            className="bg-purple-500 h-2 rounded-full transition-all duration-1000" 
-                            style={{ width: `${factor.score * 10}%` }}
+                            className="h-2 rounded-full transition-all duration-1000" 
+                            style={{ width: `${factor.score * 10}%`, backgroundColor: '#8d51ff' }}
                           />
                         </div>
-                        <p className="text-gray-300 text-xs">{factor.description}</p>
+                        <p className="text-xs" style={{color: '#f7ffff', opacity: 0.8}}>{factor.description}</p>
                       </div>
                     ))}
                   </div>
 
                   {/* Recommendations */}
                   <div>
-                    <h4 className="text-lg font-bold text-white mb-4 flex items-center space-x-2">
-                      <Lightbulb className="text-yellow-400" size={18} />
+                    <h4 className="text-lg font-bold mb-4 flex items-center space-x-2" style={{color: '#f7ffff'}}>
+                      <Lightbulb style={{color: '#fa8524'}} size={18} />
                       <span>Key Recommendations</span>
                     </h4>
                     <div className="space-y-3">
                       {growthPotentialData.recommendations.map((rec, idx) => (
-                        <div key={idx} className="bg-gray-700/50 p-4 rounded-xl border border-gray-600 hover:border-yellow-500 transition-all duration-300">
+                        <div key={idx} className="p-4 rounded-xl border transition-all duration-300" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
                           <div className="flex items-start justify-between mb-3">
                             <div>
                               <div className="flex items-center space-x-2 mb-2">
-                                <span className={`px-2 py-1 rounded-lg text-xs font-bold ${
-                                  rec.priority === 'High' ? 'bg-red-900/40 text-red-400 border border-red-700' : 'bg-yellow-900/40 text-yellow-400 border border-yellow-700'
-                                }`}>
+                                <span className="px-2 py-1 rounded-lg text-xs font-bold border" style={{
+                                  backgroundColor: rec.priority === 'High' ? 'rgba(239, 68, 68, 0.2)' : 'rgba(250, 133, 36, 0.2)',
+                                  color: rec.priority === 'High' ? '#ef4444' : '#fa8524',
+                                  borderColor: rec.priority === 'High' ? '#ef4444' : '#fa8524'
+                                }}>
                                   {rec.priority}
                                 </span>
-                                <span className="px-2 py-1 rounded-lg text-xs font-bold bg-blue-900/40 text-blue-400 border border-blue-700">
+                                <span className="px-2 py-1 rounded-lg text-xs font-bold border" style={{backgroundColor: 'rgba(0, 153, 255, 0.2)', color: '#0099ff', borderColor: '#0099ff'}}>
                                   {rec.category}
                                 </span>
                               </div>
-                              <h5 className="text-lg font-bold text-white">{rec.title}</h5>
+                              <h5 className="text-lg font-bold" style={{color: '#f7ffff'}}>{rec.title}</h5>
                             </div>
-                            <div className="text-right text-sm text-gray-300">
+                            <div className="text-right text-sm" style={{color: '#f7ffff', opacity: 0.8}}>
                               <Clock size={12} className="inline mr-1" />
                               {rec.timeline}
                             </div>
                           </div>
-                          <p className="text-gray-300 mb-3 text-sm">{rec.description}</p>
-                          <div className="bg-gray-800/50 p-3 rounded-xl border border-gray-600">
-                            <p className="text-gray-300 text-sm"><strong className="text-green-400">Expected Impact:</strong> {rec.impact}</p>
+                          <p className="mb-3 text-sm" style={{color: '#f7ffff', opacity: 0.8}}>{rec.description}</p>
+                          <div className="p-3 rounded-xl border" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
+                            <p className="text-sm" style={{color: '#f7ffff', opacity: 0.8}}><strong style={{color: '#08ce6b'}}>Expected Impact:</strong> {rec.impact}</p>
                           </div>
                         </div>
                       ))}
