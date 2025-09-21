@@ -510,17 +510,7 @@ const StartupAnalystPlatform = () => {
 
     // Show loading state if analysis data is not yet available
     if (!analysisData) {
-      return (
-        <div className="h-screen flex items-center justify-center p-6" style={{backgroundColor: '#192452'}}>
-          <div className="max-w-md w-full text-center">
-            <div className="inline-flex items-center justify-center w-20 h-20 border-2 rounded-3xl mb-6" style={{backgroundColor: 'rgba(0, 153, 255, 0.2)', borderColor: '#0099ff'}}>
-              <Loader2 size={40} style={{color: '#0099ff'}} className="animate-spin" />
-            </div>
-            <h2 className="text-2xl font-bold mb-4" style={{color: '#f7ffff'}}>Processing Analysis</h2>
-            <p style={{color: '#f7ffff', opacity: 0.8}}>Please wait while we analyze your startup...</p>
-          </div>
-        </div>
-      );
+      return renderLoadingPage();
     }
 
     return (
