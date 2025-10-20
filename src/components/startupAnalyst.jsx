@@ -332,52 +332,53 @@ const StartupAnalystPlatform = () => {
 
   function renderUploadPage() {
     return (
-      <div className="h-screen flex flex-col lg:flex-row overflow-hidden" style={{backgroundColor: '#192452'}}>
+      <div className="min-h-screen max-h-screen overflow-y-auto flex flex-col lg:flex-row" style={{backgroundColor: '#192452'}}>
         {/* Left side with logo */}
-        <div className="w-full lg:w-1/3 flex items-center justify-center p-4 lg:p-0" style={{backgroundColor: '#192452'}}>
-          <div className="w-full h-full flex items-center justify-center">
-            <LAXLogo size={120} className="w-full h-auto max-w-xs lg:max-w-none lg:w-48 lg:h-48" />
+        <div className="w-full lg:w-1/3 flex items-center justify-center py-6 sm:py-8 lg:py-0 px-4 lg:px-0 min-h-[150px] sm:min-h-[200px] lg:min-h-screen" style={{backgroundColor: '#192452'}}>
+          <div className="flex items-center justify-center">
+            <LAXLogo size={60} className="sm:w-20 sm:h-20 lg:w-48 lg:h-48" />
           </div>
         </div>
         
         {/* Right side with upload form */}
-        <div className="w-full lg:w-2/3 flex items-center justify-center p-4 lg:p-6" style={{backgroundColor: '#f7ffff'}}>
+        <div className="w-full lg:w-2/3 flex items-center justify-center py-6 sm:py-8 lg:py-0 px-4 sm:px-6 lg:px-6 min-h-screen lg:min-h-0 overflow-y-auto" style={{backgroundColor: '#f7ffff'}}>
           <div className="max-w-xl w-full">
-            <div className="text-center mb-8 lg:mb-12">
-              <h1 className="text-3xl lg:text-5xl font-bold mb-4" style={{color: '#192452'}}>
+            <div className="text-center mb-6 sm:mb-8 lg:mb-12">
+              <h1 className="text-xl sm:text-2xl lg:text-5xl font-bold mb-2 sm:mb-3 lg:mb-4" style={{color: '#192452'}}>
                 LetsAnalyse
               </h1>
-              <p className="text-lg lg:text-xl max-w-lg mx-auto" style={{color: '#192452', opacity: 0.8}}>
+              <p className="text-sm sm:text-base lg:text-xl max-w-lg mx-auto px-2 sm:px-4" style={{color: '#192452', opacity: 0.8}}>
                 Upload your pitch deck and get instant AI-powered Startup analysis
               </p>
             </div>
 
             <div 
-              className={`border-2 border-dashed rounded-3xl p-6 lg:p-12 text-center transition-all duration-500 ${
+              className={`border-2 border-dashed rounded-xl sm:rounded-2xl lg:rounded-3xl p-6 sm:p-8 lg:p-12 text-center transition-all duration-500 mx-2 sm:mx-4 lg:mx-0 ${
                 isDragOver 
                   ? 'scale-105 shadow-2xl' 
-                  : 'hover:shadow-xl'
+                  : 'hover:shadow-xl active:scale-95'
               }`}
               style={{
                 backgroundColor: isDragOver ? 'rgba(0, 153, 255, 0.1)' : 'rgba(25, 36, 82, 0.05)',
-                borderColor: isDragOver ? '#0099ff' : '#8d51ff'
+                borderColor: isDragOver ? '#0099ff' : '#8d51ff',
+                minHeight: '280px'
               }}
               onDragOver={handleDragOver}
               onDragLeave={handleDragLeave}
               onDrop={handleDrop}
             >
-              <CloudUpload className={`w-12 h-12 lg:w-16 lg:h-16 mx-auto mb-4 lg:mb-6 transition-all duration-300`} 
+              <CloudUpload className={`w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 mx-auto mb-4 sm:mb-5 lg:mb-6 transition-all duration-300`} 
                 style={{color: isDragOver ? '#0099ff' : '#8d51ff'}} />
               
-              <h3 className="text-xl lg:text-2xl font-semibold mb-3" style={{color: '#192452'}}>
+              <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold mb-3 sm:mb-4 lg:mb-3" style={{color: '#192452'}}>
                 {isDragOver ? 'Drop your pitch deck here' : 'Upload Pitch Deck'}
               </h3>
               
-              <p className="mb-6 lg:mb-8 text-base lg:text-lg" style={{color: '#192452', opacity: 0.7}}>
+              <p className="mb-6 sm:mb-7 lg:mb-8 text-sm sm:text-base lg:text-lg px-2 leading-relaxed" style={{color: '#192452', opacity: 0.7}}>
                 Drag and drop your PDF here, or click to browse
               </p>
               
-              <label className="inline-flex items-center px-6 lg:px-8 py-3 lg:py-4 text-white font-semibold rounded-2xl cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-lg"
+              <label className="inline-flex items-center px-6 sm:px-7 lg:px-8 py-3 sm:py-3.5 lg:py-4 text-white font-semibold rounded-xl lg:rounded-2xl cursor-pointer transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-lg text-base sm:text-base lg:text-base min-h-[48px] touch-manipulation"
                 style={{backgroundColor: '#0099ff'}}>
                 <Upload size={16} className="mr-2 lg:mr-3" />
                 Choose File
@@ -389,20 +390,23 @@ const StartupAnalystPlatform = () => {
                 />
               </label>
               
-              <p className="text-sm mt-6 flex items-center justify-center space-x-2" style={{color: '#192452', opacity: 0.6}}>
-                <Shield size={14} style={{color: '#08ce6b'}} />
+              <p className="text-xs sm:text-sm lg:text-sm mt-4 sm:mt-5 lg:mt-6 flex items-center justify-center space-x-2 px-2" style={{color: '#192452', opacity: 0.6}}>
+                <Shield size={12} style={{color: '#08ce6b'}} />
                 <span>Supports PDF files up to 50MB</span>
               </p>
               
               {uploadError && (
-                <div className="mt-6 p-4 border rounded-xl" style={{backgroundColor: 'rgba(239, 68, 68, 0.1)', borderColor: '#ef4444'}}>
+                <div className="mt-4 sm:mt-5 lg:mt-6 p-3 sm:p-4 lg:p-4 border rounded-xl mx-0" style={{backgroundColor: 'rgba(239, 68, 68, 0.1)', borderColor: '#ef4444'}}>
                   <div className="flex items-center space-x-2">
-                    <AlertCircle size={16} style={{color: '#ef4444'}} />
-                    <span className="text-sm" style={{color: '#ef4444'}}>{uploadError}</span>
+                    <AlertCircle size={14} style={{color: '#ef4444'}} />
+                    <span className="text-sm sm:text-sm lg:text-sm" style={{color: '#ef4444'}}>{uploadError}</span>
                   </div>
                 </div>
               )}
             </div>
+            
+            {/* Add some bottom padding for mobile */}
+            <div className="h-6 sm:h-8 lg:h-0"></div>
           </div>
         </div>
       </div>
@@ -411,13 +415,13 @@ const StartupAnalystPlatform = () => {
 
   function renderLoadingPage() {
     return (
-      <div className="h-screen flex items-center justify-center overflow-hidden" style={{backgroundColor: '#192452'}}>
-        <div className="text-center">
+      <div className="min-h-screen max-h-screen overflow-y-auto flex items-center justify-center px-4" style={{backgroundColor: '#192452'}}>
+        <div className="text-center max-w-md w-full">
           {/* Animated Brain/Analysis Icon */}
-          <div className="relative mb-12">
-            <div className="w-32 h-32 mx-auto relative">
+          <div className="relative mb-8 sm:mb-10 lg:mb-12">
+            <div className="w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 mx-auto relative">
               {/* Outer rotating ring */}
-              <div className="absolute inset-0 rounded-full border-4 border-transparent animate-spin" 
+              <div className="absolute inset-0 rounded-full border-3 sm:border-4 border-transparent animate-spin" 
                 style={{
                   borderTopColor: '#0099ff',
                   borderRightColor: '#8d51ff',
@@ -436,42 +440,42 @@ const StartupAnalystPlatform = () => {
               
               {/* Inner brain icon */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <Brain size={48} style={{color: '#f7ffff'}} className="animate-pulse" />
+                <Brain size={32} className="sm:w-10 sm:h-10 lg:w-12 lg:h-12" style={{color: '#f7ffff'}} />
               </div>
               
               {/* Floating particles */}
-              <div className="absolute -top-2 -left-2 w-2 h-2 rounded-full animate-bounce" 
+              <div className="absolute -top-1 -left-1 sm:-top-2 sm:-left-2 w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full animate-bounce" 
                 style={{backgroundColor: '#0099ff', animationDelay: '0s'}}></div>
-              <div className="absolute -top-2 -right-2 w-2 h-2 rounded-full animate-bounce" 
+              <div className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full animate-bounce" 
                 style={{backgroundColor: '#8d51ff', animationDelay: '0.5s'}}></div>
-              <div className="absolute -bottom-2 -left-2 w-2 h-2 rounded-full animate-bounce" 
+              <div className="absolute -bottom-1 -left-1 sm:-bottom-2 sm:-left-2 w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full animate-bounce" 
                 style={{backgroundColor: '#fa8524', animationDelay: '1s'}}></div>
-              <div className="absolute -bottom-2 -right-2 w-2 h-2 rounded-full animate-bounce" 
+              <div className="absolute -bottom-1 -right-1 sm:-bottom-2 sm:-right-2 w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full animate-bounce" 
                 style={{backgroundColor: '#08ce6b', animationDelay: '1.5s'}}></div>
             </div>
           </div>
           
           {/* Loading Text */}
-          <div className="mb-8">
-            <h2 className="text-4xl font-bold mb-4" style={{color: '#f7ffff'}}>
+          <div className="mb-6 sm:mb-8 px-4">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4" style={{color: '#f7ffff'}}>
               Analyzing Your Startup
             </h2>
-            <p className="text-xl mb-2" style={{color: '#f7ffff', opacity: 0.8}}>
+            <p className="text-base sm:text-lg lg:text-xl mb-2 leading-relaxed" style={{color: '#f7ffff', opacity: 0.8}}>
               Our AI is diving deep into your pitch deck
             </p>
-            <p className="text-lg" style={{color: '#0099ff'}}>
+            <p className="text-sm sm:text-base lg:text-lg" style={{color: '#0099ff'}}>
               This may take 3-5 minutes for comprehensive analysis
             </p>
           </div>
           
           {/* Animated Progress Waves */}
-          <div className="flex justify-center space-x-2 mb-8">
+          <div className="flex justify-center space-x-1.5 sm:space-x-2 mb-8">
             {[0, 1, 2, 3, 4, 5, 6].map((i) => (
               <div
                 key={i}
                 className="w-1 rounded-full animate-pulse"
                 style={{
-                  height: '40px',
+                  height: '32px',
                   backgroundColor: ['#0099ff', '#8d51ff', '#fa8524', '#08ce6b'][i % 4],
                   animationDelay: `${i * 0.2}s`,
                   animation: `pulse 1.5s ease-in-out infinite ${i * 0.2}s`
@@ -514,35 +518,36 @@ const StartupAnalystPlatform = () => {
     }
 
     return (
-      <div className="h-screen text-white flex flex-col overflow-hidden" style={{backgroundColor: '#192452'}}>
+      <div className="min-h-screen max-h-screen text-white flex flex-col" style={{backgroundColor: '#192452'}}>
         {/* Header */}
-        <header className="border-b px-4 lg:px-6 py-4 flex-shrink-0 shadow-lg" style={{backgroundColor: '#192452', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
+        <header className="border-b px-3 sm:px-4 lg:px-6 py-3 sm:py-4 flex-shrink-0 shadow-lg" style={{backgroundColor: '#192452', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
           <div className="flex items-center justify-between w-full">
-            <div className="flex items-center space-x-2 lg:space-x-3">
-              <div className="flex items-center justify-center">
-                <LAXLogo size={24} className="lg:w-8 lg:h-8" />
+            <div className="flex items-center space-x-2 sm:space-x-3 min-w-0 flex-1">
+              <div className="flex items-center justify-center flex-shrink-0">
+                <LAXLogo size={20} className="sm:w-6 sm:h-6 lg:w-8 lg:h-8" />
               </div>
-              <div>
-                <h1 className="text-lg lg:text-xl font-bold" style={{color: '#f7ffff'}}>LetsAnalyse</h1>
-                <p className="text-xs hidden lg:block" style={{color: '#f7ffff', opacity: 0.7}}>AI Startup Analysis</p>
+              <div className="min-w-0">
+                <h1 className="text-base sm:text-lg lg:text-xl font-bold truncate" style={{color: '#f7ffff'}}>LetsAnalyse</h1>
+                <p className="text-xs hidden sm:block" style={{color: '#f7ffff', opacity: 0.7}}>AI Startup Analysis</p>
               </div>
             </div>
-            <div className="flex items-center space-x-2 lg:space-x-3">
+            <div className="flex items-center space-x-1.5 sm:space-x-2 lg:space-x-3 flex-shrink-0">
               <button 
                 onClick={exportToPDF}
-                className="text-white px-3 lg:px-4 py-2 rounded-xl flex items-center space-x-1 lg:space-x-2 transition-all duration-300 font-medium shadow-lg hover:scale-105 text-sm lg:text-base"
+                className="text-white px-2.5 sm:px-3 lg:px-4 py-2 rounded-lg sm:rounded-xl flex items-center space-x-1 lg:space-x-2 transition-all duration-300 font-medium shadow-lg hover:scale-105 active:scale-95 text-xs sm:text-sm lg:text-base min-h-[36px] sm:min-h-[40px] touch-manipulation"
                 style={{backgroundColor: '#08ce6b'}}
               >
-                <Download size={12} className="lg:w-4 lg:h-4" />
-                <span className="hidden sm:inline">Export PDF</span>
-                <span className="sm:hidden">PDF</span>
+                <Download size={12} className="sm:w-3.5 sm:h-3.5 lg:w-4 lg:h-4" />
+                <span className="hidden xs:inline sm:hidden md:inline">PDF</span>
+                <span className="hidden sm:inline md:hidden">Export</span>
+                <span className="hidden md:inline">Export PDF</span>
               </button>
               <button 
                 onClick={() => setAppState('upload')}
-                className="text-white px-3 lg:px-4 py-2 rounded-xl flex items-center space-x-1 lg:space-x-2 transition-all duration-300 font-medium shadow-lg hover:scale-105 text-sm lg:text-base"
+                className="text-white px-2.5 sm:px-3 lg:px-4 py-2 rounded-lg sm:rounded-xl flex items-center space-x-1 lg:space-x-2 transition-all duration-300 font-medium shadow-lg hover:scale-105 active:scale-95 text-xs sm:text-sm lg:text-base min-h-[36px] sm:min-h-[40px] touch-manipulation"
                 style={{backgroundColor: '#0099ff'}}
               >
-                <Upload size={12} className="lg:w-4 lg:h-4" />
+                <Upload size={12} className="sm:w-3.5 sm:h-3.5 lg:w-4 lg:h-4" />
                 <span>New</span>
               </button>
             </div>
@@ -550,90 +555,91 @@ const StartupAnalystPlatform = () => {
         </header>
 
         {/* Main Content */}
-        <div className="flex-1 flex flex-col p-4 lg:p-6 w-full overflow-hidden">
+        <div className="flex-1 flex flex-col p-3 sm:p-4 lg:p-6 w-full overflow-y-auto">
           {/* Compact Startup Header */}
-          <div className="border rounded-2xl p-4 lg:p-6 mb-4 lg:mb-6 flex-shrink-0 shadow-lg" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
-            <div className="flex flex-col lg:flex-row lg:items-center justify-between space-y-4 lg:space-y-0">
-              <div className="flex items-center space-x-3 lg:space-x-4">
-                <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-2xl flex items-center justify-center" style={{backgroundColor: '#0099ff'}}>
-                  <Building className="text-white" size={16} />
+          <div className="border rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 mb-3 sm:mb-4 lg:mb-6 flex-shrink-0 shadow-lg" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
+            <div className="flex flex-col space-y-3 sm:space-y-4 lg:flex-row lg:items-center lg:justify-between lg:space-y-0">
+              <div className="flex items-start sm:items-center space-x-3 sm:space-x-4 min-w-0 flex-1">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-xl sm:rounded-2xl flex items-center justify-center flex-shrink-0" style={{backgroundColor: '#0099ff'}}>
+                  <Building className="text-white" size={14} />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <h2 className="text-xl lg:text-2xl font-bold truncate" style={{color: '#f7ffff'}}>{analyzedStartup.name}</h2>
-                  <p className="text-sm truncate" style={{color: '#f7ffff', opacity: 0.8}}>{analyzedStartup.tagline}</p>
-                  <div className="flex flex-wrap items-center gap-2 lg:gap-4 text-xs mt-1" style={{color: '#f7ffff', opacity: 0.6}}>
+                  <h2 className="text-lg sm:text-xl lg:text-2xl font-bold truncate" style={{color: '#f7ffff'}}>{analyzedStartup.name}</h2>
+                  <p className="text-xs sm:text-sm truncate" style={{color: '#f7ffff', opacity: 0.8}}>{analyzedStartup.tagline}</p>
+                  <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 lg:gap-4 text-xs mt-1" style={{color: '#f7ffff', opacity: 0.6}}>
                     <span className="flex items-center space-x-1">
-                      <MapPin size={10} />
-                      <span>{analyzedStartup.location}</span>
+                      <MapPin size={8} className="sm:w-2.5 sm:h-2.5" />
+                      <span className="text-xs">{analyzedStartup.location}</span>
                     </span>
                     <span className="flex items-center space-x-1">
-                      <Calendar size={10} />
-                      <span>{analyzedStartup.founded}</span>
+                      <Calendar size={8} className="sm:w-2.5 sm:h-2.5" />
+                      <span className="text-xs">{analyzedStartup.founded}</span>
                     </span>
                     <span className="flex items-center space-x-1">
-                      <Users size={10} />
-                      <span>{analyzedStartup.employees} employees</span>
+                      <Users size={8} className="sm:w-2.5 sm:h-2.5" />
+                      <span className="text-xs">{analyzedStartup.employees} employees</span>
                     </span>
                   </div>
                 </div>
               </div>
-              <div className="text-center lg:text-right">
-                <div className="text-2xl lg:text-3xl font-bold mb-1" style={{color: '#08ce6b'}}>
+              <div className="text-center sm:text-right flex-shrink-0">
+                <div className="text-xl sm:text-2xl lg:text-3xl font-bold mb-1" style={{color: '#08ce6b'}}>
                   {analyzedStartup.investmentScore}/10
                 </div>
                 <div className="text-xs mb-2" style={{color: '#f7ffff', opacity: 0.6}}>Investment Score</div>
-                <span className="inline-flex items-center px-2 lg:px-3 py-1 rounded-xl text-xs font-bold border" style={{backgroundColor: 'rgba(8, 206, 107, 0.2)', color: '#08ce6b', borderColor: '#08ce6b'}}>
-                  <Crown size={10} className="mr-1" />
-                  <span className="truncate">{analyzedStartup.recommendation}</span>
+                <span className="inline-flex items-center px-2 sm:px-3 py-1 rounded-lg sm:rounded-xl text-xs font-bold border" style={{backgroundColor: 'rgba(8, 206, 107, 0.2)', color: '#08ce6b', borderColor: '#08ce6b'}}>
+                  <Crown size={8} className="mr-1 sm:w-2.5 sm:h-2.5" />
+                  <span className="truncate text-xs">{analyzedStartup.recommendation}</span>
                 </span>
               </div>
             </div>
           </div>
 
           {/* Tabs */}
-          <div className="border rounded-2xl flex-1 flex flex-col overflow-hidden shadow-lg" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
+          <div className="border rounded-xl sm:rounded-2xl flex-1 flex flex-col overflow-hidden shadow-lg" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
             <div className="border-b flex-shrink-0" style={{borderColor: 'rgba(247, 255, 255, 0.1)'}}>
-              <nav className="flex overflow-x-auto scrollbar-thin space-x-1 px-4 lg:px-6 py-2">
+              <nav className="flex overflow-x-auto scrollbar-thin space-x-0.5 sm:space-x-1 px-2 sm:px-3 lg:px-6 py-2 sm:py-2.5" style={{scrollbarWidth: 'none', msOverflowStyle: 'none'}}>
                 {[
-                  { id: 'overview', label: 'Overview', icon: Eye },
-                  { id: 'competitors', label: 'Competitors', icon: BarChart3 },
-                  { id: 'risks', label: 'Risks', icon: AlertTriangle },
-                  { id: 'growth', label: 'Growth', icon: Rocket },
-                  { id: 'financials', label: 'Financials', icon: DollarSign },
-                  { id: 'team', label: 'Team', icon: Users },
-                  { id: 'market', label: 'Market', icon: TrendingUp }
+                  { id: 'overview', label: 'Overview', icon: Eye, shortLabel: 'Overview' },
+                  { id: 'competitors', label: 'Competitors', icon: BarChart3, shortLabel: 'Compete' },
+                  { id: 'risks', label: 'Risks', icon: AlertTriangle, shortLabel: 'Risks' },
+                  { id: 'growth', label: 'Growth', icon: Rocket, shortLabel: 'Growth' },
+                  { id: 'financials', label: 'Financials', icon: DollarSign, shortLabel: 'Finance' },
+                  { id: 'team', label: 'Team', icon: Users, shortLabel: 'Team' },
+                  { id: 'market', label: 'Market', icon: TrendingUp, shortLabel: 'Market' }
                 ].map(tab => (
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`flex items-center space-x-1 lg:space-x-2 px-3 lg:px-4 py-2 lg:py-3 rounded-xl font-semibold text-xs lg:text-sm transition-all duration-300 whitespace-nowrap flex-shrink-0`}
+                    className={`flex items-center space-x-1 sm:space-x-1.5 lg:space-x-2 px-2 sm:px-3 lg:px-4 py-2 sm:py-2.5 lg:py-3 rounded-lg sm:rounded-xl font-semibold text-xs sm:text-sm lg:text-sm transition-all duration-300 whitespace-nowrap flex-shrink-0 min-h-[36px] sm:min-h-[40px] touch-manipulation`}
                     style={{
                       backgroundColor: activeTab === tab.id ? '#0099ff' : 'transparent',
                       color: activeTab === tab.id ? '#f7ffff' : '#f7ffff',
                       opacity: activeTab === tab.id ? 1 : 0.7
                     }}
                   >
-                    <tab.icon size={12} className="lg:w-4 lg:h-4" />
-                    <span>{tab.label}</span>
+                    <tab.icon size={12} className="sm:w-3.5 sm:h-3.5 lg:w-4 lg:h-4 flex-shrink-0" />
+                    <span className="hidden xs:inline sm:hidden">{tab.shortLabel}</span>
+                    <span className="hidden sm:inline">{tab.label}</span>
                   </button>
                 ))}
               </nav>
             </div>
 
-            <div className="p-4 lg:p-6 flex-1 overflow-y-scroll" style={{scrollbarWidth: 'auto', scrollbarColor: 'rgba(247, 255, 255, 0.3) rgba(247, 255, 255, 0.1)'}}>
+            <div className="p-3 sm:p-4 lg:p-6 flex-1 overflow-y-auto" style={{scrollbarWidth: 'thin', scrollbarColor: 'rgba(247, 255, 255, 0.3) rgba(247, 255, 255, 0.1)'}}>
               {activeTab === 'overview' && (
-                <div className="space-y-6">
+                <div className="space-y-4 sm:space-y-5 lg:space-y-6">
                   {/* Key Metrics Grid */}
-                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
+                  <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 lg:gap-4">
                     {Object.entries(keyMetrics).map(([key, metric], index) => (
-                      <div key={key} className="border rounded-xl p-3 lg:p-4 transition-all duration-300" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
-                        <div className="flex items-center justify-between mb-2">
+                      <div key={key} className="border rounded-lg sm:rounded-xl p-2.5 sm:p-3 lg:p-4 transition-all duration-300" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
+                        <div className="flex items-center justify-between mb-1.5 sm:mb-2">
                           <h4 className="font-bold uppercase text-xs tracking-wider" style={{color: '#f7ffff', opacity: 0.7}}>
                             {key === 'arr' ? 'ARR' : key === 'cac' ? 'CAC' : key.charAt(0).toUpperCase() + key.slice(1)}
                           </h4>
-                          <ArrowUp style={{color: '#08ce6b'}} size={12} className="lg:w-4 lg:h-4" />
+                          <ArrowUp style={{color: '#08ce6b'}} size={10} className="sm:w-3 sm:h-3 lg:w-4 lg:h-4" />
                         </div>
-                        <p className="text-lg lg:text-2xl font-bold mb-1" style={{color: '#f7ffff'}}>{metric.value}</p>
+                        <p className="text-base sm:text-lg lg:text-2xl font-bold mb-1" style={{color: '#f7ffff'}}>{metric.value}</p>
                         <p className="text-xs font-semibold" style={{color: '#08ce6b'}}>{metric.change}</p>
                       </div>
                     ))}
@@ -641,17 +647,17 @@ const StartupAnalystPlatform = () => {
 
                   {/* Benchmarks */}
                   {benchmarks && benchmarks.length > 0 && (
-                    <div className="border p-6 rounded-2xl transition-all duration-300" style={{backgroundColor: 'rgba(141, 81, 255, 0.1)', borderColor: '#8d51ff'}}>
-                      <div className="flex items-center space-x-3 mb-4">
-                        <BarChart3 style={{color: '#8d51ff'}} size={20} />
-                        <h3 className="text-xl font-bold" style={{color: '#f7ffff'}}>Performance Benchmarks</h3>
+                    <div className="border p-4 sm:p-5 lg:p-6 rounded-xl sm:rounded-2xl transition-all duration-300" style={{backgroundColor: 'rgba(141, 81, 255, 0.1)', borderColor: '#8d51ff'}}>
+                      <div className="flex items-center space-x-2 sm:space-x-3 mb-3 sm:mb-4">
+                        <BarChart3 style={{color: '#8d51ff'}} size={16} className="sm:w-5 sm:h-5 lg:w-5 lg:h-5" />
+                        <h3 className="text-lg sm:text-xl font-bold" style={{color: '#f7ffff'}}>Performance Benchmarks</h3>
                       </div>
-                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-4">
+                      <div className="grid grid-cols-1 gap-2.5 sm:gap-3 lg:grid-cols-2 lg:gap-4">
                         {benchmarks.map((benchmark, idx) => (
-                          <div key={idx} className="p-3 lg:p-4 rounded-xl" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)'}}>
-                            <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-2 space-y-1 lg:space-y-0">
+                          <div key={idx} className="p-3 sm:p-4 rounded-lg sm:rounded-xl" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)'}}>
+                            <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2 space-y-1 sm:space-y-0">
                               <p className="text-sm" style={{color: '#f7ffff', opacity: 0.8}}>{benchmark.metric}</p>
-                              <span className="px-2 py-1 rounded-lg text-xs font-bold border self-start lg:self-auto" style={{
+                              <span className="px-2 py-1 rounded-lg text-xs font-bold border self-start sm:self-auto" style={{
                                 backgroundColor: benchmark.status === 'Outperforming' || benchmark.status === 'Leading' ? 'rgba(8, 206, 107, 0.2)' :
                                                 benchmark.status === 'Significantly Outperforming' ? 'rgba(0, 153, 255, 0.2)' : 'rgba(250, 133, 36, 0.2)',
                                 color: benchmark.status === 'Outperforming' || benchmark.status === 'Leading' ? '#08ce6b' :
@@ -662,7 +668,7 @@ const StartupAnalystPlatform = () => {
                                 {benchmark.status}
                               </span>
                             </div>
-                            <p className="font-bold" style={{color: '#f7ffff'}}>{benchmark.value}</p>
+                            <p className="font-bold text-sm sm:text-base" style={{color: '#f7ffff'}}>{benchmark.value}</p>
                             <p className="text-xs" style={{color: '#f7ffff', opacity: 0.6}}>vs {benchmark.benchmark}</p>
                           </div>
                         ))}
@@ -671,33 +677,33 @@ const StartupAnalystPlatform = () => {
                   )}
 
                   {/* AI Investment Summary */}
-                  <div className="border p-6 rounded-2xl transition-all duration-300" style={{backgroundColor: 'rgba(0, 153, 255, 0.1)', borderColor: '#0099ff'}}>
-                    <div className="flex items-center space-x-3 mb-4">
-                      <Brain style={{color: '#0099ff'}} size={20} />
-                      <h3 className="text-xl font-bold" style={{color: '#f7ffff'}}>AI Investment Summary</h3>
+                  <div className="border p-4 sm:p-5 lg:p-6 rounded-xl sm:rounded-2xl transition-all duration-300" style={{backgroundColor: 'rgba(0, 153, 255, 0.1)', borderColor: '#0099ff'}}>
+                    <div className="flex items-center space-x-2 sm:space-x-3 mb-3 sm:mb-4">
+                      <Brain style={{color: '#0099ff'}} size={16} className="sm:w-5 sm:h-5 lg:w-5 lg:h-5" />
+                      <h3 className="text-lg sm:text-xl font-bold" style={{color: '#f7ffff'}}>AI Investment Summary</h3>
                     </div>
-                    <p className="leading-relaxed mb-4" style={{color: '#f7ffff', opacity: 0.8}}>
+                    <p className="leading-relaxed mb-3 sm:mb-4 text-sm sm:text-base" style={{color: '#f7ffff', opacity: 0.8}}>
                       {analysisData?.analysis?.aiSummary?.investmentThesis || 'Analysis in progress...'}
                     </p>
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
+                    <div className="grid grid-cols-1 gap-4 sm:gap-5 lg:grid-cols-2 lg:gap-6">
                       <div>
-                        <h4 className="font-semibold mb-2" style={{color: '#08ce6b'}}>Key Highlights</h4>
-                        <ul className="text-sm space-y-1" style={{color: '#f7ffff', opacity: 0.8}}>
+                        <h4 className="font-semibold mb-2 text-sm sm:text-base" style={{color: '#08ce6b'}}>Key Highlights</h4>
+                        <ul className="text-sm space-y-1.5 sm:space-y-2" style={{color: '#f7ffff', opacity: 0.8}}>
                           {(analysisData?.analysis?.aiSummary?.keyHighlights || []).map((highlight, i) => (
                             <li key={i} className="flex items-start space-x-2">
-                              <CheckCircle size={12} style={{color: '#08ce6b'}} className="mt-1 flex-shrink-0" />
-                              <span>{highlight}</span>
+                              <CheckCircle size={10} className="sm:w-3 sm:h-3" style={{color: '#08ce6b'}} />
+                              <span className="text-xs sm:text-sm leading-relaxed">{highlight}</span>
                             </li>
                           ))}
                         </ul>
                       </div>
                       <div>
-                        <h4 className="font-semibold mb-2" style={{color: '#ef4444'}}>Main Concerns</h4>
-                        <ul className="text-sm space-y-1" style={{color: '#f7ffff', opacity: 0.8}}>
+                        <h4 className="font-semibold mb-2 text-sm sm:text-base" style={{color: '#ef4444'}}>Main Concerns</h4>
+                        <ul className="text-sm space-y-1.5 sm:space-y-2" style={{color: '#f7ffff', opacity: 0.8}}>
                           {(analysisData?.analysis?.aiSummary?.mainConcerns || []).map((concern, i) => (
                             <li key={i} className="flex items-start space-x-2">
-                              <AlertCircle size={12} style={{color: '#ef4444'}} className="mt-1 flex-shrink-0" />
-                              <span>{concern}</span>
+                              <AlertCircle size={10} className="sm:w-3 sm:h-3" style={{color: '#ef4444'}} />
+                              <span className="text-xs sm:text-sm leading-relaxed">{concern}</span>
                             </li>
                           ))}
                         </ul>
@@ -708,53 +714,53 @@ const StartupAnalystPlatform = () => {
               )}
 
               {activeTab === 'competitors' && (
-                <div className="space-y-4">
-                  <div className="flex items-center space-x-3 mb-4">
-                    <BarChart3 style={{color: '#0099ff'}} size={20} />
-                    <h3 className="text-xl font-bold" style={{color: '#f7ffff'}}>Competitor Analysis</h3>
+                <div className="space-y-3 sm:space-y-4">
+                  <div className="flex items-center space-x-2 sm:space-x-3 mb-3 sm:mb-4">
+                    <BarChart3 style={{color: '#0099ff'}} size={16} className="sm:w-5 sm:h-5" />
+                    <h3 className="text-lg sm:text-xl font-bold" style={{color: '#f7ffff'}}>Competitor Analysis</h3>
                   </div>
-                  <div className="grid gap-4">
+                  <div className="grid gap-3 sm:gap-4">
                     {competitorComparisons.map((competitor, idx) => (
-                      <div key={idx} className="p-4 rounded-xl border transition-all duration-300" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
-                        <div className="flex items-start justify-between mb-4">
-                          <div>
-                            <h4 className="text-lg font-bold mb-1" style={{color: '#f7ffff'}}>{competitor.name}</h4>
-                            <p className="text-sm" style={{color: '#0099ff'}}>{competitor.sector}</p>
+                      <div key={idx} className="p-3 sm:p-4 rounded-lg sm:rounded-xl border transition-all duration-300" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
+                        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-3 sm:mb-4 space-y-2 sm:space-y-0">
+                          <div className="min-w-0 flex-1">
+                            <h4 className="text-base sm:text-lg font-bold mb-1" style={{color: '#f7ffff'}}>{competitor.name}</h4>
+                            <p className="text-xs sm:text-sm" style={{color: '#0099ff'}}>{competitor.sector}</p>
                           </div>
-                          <div className="text-right">
-                            <div className="text-lg font-bold" style={{color: '#08ce6b'}}>{competitor.arr} ARR</div>
-                            <div className="text-sm" style={{color: '#0099ff'}}>{competitor.growth} growth</div>
+                          <div className="text-left sm:text-right flex-shrink-0">
+                            <div className="text-sm sm:text-lg font-bold" style={{color: '#08ce6b'}}>{competitor.arr} ARR</div>
+                            <div className="text-xs sm:text-sm" style={{color: '#0099ff'}}>{competitor.growth} growth</div>
                           </div>
                         </div>
-                        <div className="grid grid-cols-2 gap-3 mb-3">
+                        <div className="grid grid-cols-2 gap-2 sm:gap-3 mb-3">
                           <div>
                             <p className="text-xs uppercase tracking-wide" style={{color: '#f7ffff', opacity: 0.6}}>Funding</p>
-                            <p className="font-semibold text-sm" style={{color: '#f7ffff'}}>{competitor.funding}</p>
+                            <p className="font-semibold text-xs sm:text-sm" style={{color: '#f7ffff'}}>{competitor.funding}</p>
                           </div>
                           <div>
                             <p className="text-xs uppercase tracking-wide" style={{color: '#f7ffff', opacity: 0.6}}>Valuation</p>
-                            <p className="font-semibold text-sm" style={{color: '#f7ffff'}}>{competitor.valuation}</p>
+                            <p className="font-semibold text-xs sm:text-sm" style={{color: '#f7ffff'}}>{competitor.valuation}</p>
                           </div>
                         </div>
-                        <div className="grid grid-cols-2 gap-3">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                           <div>
-                            <p className="text-sm font-semibold mb-2" style={{color: '#08ce6b'}}>Strengths</p>
-                            <ul className="text-sm space-y-1" style={{color: '#f7ffff', opacity: 0.8}}>
+                            <p className="text-xs sm:text-sm font-semibold mb-2" style={{color: '#08ce6b'}}>Strengths</p>
+                            <ul className="text-xs sm:text-sm space-y-1" style={{color: '#f7ffff', opacity: 0.8}}>
                               {competitor.strengths.map((strength, i) => (
-                                <li key={i} className="flex items-center space-x-2">
-                                  <CheckCircle size={10} style={{color: '#08ce6b'}} />
-                                  <span>{strength}</span>
+                                <li key={i} className="flex items-start space-x-2">
+                                  <CheckCircle size={8} className="sm:w-2.5 sm:h-2.5 mt-0.5 flex-shrink-0" style={{color: '#08ce6b'}} />
+                                  <span className="leading-relaxed">{strength}</span>
                                 </li>
                               ))}
                             </ul>
                           </div>
                           <div>
-                            <p className="text-sm font-semibold mb-2" style={{color: '#ef4444'}}>Weaknesses</p>
-                            <ul className="text-sm space-y-1" style={{color: '#f7ffff', opacity: 0.8}}>
+                            <p className="text-xs sm:text-sm font-semibold mb-2" style={{color: '#ef4444'}}>Weaknesses</p>
+                            <ul className="text-xs sm:text-sm space-y-1" style={{color: '#f7ffff', opacity: 0.8}}>
                               {competitor.weaknesses.map((weakness, i) => (
-                                <li key={i} className="flex items-center space-x-2">
-                                  <XCircle size={10} style={{color: '#ef4444'}} />
-                                  <span>{weakness}</span>
+                                <li key={i} className="flex items-start space-x-2">
+                                  <XCircle size={8} className="sm:w-2.5 sm:h-2.5 mt-0.5 flex-shrink-0" style={{color: '#ef4444'}} />
+                                  <span className="leading-relaxed">{weakness}</span>
                                 </li>
                               ))}
                             </ul>
@@ -767,25 +773,25 @@ const StartupAnalystPlatform = () => {
               )}
 
               {activeTab === 'risks' && (
-                <div className="space-y-4">
-                  <div className="flex items-center space-x-3 mb-4">
-                    <AlertTriangle style={{color: '#ef4444'}} size={20} />
-                    <h3 className="text-xl font-bold" style={{color: '#f7ffff'}}>Risk Assessment</h3>
+                <div className="space-y-3 sm:space-y-4">
+                  <div className="flex items-center space-x-2 sm:space-x-3 mb-3 sm:mb-4">
+                    <AlertTriangle style={{color: '#ef4444'}} size={16} className="sm:w-5 sm:h-5" />
+                    <h3 className="text-lg sm:text-xl font-bold" style={{color: '#f7ffff'}}>Risk Assessment</h3>
                   </div>
                   {enhancedRiskFlags.map((risk, idx) => (
-                    <div key={idx} className="p-4 rounded-xl border transition-all duration-300" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
-                      <div className="flex items-start justify-between mb-3">
-                        <div className="flex items-center space-x-3">
-                          <div className="w-3 h-3 rounded-full" style={{
+                    <div key={idx} className="p-3 sm:p-4 rounded-lg sm:rounded-xl border transition-all duration-300" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
+                      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-3 space-y-2 sm:space-y-0">
+                        <div className="flex items-start space-x-2 sm:space-x-3 min-w-0 flex-1">
+                          <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full flex-shrink-0 mt-1" style={{
                             backgroundColor: risk.severity === 'High' ? '#ef4444' :
                                            risk.severity === 'Medium' ? '#fa8524' : '#08ce6b'
                           }} />
-                          <div>
-                            <h4 className="text-lg font-bold" style={{color: '#f7ffff'}}>{risk.issue}</h4>
-                            <p className="text-sm" style={{color: '#f7ffff', opacity: 0.8}}>{risk.type}</p>
+                          <div className="min-w-0 flex-1">
+                            <h4 className="text-sm sm:text-base lg:text-lg font-bold leading-tight" style={{color: '#f7ffff'}}>{risk.issue}</h4>
+                            <p className="text-xs sm:text-sm" style={{color: '#f7ffff', opacity: 0.8}}>{risk.type}</p>
                           </div>
                         </div>
-                        <span className="px-2 py-1 rounded-lg text-xs font-bold border" style={{
+                        <span className="px-2 py-1 rounded-lg text-xs font-bold border self-start sm:self-auto flex-shrink-0" style={{
                           backgroundColor: risk.severity === 'High' ? 'rgba(239, 68, 68, 0.2)' :
                                           risk.severity === 'Medium' ? 'rgba(250, 133, 36, 0.2)' : 'rgba(8, 206, 107, 0.2)',
                           color: risk.severity === 'High' ? '#ef4444' :
@@ -796,10 +802,10 @@ const StartupAnalystPlatform = () => {
                           {risk.severity}
                         </span>
                       </div>
-                      <p className="mb-3" style={{color: '#f7ffff', opacity: 0.8}}>{risk.description}</p>
-                      <div className="p-3 rounded-xl border" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
-                        <p className="text-sm mb-2" style={{color: '#f7ffff', opacity: 0.8}}><strong style={{color: '#0099ff'}}>Evidence:</strong> {risk.evidence}</p>
-                        <p className="text-sm" style={{color: '#f7ffff', opacity: 0.8}}><strong style={{color: '#08ce6b'}}>Mitigation:</strong> {risk.mitigation}</p>
+                      <p className="mb-3 text-xs sm:text-sm leading-relaxed" style={{color: '#f7ffff', opacity: 0.8}}>{risk.description}</p>
+                      <div className="p-2.5 sm:p-3 rounded-lg sm:rounded-xl border" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
+                        <p className="text-xs sm:text-sm mb-2 leading-relaxed" style={{color: '#f7ffff', opacity: 0.8}}><strong style={{color: '#0099ff'}}>Evidence:</strong> {risk.evidence}</p>
+                        <p className="text-xs sm:text-sm leading-relaxed" style={{color: '#f7ffff', opacity: 0.8}}><strong style={{color: '#08ce6b'}}>Mitigation:</strong> {risk.mitigation}</p>
                       </div>
                     </div>
                   ))}
@@ -807,43 +813,43 @@ const StartupAnalystPlatform = () => {
               )}
 
               {activeTab === 'growth' && (
-                <div className="space-y-6">
-                  <div className="flex items-center space-x-3 mb-4">
-                    <Rocket style={{color: '#8d51ff'}} size={20} />
-                    <h3 className="text-xl font-bold" style={{color: '#f7ffff'}}>Growth Potential</h3>
+                <div className="space-y-4 sm:space-y-5 lg:space-y-6">
+                  <div className="flex items-center space-x-2 sm:space-x-3 mb-3 sm:mb-4">
+                    <Rocket style={{color: '#8d51ff'}} size={16} className="sm:w-5 sm:h-5" />
+                    <h3 className="text-lg sm:text-xl font-bold" style={{color: '#f7ffff'}}>Growth Potential</h3>
                   </div>
 
                   {/* Growth Factors */}
-                  <div className="grid grid-cols-2 gap-4">
-                    {growthPotentialData.factors.map((factor, idx) => (
-                      <div key={idx} className="p-4 rounded-xl border transition-all duration-300" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                    {(growthPotentialData.factors || []).map((factor, idx) => (
+                      <div key={idx} className="p-3 sm:p-4 rounded-lg sm:rounded-xl border transition-all duration-300" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
                         <div className="flex items-center justify-between mb-2">
-                          <h4 className="font-bold text-sm" style={{color: '#f7ffff'}}>{factor.name}</h4>
-                          <div className="text-lg font-bold" style={{color: '#8d51ff'}}>{factor.score}/10</div>
+                          <h4 className="font-bold text-xs sm:text-sm" style={{color: '#f7ffff'}}>{factor.name}</h4>
+                          <div className="text-sm sm:text-lg font-bold" style={{color: '#8d51ff'}}>{factor.score}/10</div>
                         </div>
-                        <div className="w-full rounded-full h-2 mb-2" style={{backgroundColor: 'rgba(247, 255, 255, 0.1)'}}>
+                        <div className="w-full rounded-full h-1.5 sm:h-2 mb-2" style={{backgroundColor: 'rgba(247, 255, 255, 0.1)'}}>
                           <div 
-                            className="h-2 rounded-full transition-all duration-1000" 
+                            className="h-1.5 sm:h-2 rounded-full transition-all duration-1000" 
                             style={{ width: `${factor.score * 10}%`, backgroundColor: '#8d51ff' }}
                           />
                         </div>
-                        <p className="text-xs" style={{color: '#f7ffff', opacity: 0.8}}>{factor.description}</p>
+                        <p className="text-xs leading-relaxed" style={{color: '#f7ffff', opacity: 0.8}}>{factor.description}</p>
                       </div>
                     ))}
                   </div>
 
                   {/* Recommendations */}
                   <div>
-                    <h4 className="text-lg font-bold mb-4 flex items-center space-x-2" style={{color: '#f7ffff'}}>
-                      <Lightbulb style={{color: '#fa8524'}} size={18} />
+                    <h4 className="text-base sm:text-lg font-bold mb-3 sm:mb-4 flex items-center space-x-2" style={{color: '#f7ffff'}}>
+                      <Lightbulb style={{color: '#fa8524'}} size={16} className="sm:w-4.5 sm:h-4.5" />
                       <span>Key Recommendations</span>
                     </h4>
                     <div className="space-y-3">
-                      {growthPotentialData.recommendations.map((rec, idx) => (
-                        <div key={idx} className="p-4 rounded-xl border transition-all duration-300" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
-                          <div className="flex items-start justify-between mb-3">
-                            <div>
-                              <div className="flex items-center space-x-2 mb-2">
+                      {(growthPotentialData.recommendations || []).map((rec, idx) => (
+                        <div key={idx} className="p-3 sm:p-4 rounded-lg sm:rounded-xl border transition-all duration-300" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
+                          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-3 space-y-2 sm:space-y-0">
+                            <div className="min-w-0 flex-1">
+                              <div className="flex flex-wrap items-center gap-2 mb-2">
                                 <span className="px-2 py-1 rounded-lg text-xs font-bold border" style={{
                                   backgroundColor: rec.priority === 'High' ? 'rgba(239, 68, 68, 0.2)' : 'rgba(250, 133, 36, 0.2)',
                                   color: rec.priority === 'High' ? '#ef4444' : '#fa8524',
@@ -855,16 +861,16 @@ const StartupAnalystPlatform = () => {
                                   {rec.category}
                                 </span>
                               </div>
-                              <h5 className="text-lg font-bold" style={{color: '#f7ffff'}}>{rec.title}</h5>
+                              <h5 className="text-sm sm:text-base lg:text-lg font-bold leading-tight" style={{color: '#f7ffff'}}>{rec.title}</h5>
                             </div>
-                            <div className="text-right text-sm" style={{color: '#f7ffff', opacity: 0.8}}>
-                              <Clock size={12} className="inline mr-1" />
+                            <div className="text-left sm:text-right text-xs sm:text-sm flex-shrink-0" style={{color: '#f7ffff', opacity: 0.8}}>
+                              <Clock size={10} className="inline mr-1 sm:w-3 sm:h-3" />
                               {rec.timeline}
                             </div>
                           </div>
-                          <p className="mb-3 text-sm" style={{color: '#f7ffff', opacity: 0.8}}>{rec.description}</p>
-                          <div className="p-3 rounded-xl border" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
-                            <p className="text-sm" style={{color: '#f7ffff', opacity: 0.8}}><strong style={{color: '#08ce6b'}}>Expected Impact:</strong> {rec.impact}</p>
+                          <p className="mb-3 text-xs sm:text-sm leading-relaxed" style={{color: '#f7ffff', opacity: 0.8}}>{rec.description}</p>
+                          <div className="p-2.5 sm:p-3 rounded-lg sm:rounded-xl border" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
+                            <p className="text-xs sm:text-sm leading-relaxed" style={{color: '#f7ffff', opacity: 0.8}}><strong style={{color: '#08ce6b'}}>Expected Impact:</strong> {rec.impact}</p>
                           </div>
                         </div>
                       ))}
@@ -874,39 +880,39 @@ const StartupAnalystPlatform = () => {
               )}
 
               {activeTab === 'financials' && (
-                <div className="space-y-6">
-                  <div className="flex items-center space-x-3 mb-4">
-                    <DollarSign className="text-green-400" size={20} />
-                    <h3 className="text-xl font-bold text-white">Financial Analysis</h3>
+                <div className="space-y-4 sm:space-y-5 lg:space-y-6">
+                  <div className="flex items-center space-x-2 sm:space-x-3 mb-3 sm:mb-4">
+                    <DollarSign style={{color: '#08ce6b'}} size={16} className="sm:w-5 sm:h-5" />
+                    <h3 className="text-lg sm:text-xl font-bold" style={{color: '#f7ffff'}}>Financial Analysis</h3>
                   </div>
 
                   {/* Revenue Overview */}
-                  <div className="bg-gray-700/50 p-6 rounded-2xl border border-gray-600">
-                    <h4 className="text-lg font-bold text-white mb-4 flex items-center space-x-2">
-                      <TrendingUp className="text-green-400" size={16} />
+                  <div className="p-4 sm:p-5 lg:p-6 rounded-xl sm:rounded-2xl border" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
+                    <h4 className="text-base sm:text-lg font-bold mb-3 sm:mb-4 flex items-center space-x-2" style={{color: '#f7ffff'}}>
+                      <TrendingUp style={{color: '#08ce6b'}} size={14} className="sm:w-4 sm:h-4" />
                       <span>Revenue Overview</span>
                     </h4>
-                    <div className="grid grid-cols-2 gap-4 mb-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-3 sm:mb-4">
                       <div>
-                        <p className="text-gray-300 text-sm">Current Revenue</p>
-                        <p className="text-2xl font-bold text-green-400">{financialData?.revenue?.current || 'N/A'}</p>
-                        <p className="text-green-400 text-sm">{financialData?.revenue?.growth || 'N/A'} growth</p>
+                        <p className="text-xs sm:text-sm" style={{color: '#f7ffff', opacity: 0.6}}>Current Revenue</p>
+                        <p className="text-lg sm:text-2xl font-bold" style={{color: '#08ce6b'}}>{financialData?.revenue?.current || 'N/A'}</p>
+                        <p className="text-xs sm:text-sm" style={{color: '#08ce6b'}}>{financialData?.revenue?.growth || 'N/A'} growth</p>
                       </div>
                       <div>
-                        <p className="text-gray-300 text-sm">Projection</p>
-                        <p className="text-xl font-bold text-blue-400">{financialData?.revenue?.projection || 'N/A'}</p>
+                        <p className="text-xs sm:text-sm" style={{color: '#f7ffff', opacity: 0.6}}>Projection</p>
+                        <p className="text-base sm:text-xl font-bold" style={{color: '#0099ff'}}>{financialData?.revenue?.projection || 'N/A'}</p>
                       </div>
                     </div>
                     
                     {/* Revenue Breakdown */}
                     {financialData?.revenue?.breakdown && (
                       <div>
-                        <h5 className="text-white font-semibold mb-3">Monthly Breakdown</h5>
-                        <div className="grid grid-cols-3 gap-3">
+                        <h5 className="font-semibold mb-2 sm:mb-3 text-sm sm:text-base" style={{color: '#f7ffff'}}>Monthly Breakdown</h5>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
                           {financialData.revenue.breakdown.map((item, idx) => (
-                            <div key={idx} className="bg-gray-800/50 p-3 rounded-xl">
-                              <p className="text-gray-300 text-xs">{item.month}</p>
-                              <p className="text-white font-bold">${(item.value / 1000000).toFixed(1)}M</p>
+                            <div key={idx} className="p-2.5 sm:p-3 rounded-lg sm:rounded-xl" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)'}}>
+                              <p className="text-xs" style={{color: '#f7ffff', opacity: 0.6}}>{item.month}</p>
+                              <p className="font-bold text-xs sm:text-sm" style={{color: '#f7ffff'}}>${(item.value / 1000000).toFixed(1)}M</p>
                             </div>
                           ))}
                         </div>
@@ -915,21 +921,21 @@ const StartupAnalystPlatform = () => {
                   </div>
 
                   {/* Financial Metrics */}
-                  <div className="bg-gray-700/50 p-6 rounded-2xl border border-gray-600">
-                    <h4 className="text-lg font-bold text-white mb-4">Key Financial Metrics</h4>
-                    <div className="grid grid-cols-2 gap-4">
+                  <div className="p-4 sm:p-5 lg:p-6 rounded-xl sm:rounded-2xl border" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
+                    <h4 className="text-base sm:text-lg font-bold mb-3 sm:mb-4" style={{color: '#f7ffff'}}>Key Financial Metrics</h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                       {(financialData?.metrics || []).map((metric, idx) => (
-                        <div key={idx} className="bg-gray-800/50 p-4 rounded-xl">
+                        <div key={idx} className="p-3 sm:p-4 rounded-lg sm:rounded-xl" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)'}}>
                           <div className="flex items-center justify-between mb-2">
-                            <p className="text-gray-300 text-sm">{metric.label}</p>
+                            <p className="text-xs sm:text-sm" style={{color: '#f7ffff', opacity: 0.6}}>{metric.label}</p>
                             {metric.positive ? (
-                              <ArrowUp className="text-green-400" size={14} />
+                              <ArrowUp style={{color: '#08ce6b'}} size={12} className="sm:w-3.5 sm:h-3.5" />
                             ) : (
-                              <ArrowDown className="text-red-400" size={14} />
+                              <ArrowDown style={{color: '#ef4444'}} size={12} className="sm:w-3.5 sm:h-3.5" />
                             )}
                           </div>
-                          <p className="text-white font-bold text-lg">{metric.value}</p>
-                          <p className={`text-sm ${metric.positive ? 'text-green-400' : 'text-red-400'}`}>
+                          <p className="font-bold text-sm sm:text-lg" style={{color: '#f7ffff'}}>{metric.value}</p>
+                          <p className={`text-xs sm:text-sm`} style={{color: metric.positive ? '#08ce6b' : '#ef4444'}}>
                             {metric.change}
                           </p>
                         </div>
@@ -939,23 +945,23 @@ const StartupAnalystPlatform = () => {
 
                   {/* Funding Information */}
                   {financialData?.funding && (
-                    <div className="bg-gray-700/50 p-6 rounded-2xl border border-gray-600">
-                      <h4 className="text-lg font-bold text-white mb-4">Funding History</h4>
-                      <div className="grid grid-cols-2 gap-4 mb-4">
+                    <div className="p-4 sm:p-5 lg:p-6 rounded-xl sm:rounded-2xl border" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
+                      <h4 className="text-base sm:text-lg font-bold mb-3 sm:mb-4" style={{color: '#f7ffff'}}>Funding History</h4>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-3 sm:mb-4">
                         <div>
-                          <p className="text-gray-300 text-sm">Total Raised</p>
-                          <p className="text-xl font-bold text-purple-400">{financialData.funding.totalRaised}</p>
+                          <p className="text-xs sm:text-sm" style={{color: '#f7ffff', opacity: 0.6}}>Total Raised</p>
+                          <p className="text-base sm:text-xl font-bold" style={{color: '#8d51ff'}}>{financialData.funding.totalRaised}</p>
                         </div>
                         <div>
-                          <p className="text-gray-300 text-sm">Last Round</p>
-                          <p className="text-lg font-bold text-blue-400">{financialData.funding.lastRound}</p>
+                          <p className="text-xs sm:text-sm" style={{color: '#f7ffff', opacity: 0.6}}>Last Round</p>
+                          <p className="text-sm sm:text-lg font-bold" style={{color: '#0099ff'}}>{financialData.funding.lastRound}</p>
                         </div>
                       </div>
                       <div>
-                        <p className="text-gray-300 text-sm mb-2">Key Investors</p>
-                        <div className="flex flex-wrap gap-2">
+                        <p className="text-xs sm:text-sm mb-2" style={{color: '#f7ffff', opacity: 0.6}}>Key Investors</p>
+                        <div className="flex flex-wrap gap-1.5 sm:gap-2">
                           {(financialData.funding.investors || []).map((investor, idx) => (
-                            <span key={idx} className="bg-gray-800/50 px-3 py-1 rounded-lg text-xs text-gray-300">
+                            <span key={idx} className="px-2 sm:px-3 py-1 rounded-lg text-xs" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', color: '#f7ffff', opacity: 0.8}}>
                               {investor}
                             </span>
                           ))}
@@ -967,41 +973,41 @@ const StartupAnalystPlatform = () => {
               )}
 
               {activeTab === 'team' && (
-                <div className="space-y-6">
-                  <div className="flex items-center space-x-3 mb-4">
-                    <Users className="text-blue-400" size={20} />
-                    <h3 className="text-xl font-bold text-white">Team Analysis</h3>
+                <div className="space-y-4 sm:space-y-5 lg:space-y-6">
+                  <div className="flex items-center space-x-2 sm:space-x-3 mb-3 sm:mb-4">
+                    <Users style={{color: '#0099ff'}} size={16} className="sm:w-5 sm:h-5" />
+                    <h3 className="text-lg sm:text-xl font-bold" style={{color: '#f7ffff'}}>Team Analysis</h3>
                   </div>
 
                   {/* Team Overview */}
-                  <div className="bg-gray-700/50 p-6 rounded-2xl border border-gray-600">
-                    <h4 className="text-lg font-bold text-white mb-4">Team Overview</h4>
-                    <div className="grid grid-cols-2 gap-4 mb-4">
+                  <div className="p-4 sm:p-5 lg:p-6 rounded-xl sm:rounded-2xl border" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
+                    <h4 className="text-base sm:text-lg font-bold mb-3 sm:mb-4" style={{color: '#f7ffff'}}>Team Overview</h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-3 sm:mb-4">
                       <div>
-                        <p className="text-gray-300 text-sm">Team Size</p>
-                        <p className="text-2xl font-bold text-blue-400">{teamData?.size || 'N/A'}</p>
+                        <p className="text-xs sm:text-sm" style={{color: '#f7ffff', opacity: 0.6}}>Team Size</p>
+                        <p className="text-lg sm:text-2xl font-bold" style={{color: '#0099ff'}}>{teamData?.size || 'N/A'}</p>
                       </div>
                       <div>
-                        <p className="text-gray-300 text-sm">Growth</p>
-                        <p className="text-lg text-green-400">{teamData?.growth || 'N/A'}</p>
+                        <p className="text-xs sm:text-sm" style={{color: '#f7ffff', opacity: 0.6}}>Growth</p>
+                        <p className="text-base sm:text-lg" style={{color: '#08ce6b'}}>{teamData?.growth || 'N/A'}</p>
                       </div>
                     </div>
                     
                     {/* Department Breakdown */}
                     {teamData?.departments && (
                       <div>
-                        <h5 className="text-white font-semibold mb-3">Department Breakdown</h5>
-                        <div className="space-y-3">
+                        <h5 className="font-semibold mb-2 sm:mb-3 text-sm sm:text-base" style={{color: '#f7ffff'}}>Department Breakdown</h5>
+                        <div className="space-y-2.5 sm:space-y-3">
                           {teamData.departments.map((dept, idx) => (
-                            <div key={idx} className="bg-gray-800/50 p-3 rounded-xl">
+                            <div key={idx} className="p-2.5 sm:p-3 rounded-lg sm:rounded-xl" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)'}}>
                               <div className="flex justify-between items-center mb-2">
-                                <span className="text-white font-medium">{dept.name}</span>
-                                <span className="text-blue-400 font-bold">{dept.count}</span>
+                                <span className="font-medium text-xs sm:text-sm" style={{color: '#f7ffff'}}>{dept.name}</span>
+                                <span className="font-bold text-xs sm:text-sm" style={{color: '#0099ff'}}>{dept.count}</span>
                               </div>
-                              <div className="w-full bg-gray-600 rounded-full h-2">
+                              <div className="w-full rounded-full h-1.5 sm:h-2" style={{backgroundColor: 'rgba(247, 255, 255, 0.1)'}}>
                                 <div 
-                                  className="bg-blue-500 h-2 rounded-full transition-all duration-1000" 
-                                  style={{ width: `${dept.percentage}%` }}
+                                  className="h-1.5 sm:h-2 rounded-full transition-all duration-1000" 
+                                  style={{ width: `${dept.percentage}%`, backgroundColor: '#0099ff' }}
                                 />
                               </div>
                             </div>
@@ -1013,20 +1019,20 @@ const StartupAnalystPlatform = () => {
 
                   {/* Leadership Team */}
                   {teamData?.leadership && (
-                    <div className="bg-gray-700/50 p-6 rounded-2xl border border-gray-600">
-                      <h4 className="text-lg font-bold text-white mb-4">Leadership Team</h4>
-                      <div className="space-y-4">
+                    <div className="p-4 sm:p-5 lg:p-6 rounded-xl sm:rounded-2xl border" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
+                      <h4 className="text-base sm:text-lg font-bold mb-3 sm:mb-4" style={{color: '#f7ffff'}}>Leadership Team</h4>
+                      <div className="space-y-3 sm:space-y-4">
                         {teamData.leadership.map((leader, idx) => (
-                          <div key={idx} className="bg-gray-800/50 p-4 rounded-xl border border-gray-600">
-                            <div className="flex items-start justify-between mb-3">
-                              <div>
-                                <h5 className="text-white font-bold">{leader.name}</h5>
-                                <p className="text-orange-400 font-medium">{leader.role}</p>
+                          <div key={idx} className="p-3 sm:p-4 rounded-lg sm:rounded-xl border" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
+                            <div className="flex items-start justify-between mb-2 sm:mb-3">
+                              <div className="min-w-0 flex-1">
+                                <h5 className="font-bold text-sm sm:text-base" style={{color: '#f7ffff'}}>{leader.name}</h5>
+                                <p className="font-medium text-xs sm:text-sm" style={{color: '#fa8524'}}>{leader.role}</p>
                               </div>
-                              <User className="text-gray-400" size={20} />
+                              <User style={{color: '#f7ffff', opacity: 0.4}} size={16} className="sm:w-5 sm:h-5 flex-shrink-0" />
                             </div>
-                            <p className="text-gray-300 text-sm mb-2">{leader.experience}</p>
-                            <p className="text-gray-400 text-xs">{leader.background}</p>
+                            <p className="text-xs sm:text-sm mb-2 leading-relaxed" style={{color: '#f7ffff', opacity: 0.8}}>{leader.experience}</p>
+                            <p className="text-xs leading-relaxed" style={{color: '#f7ffff', opacity: 0.6}}>{leader.background}</p>
                           </div>
                         ))}
                       </div>
@@ -1035,20 +1041,20 @@ const StartupAnalystPlatform = () => {
 
                   {/* Culture & Retention */}
                   {teamData?.culture && (
-                    <div className="bg-gray-700/50 p-6 rounded-2xl border border-gray-600">
-                      <h4 className="text-lg font-bold text-white mb-4">Culture & Retention</h4>
+                    <div className="p-4 sm:p-5 lg:p-6 rounded-xl sm:rounded-2xl border" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
+                      <h4 className="text-base sm:text-lg font-bold mb-3 sm:mb-4" style={{color: '#f7ffff'}}>Culture & Retention</h4>
                       <div className="space-y-3">
                         <div>
-                          <p className="text-gray-300 text-sm">Culture</p>
-                          <p className="text-white">{teamData.culture.satisfaction}</p>
+                          <p className="text-xs sm:text-sm" style={{color: '#f7ffff', opacity: 0.6}}>Culture</p>
+                          <p className="text-sm sm:text-base" style={{color: '#f7ffff'}}>{teamData.culture.satisfaction}</p>
                         </div>
                         <div>
-                          <p className="text-gray-300 text-sm">Retention</p>
-                          <p className="text-white">{teamData.culture.retention}</p>
+                          <p className="text-xs sm:text-sm" style={{color: '#f7ffff', opacity: 0.6}}>Retention</p>
+                          <p className="text-sm sm:text-base" style={{color: '#f7ffff'}}>{teamData.culture.retention}</p>
                         </div>
                         <div>
-                          <p className="text-gray-300 text-sm">Diversity</p>
-                          <p className="text-white">{teamData.culture.diversity}</p>
+                          <p className="text-xs sm:text-sm" style={{color: '#f7ffff', opacity: 0.6}}>Diversity</p>
+                          <p className="text-sm sm:text-base" style={{color: '#f7ffff'}}>{teamData.culture.diversity}</p>
                         </div>
                       </div>
                     </div>
@@ -1057,31 +1063,31 @@ const StartupAnalystPlatform = () => {
               )}
 
               {activeTab === 'market' && (
-                <div className="space-y-6">
-                  <div className="flex items-center space-x-3 mb-4">
-                    <TrendingUp className="text-purple-400" size={20} />
-                    <h3 className="text-xl font-bold text-white">Market Analysis</h3>
+                <div className="space-y-4 sm:space-y-5 lg:space-y-6">
+                  <div className="flex items-center space-x-2 sm:space-x-3 mb-3 sm:mb-4">
+                    <TrendingUp style={{color: '#8d51ff'}} size={16} className="sm:w-5 sm:h-5" />
+                    <h3 className="text-lg sm:text-xl font-bold" style={{color: '#f7ffff'}}>Market Analysis</h3>
                   </div>
 
                   {/* Market Size */}
                   {marketData?.size && (
-                    <div className="bg-gray-700/50 p-6 rounded-2xl border border-gray-600">
-                      <h4 className="text-lg font-bold text-white mb-4">Market Size</h4>
-                      <div className="grid grid-cols-3 gap-4">
-                        <div className="bg-gray-800/50 p-4 rounded-xl text-center">
-                          <p className="text-gray-300 text-sm mb-2">TAM</p>
-                          <p className="text-purple-400 font-bold text-lg">Total Addressable</p>
-                          <p className="text-white text-sm">{marketData.size.tam}</p>
+                    <div className="p-4 sm:p-5 lg:p-6 rounded-xl sm:rounded-2xl border" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
+                      <h4 className="text-base sm:text-lg font-bold mb-3 sm:mb-4" style={{color: '#f7ffff'}}>Market Size</h4>
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+                        <div className="p-3 sm:p-4 rounded-lg sm:rounded-xl text-center" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)'}}>
+                          <p className="text-xs sm:text-sm mb-1 sm:mb-2" style={{color: '#f7ffff', opacity: 0.6}}>TAM</p>
+                          <p className="font-bold text-sm sm:text-base lg:text-lg" style={{color: '#8d51ff'}}>Total Addressable</p>
+                          <p className="text-xs sm:text-sm" style={{color: '#f7ffff'}}>{marketData.size.tam}</p>
                         </div>
-                        <div className="bg-gray-800/50 p-4 rounded-xl text-center">
-                          <p className="text-gray-300 text-sm mb-2">SAM</p>
-                          <p className="text-blue-400 font-bold text-lg">Serviceable Available</p>
-                          <p className="text-white text-sm">{marketData.size.sam}</p>
+                        <div className="p-3 sm:p-4 rounded-lg sm:rounded-xl text-center" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)'}}>
+                          <p className="text-xs sm:text-sm mb-1 sm:mb-2" style={{color: '#f7ffff', opacity: 0.6}}>SAM</p>
+                          <p className="font-bold text-sm sm:text-base lg:text-lg" style={{color: '#0099ff'}}>Serviceable Available</p>
+                          <p className="text-xs sm:text-sm" style={{color: '#f7ffff'}}>{marketData.size.sam}</p>
                         </div>
-                        <div className="bg-gray-800/50 p-4 rounded-xl text-center">
-                          <p className="text-gray-300 text-sm mb-2">SOM</p>
-                          <p className="text-green-400 font-bold text-lg">Serviceable Obtainable</p>
-                          <p className="text-white text-sm">{marketData.size.som}</p>
+                        <div className="p-3 sm:p-4 rounded-lg sm:rounded-xl text-center" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)'}}>
+                          <p className="text-xs sm:text-sm mb-1 sm:mb-2" style={{color: '#f7ffff', opacity: 0.6}}>SOM</p>
+                          <p className="font-bold text-sm sm:text-base lg:text-lg" style={{color: '#08ce6b'}}>Serviceable Obtainable</p>
+                          <p className="text-xs sm:text-sm" style={{color: '#f7ffff'}}>{marketData.size.som}</p>
                         </div>
                       </div>
                     </div>
@@ -1089,22 +1095,24 @@ const StartupAnalystPlatform = () => {
 
                   {/* Market Trends */}
                   {marketData?.trends && (
-                    <div className="bg-gray-700/50 p-6 rounded-2xl border border-gray-600">
-                      <h4 className="text-lg font-bold text-white mb-4">Market Trends</h4>
-                      <div className="space-y-3">
+                    <div className="p-4 sm:p-5 lg:p-6 rounded-xl sm:rounded-2xl border" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
+                      <h4 className="text-base sm:text-lg font-bold mb-3 sm:mb-4" style={{color: '#f7ffff'}}>Market Trends</h4>
+                      <div className="space-y-2.5 sm:space-y-3">
                         {marketData.trends.map((trend, idx) => (
-                          <div key={idx} className="bg-gray-800/50 p-4 rounded-xl border border-gray-600">
-                            <div className="flex items-center justify-between mb-2">
-                              <h5 className="text-white font-medium">{trend.trend}</h5>
-                              <span className={`px-2 py-1 rounded-lg text-xs font-bold ${
-                                trend.impact === 'High' ? 'bg-red-900/40 text-red-400 border border-red-700' :
-                                trend.impact === 'Medium' ? 'bg-yellow-900/40 text-yellow-400 border border-yellow-700' :
-                                'bg-green-900/40 text-green-400 border border-green-700'
-                              }`}>
+                          <div key={idx} className="p-3 sm:p-4 rounded-lg sm:rounded-xl border" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
+                            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2 space-y-2 sm:space-y-0">
+                              <h5 className="font-medium text-sm sm:text-base" style={{color: '#f7ffff'}}>{trend.trend}</h5>
+                              <span className={`px-2 py-1 rounded-lg text-xs font-bold border self-start sm:self-auto ${
+                                trend.impact === 'High' ? '' : trend.impact === 'Medium' ? '' : ''
+                              }`} style={{
+                                backgroundColor: trend.impact === 'High' ? 'rgba(239, 68, 68, 0.2)' : trend.impact === 'Medium' ? 'rgba(250, 133, 36, 0.2)' : 'rgba(8, 206, 107, 0.2)',
+                                color: trend.impact === 'High' ? '#ef4444' : trend.impact === 'Medium' ? '#fa8524' : '#08ce6b',
+                                borderColor: trend.impact === 'High' ? '#ef4444' : trend.impact === 'Medium' ? '#fa8524' : '#08ce6b'
+                              }}>
                                 {trend.impact} Impact
                               </span>
                             </div>
-                            <p className="text-gray-300 text-sm">{trend.timeline}</p>
+                            <p className="text-xs sm:text-sm" style={{color: '#f7ffff', opacity: 0.8}}>{trend.timeline}</p>
                           </div>
                         ))}
                       </div>
@@ -1113,19 +1121,19 @@ const StartupAnalystPlatform = () => {
 
                   {/* Customer Segments */}
                   {marketData?.customerSegments && (
-                    <div className="bg-gray-700/50 p-6 rounded-2xl border border-gray-600">
-                      <h4 className="text-lg font-bold text-white mb-4">Customer Segments</h4>
-                      <div className="space-y-3">
+                    <div className="p-4 sm:p-5 lg:p-6 rounded-xl sm:rounded-2xl border" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
+                      <h4 className="text-base sm:text-lg font-bold mb-3 sm:mb-4" style={{color: '#f7ffff'}}>Customer Segments</h4>
+                      <div className="space-y-2.5 sm:space-y-3">
                         {marketData.customerSegments.map((segment, idx) => (
-                          <div key={idx} className="bg-gray-800/50 p-4 rounded-xl">
+                          <div key={idx} className="p-3 sm:p-4 rounded-lg sm:rounded-xl" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)'}}>
                             <div className="flex justify-between items-center mb-2">
-                              <span className="text-white font-medium">{segment.segment}</span>
-                              <span className="text-purple-400 font-bold">{segment.percentage}%</span>
+                              <span className="font-medium text-xs sm:text-sm" style={{color: '#f7ffff'}}>{segment.segment}</span>
+                              <span className="font-bold text-xs sm:text-sm" style={{color: '#8d51ff'}}>{segment.percentage}%</span>
                             </div>
-                            <div className="w-full bg-gray-600 rounded-full h-2">
+                            <div className="w-full rounded-full h-1.5 sm:h-2" style={{backgroundColor: 'rgba(247, 255, 255, 0.1)'}}>
                               <div 
-                                className="bg-purple-500 h-2 rounded-full transition-all duration-1000" 
-                                style={{ width: `${segment.percentage}%` }}
+                                className="h-1.5 sm:h-2 rounded-full transition-all duration-1000" 
+                                style={{ width: `${segment.percentage}%`, backgroundColor: '#8d51ff' }}
                               />
                             </div>
                           </div>
@@ -1136,18 +1144,18 @@ const StartupAnalystPlatform = () => {
 
                   {/* Competition Overview */}
                   {marketData?.competition && (
-                    <div className="bg-gray-700/50 p-6 rounded-2xl border border-gray-600">
-                      <h4 className="text-lg font-bold text-white mb-4">Competition Overview</h4>
-                      <div className="grid grid-cols-2 gap-4">
+                    <div className="p-4 sm:p-5 lg:p-6 rounded-xl sm:rounded-2xl border" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
+                      <h4 className="text-base sm:text-lg font-bold mb-3 sm:mb-4" style={{color: '#f7ffff'}}>Competition Overview</h4>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                         {marketData.competition.map((competitor, idx) => (
-                          <div key={idx} className="bg-gray-800/50 p-4 rounded-xl border border-gray-600">
+                          <div key={idx} className="p-3 sm:p-4 rounded-lg sm:rounded-xl border" style={{backgroundColor: 'rgba(247, 255, 255, 0.05)', borderColor: 'rgba(247, 255, 255, 0.1)'}}>
                             <div className="flex items-center justify-between mb-2">
-                              <h5 className="text-white font-bold">{competitor.name}</h5>
-                              <Building className="text-gray-400" size={16} />
+                              <h5 className="font-bold text-sm sm:text-base" style={{color: '#f7ffff'}}>{competitor.name}</h5>
+                              <Building style={{color: '#f7ffff', opacity: 0.4}} size={14} className="sm:w-4 sm:h-4" />
                             </div>
-                            <p className="text-gray-300 text-sm mb-1">Market Share: {competitor.marketShare}</p>
-                            <p className="text-gray-300 text-sm mb-2">Funding: {competitor.funding}</p>
-                            <p className="text-blue-400 text-sm font-medium">{competitor.strength}</p>
+                            <p className="text-xs sm:text-sm mb-1" style={{color: '#f7ffff', opacity: 0.8}}>Market Share: {competitor.marketShare}</p>
+                            <p className="text-xs sm:text-sm mb-2" style={{color: '#f7ffff', opacity: 0.8}}>Funding: {competitor.funding}</p>
+                            <p className="text-xs sm:text-sm font-medium" style={{color: '#0099ff'}}>{competitor.strength}</p>
                           </div>
                         ))}
                       </div>
