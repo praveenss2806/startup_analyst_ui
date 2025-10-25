@@ -587,10 +587,37 @@ const StartupAnalystPlatform = () => {
                   {analyzedStartup.investmentScore}/10
                 </div>
                 <div className="text-xs mb-2" style={{color: '#f7ffff', opacity: 0.6}}>Investment Score</div>
-                <span className="inline-flex items-center px-2 sm:px-3 py-1 rounded-lg sm:rounded-xl text-xs font-bold border" style={{backgroundColor: 'rgba(8, 206, 107, 0.2)', color: '#08ce6b', borderColor: '#08ce6b'}}>
-                  <Crown size={8} className="mr-1 sm:w-2.5 sm:h-2.5" />
+                <div className="relative inline-block">
+                  <span 
+                    className="inline-flex items-center px-2 sm:px-3 py-1 rounded-lg sm:rounded-xl text-xs font-bold border max-w-[200px] sm:max-w-[250px] lg:max-w-[300px] cursor-help" 
+                    style={{backgroundColor: 'rgba(8, 206, 107, 0.2)', color: '#08ce6b', borderColor: '#08ce6b'}}
+                    onMouseEnter={() => setShowRecommendationTooltip(true)}
+                    onMouseLeave={() => setShowRecommendationTooltip(false)}
+                  >
+                    <Crown size={8} className="mr-1 flex-shrink-0 sm:w-2.5 sm:h-2.5" />
                   <span className="truncate text-xs">{analyzedStartup.recommendation}</span>
                 </span>
+                  {showRecommendationTooltip && (
+                    <div 
+                      className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 text-xs rounded-lg shadow-lg whitespace-normal max-w-xs z-50"
+                      style={{
+                        backgroundColor: '#192452',
+                        color: '#f7ffff',
+                        border: '1px solid rgba(8, 206, 107, 0.3)'
+                      }}
+                    >
+                      {analyzedStartup.recommendation}
+                      <div 
+                        className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0"
+                        style={{
+                          borderLeft: '6px solid transparent',
+                          borderRight: '6px solid transparent',
+                          borderTop: '6px solid #192452'
+                        }}
+                      />
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>
