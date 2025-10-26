@@ -194,8 +194,8 @@ const PDFExport = ({ startupData, onClose }) => {
         }}>
           
           {/* Cover Page */}
-          <div className="html2pdf__page-break" style={{ 
-            padding: '50px 50px 40px 50px', 
+          <div style={{ 
+            padding: '40px 35px 30px 35px', 
             minHeight: '1123px',
             height: '1123px',
             background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -209,35 +209,43 @@ const PDFExport = ({ startupData, onClose }) => {
           }}>
             <div style={{ flex: '0 0 auto' }}>
               <div style={{ 
+                fontSize: '20pt',
+                fontWeight: 'bold',
+                color: '#ffffff',
+                letterSpacing: '1px',
+                marginBottom: '15px'
+              }}>
+                LetsAnalyse
+              </div>
+              <div style={{ 
                 display: 'inline-block',
-                padding: '10px 24px',
+                padding: '8px 20px',
                 backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                borderRadius: '30px',
-                fontSize: '10pt',
+                borderRadius: '20px',
+                fontSize: '9pt',
                 fontWeight: '600',
                 color: '#ffffff',
-                letterSpacing: '1.5px',
-                marginTop: '20px'
+                letterSpacing: '1.2px'
               }}>
                 CONFIDENTIAL INVESTMENT ANALYSIS
               </div>
             </div>
 
-            <div style={{ flex: '1 1 auto', display: 'flex', flexDirection: 'column', justifyContent: 'center', paddingTop: '30px', paddingBottom: '30px' }}>
+            <div style={{ flex: '1 1 auto', display: 'flex', flexDirection: 'column', justifyContent: 'center', paddingTop: '20px', paddingBottom: '20px' }}>
               <div style={{ 
-                fontSize: '48pt', 
+                fontSize: '44pt', 
                 fontWeight: 'bold',
-                marginBottom: '20px',
+                marginBottom: '15px',
                 color: '#ffffff',
-                lineHeight: '1.2'
+                lineHeight: '1.1'
               }}>
                 {startupData.name}
               </div>
               <div style={{ 
-                fontSize: '18pt',
+                fontSize: '16pt',
                 color: 'rgba(255, 255, 255, 0.95)',
                 fontStyle: 'italic',
-                marginBottom: '40px'
+                marginBottom: '30px'
               }}>
                 {startupData.tagline}
               </div>
@@ -245,37 +253,37 @@ const PDFExport = ({ startupData, onClose }) => {
               <div style={{ 
                 display: 'flex',
                 justifyContent: 'center',
-                gap: '10px',
+                gap: '8px',
                 flexWrap: 'wrap',
-                marginBottom: '50px'
+                marginBottom: '35px'
               }}>
                 <span style={{ 
-                  padding: '10px 20px',
+                  padding: '8px 16px',
                   backgroundColor: 'rgba(59, 130, 246, 0.9)',
-                  borderRadius: '10px',
-                  fontSize: '10pt',
+                  borderRadius: '8px',
+                  fontSize: '9pt',
                   fontWeight: '600'
                 }}>{startupData.sector}</span>
                 <span style={{ 
-                  padding: '10px 20px',
+                  padding: '8px 16px',
                   backgroundColor: 'rgba(168, 85, 247, 0.9)',
-                  borderRadius: '10px',
-                  fontSize: '10pt',
+                  borderRadius: '8px',
+                  fontSize: '9pt',
                   fontWeight: '600'
                 }}>{startupData.stage}</span>
                 <span style={{ 
-                  padding: '10px 20px',
+                  padding: '8px 16px',
                   backgroundColor: 'rgba(100, 116, 139, 0.9)',
-                  borderRadius: '10px',
-                  fontSize: '10pt',
+                  borderRadius: '8px',
+                  fontSize: '9pt',
                   fontWeight: '600'
                 }}>{startupData.location}</span>
               </div>
 
               <div style={{ 
-                margin: '0 auto 35px auto',
-                width: '180px',
-                height: '180px',
+                margin: '0 auto 30px auto',
+                width: '160px',
+                height: '160px',
                 borderRadius: '50%',
                 background: 'rgba(255, 255, 255, 0.95)',
                 boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)',
@@ -284,29 +292,31 @@ const PDFExport = ({ startupData, onClose }) => {
                 justifyContent: 'center'
               }}>
                 <div style={{ 
-                  width: '160px',
-                  height: '160px',
+                  width: '140px',
+                  height: '140px',
                   borderRadius: '50%',
                   background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  flexDirection: 'column'
+                  flexDirection: 'column',
+                  padding: '10px'
                 }}>
                   <div style={{ 
-                    fontSize: '56pt',
+                    fontSize: '48pt',
                     fontWeight: 'bold',
                     color: '#ffffff',
-                    lineHeight: '1',
-                    marginBottom: '5px'
+                    lineHeight: '0.9',
+                    marginBottom: '0'
                   }}>
                     {startupData.investmentScore}
                   </div>
                   <div style={{ 
-                    fontSize: '11pt',
+                    fontSize: '9pt',
                     color: '#ffffff',
                     fontWeight: '600',
-                    opacity: 0.95
+                    opacity: 0.95,
+                    marginTop: '6px'
                   }}>
                     out of 10
                   </div>
@@ -314,10 +324,10 @@ const PDFExport = ({ startupData, onClose }) => {
               </div>
 
               <div style={{ 
-                fontSize: '18pt',
+                fontSize: '16pt',
                 fontWeight: '600',
                 color: '#ffffff',
-                marginTop: '10px'
+                marginTop: '5px'
               }}>
                 {startupData.recommendation || startupData.aiSummary?.investmentRecommendation}
               </div>
@@ -326,69 +336,88 @@ const PDFExport = ({ startupData, onClose }) => {
             <div style={{ 
               flex: '0 0 auto',
               borderTop: '1px solid rgba(255, 255, 255, 0.3)',
-              paddingTop: '25px',
-              paddingBottom: '10px'
+              paddingTop: '15px',
+              paddingBottom: '5px'
             }}>
-              <div style={{ fontSize: '10pt', color: '#ffffff', opacity: 0.9, marginBottom: '8px' }}>
+              <div style={{ fontSize: '9pt', color: '#ffffff', opacity: 0.9, marginBottom: '5px' }}>
                 Analysis Date: {new Date().toLocaleDateString('en-US', { 
                   year: 'numeric', 
                   month: 'long', 
                   day: 'numeric' 
                 })}
               </div>
-              <div style={{ fontSize: '9pt', color: '#ffffff', opacity: 0.8 }}>
-                Version: 1.0
+              <div style={{ fontSize: '8pt', color: '#ffffff', opacity: 0.8 }}>
+                Powered by LetsAnalyse • Version 1.0
               </div>
             </div>
           </div>
 
           {/* Executive Summary Page */}
-          <div className="html2pdf__page-break" style={{ 
-            padding: '40px', 
-            minHeight: '1050px',
+          <div style={{ 
+            padding: '30px', 
             pageBreakAfter: 'always',
             boxSizing: 'border-box'
           }}>
             <div style={{ 
-              borderBottom: '2px solid #e2e8f0',
-              paddingBottom: '8px',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              borderBottom: '2px solid #667eea',
+              paddingBottom: '10px',
               marginBottom: '20px'
             }}>
-              <p style={{ 
-                fontSize: '10pt', 
-                color: '#64748b',
-                margin: 0
+              <div>
+                <div style={{ 
+                  fontSize: '12pt', 
+                  fontWeight: 'bold',
+                  color: '#667eea',
+                  marginBottom: '3px'
+                }}>
+                  LetsAnalyse
+                </div>
+                <div style={{ 
+                  fontSize: '8pt', 
+                  color: '#64748b'
+                }}>
+                  Investment Analysis • {startupData.name}
+                </div>
+              </div>
+              <div style={{ 
+                fontSize: '8pt', 
+                color: '#94a3b8',
+                textAlign: 'right'
               }}>
-                Investment Analysis Report • {startupData.name}
-              </p>
+                Page 1
+              </div>
             </div>
 
             <h1 style={{ 
-              fontSize: '24pt', 
+              fontSize: '22pt', 
               fontWeight: 'bold',
               color: '#1e293b',
-              marginBottom: '25px'
+              marginBottom: '20px'
             }}>
               Executive Summary
             </h1>
 
             {/* Confidence Score Banner */}
-            <div style={{ 
+            <div className="page-break-avoid" style={{ 
               background: 'linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%)',
-              padding: '25px',
-              borderRadius: '10px',
-              marginBottom: '30px',
+              padding: '18px',
+              borderRadius: '8px',
+              marginBottom: '20px',
               border: '2px solid #3b82f6',
-              borderLeft: '4px solid #3b82f6'
+              borderLeft: '4px solid #3b82f6',
+              pageBreakInside: 'avoid'
             }}>
               <div style={{ 
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                marginBottom: '12px'
+                marginBottom: '10px'
               }}>
                 <span style={{ 
-                  fontSize: '11pt',
+                  fontSize: '10pt',
                   fontWeight: '600',
                   color: '#1e3a8a'
                 }}>
@@ -401,8 +430,8 @@ const PDFExport = ({ startupData, onClose }) => {
                 }}>
                   <div style={{ 
                     width: '100%',
-                    maxWidth: '150px',
-                    height: '8px',
+                    maxWidth: '130px',
+                    height: '7px',
                     backgroundColor: 'rgba(59, 130, 246, 0.2)',
                     borderRadius: '4px',
                     overflow: 'hidden'
@@ -415,7 +444,7 @@ const PDFExport = ({ startupData, onClose }) => {
                     }}></div>
                   </div>
                   <span style={{ 
-                    fontSize: '16pt',
+                    fontSize: '14pt',
                     fontWeight: 'bold',
                     color: '#1e40af'
                   }}>
@@ -427,34 +456,35 @@ const PDFExport = ({ startupData, onClose }) => {
 
             {/* Company Overview */}
             <h2 style={{ 
-              fontSize: '16pt', 
+              fontSize: '14pt', 
               fontWeight: 'bold',
               color: '#1e293b',
-              marginBottom: '18px'
+              marginBottom: '12px'
             }}>
               Company Overview
             </h2>
-            <div style={{ 
+            <div className="page-break-avoid" style={{ 
               display: 'grid',
               gridTemplateColumns: '1fr 1fr 1fr',
-              gap: '12px',
-              marginBottom: '30px'
+              gap: '10px',
+              marginBottom: '20px',
+              pageBreakInside: 'avoid'
             }}>
               <div style={{ 
                 backgroundColor: '#f8fafc',
-                padding: '15px',
-                borderRadius: '8px',
+                padding: '12px',
+                borderRadius: '6px',
                 border: '1px solid #e2e8f0'
               }}>
                 <div style={{ 
-                  fontSize: '9pt',
+                  fontSize: '8pt',
                   color: '#64748b',
-                  marginBottom: '5px'
+                  marginBottom: '4px'
                 }}>
                   Founded
                 </div>
                 <div style={{ 
-                  fontSize: '16pt',
+                  fontSize: '14pt',
                   fontWeight: 'bold',
                   color: '#1e293b'
                 }}>
@@ -463,19 +493,19 @@ const PDFExport = ({ startupData, onClose }) => {
               </div>
               <div style={{ 
                 backgroundColor: '#f8fafc',
-                padding: '15px',
-                borderRadius: '8px',
+                padding: '12px',
+                borderRadius: '6px',
                 border: '1px solid #e2e8f0'
               }}>
                 <div style={{ 
-                  fontSize: '9pt',
+                  fontSize: '8pt',
                   color: '#64748b',
-                  marginBottom: '5px'
+                  marginBottom: '4px'
                 }}>
                   Team Size
                 </div>
                 <div style={{ 
-                  fontSize: '16pt',
+                  fontSize: '14pt',
                   fontWeight: 'bold',
                   color: '#1e293b'
                 }}>
@@ -484,19 +514,19 @@ const PDFExport = ({ startupData, onClose }) => {
               </div>
               <div style={{ 
                 backgroundColor: '#f8fafc',
-                padding: '15px',
-                borderRadius: '8px',
+                padding: '12px',
+                borderRadius: '6px',
                 border: '1px solid #e2e8f0'
               }}>
                 <div style={{ 
-                  fontSize: '9pt',
+                  fontSize: '8pt',
                   color: '#64748b',
-                  marginBottom: '5px'
+                  marginBottom: '4px'
                 }}>
                   Website
                 </div>
                 <div style={{ 
-                  fontSize: '10pt',
+                  fontSize: '9pt',
                   fontWeight: 'bold',
                   color: '#3b82f6'
                 }}>
@@ -507,18 +537,19 @@ const PDFExport = ({ startupData, onClose }) => {
 
             {/* Key Metrics Grid */}
             <h2 style={{ 
-              fontSize: '16pt', 
+              fontSize: '14pt', 
               fontWeight: 'bold',
               color: '#1e293b',
-              marginBottom: '18px'
+              marginBottom: '12px'
             }}>
               Key Metrics
             </h2>
-            <div style={{ 
+            <div className="page-break-avoid" style={{ 
               display: 'grid',
               gridTemplateColumns: '1fr 1fr',
-              gap: '15px',
-              marginBottom: '30px'
+              gap: '12px',
+              marginBottom: '20px',
+              pageBreakInside: 'avoid'
             }}>
               {Object.entries(startupData.keyMetrics || {}).map(([key, metric], idx) => {
                 const colors = [
@@ -532,14 +563,14 @@ const PDFExport = ({ startupData, onClose }) => {
                 return (
                   <div key={idx} style={{ 
                     background: color.bg,
-                    padding: '18px',
-                    borderRadius: '10px',
+                    padding: '14px',
+                    borderRadius: '8px',
                     border: `2px solid ${color.border}`
                   }}>
                     <div style={{ 
-                      fontSize: '9pt',
+                      fontSize: '8pt',
                       color: '#64748b',
-                      marginBottom: '8px',
+                      marginBottom: '6px',
                       fontWeight: '600'
                     }}>
                       {key === 'arr' ? 'Annual Recurring Revenue' : 
@@ -547,15 +578,15 @@ const PDFExport = ({ startupData, onClose }) => {
                        key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
                     </div>
                     <div style={{ 
-                      fontSize: '20pt',
+                      fontSize: '18pt',
                       fontWeight: 'bold',
                       color: '#1e293b',
-                      marginBottom: '8px'
+                      marginBottom: '6px'
                     }}>
                       {metric.value}
                     </div>
                     <div style={{ 
-                      fontSize: '9pt',
+                      fontSize: '8pt',
                       color: color.border,
                       fontWeight: '600',
                       display: 'flex',
@@ -570,25 +601,26 @@ const PDFExport = ({ startupData, onClose }) => {
             </div>
 
             {/* AI Investment Thesis */}
-            <div style={{ 
+            <div className="page-break-avoid" style={{ 
               background: 'linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%)',
-              padding: '20px',
-              borderRadius: '10px',
+              padding: '16px',
+              borderRadius: '8px',
               border: '2px solid #3b82f6',
-              borderLeft: '4px solid #3b82f6'
+              borderLeft: '4px solid #3b82f6',
+              pageBreakInside: 'avoid'
             }}>
               <h3 style={{ 
-                fontSize: '13pt', 
+                fontSize: '12pt', 
                 fontWeight: 'bold',
                 color: '#1e293b',
-                marginBottom: '12px'
+                marginBottom: '10px'
               }}>
                 Investment Thesis
               </h3>
               <p style={{ 
-                lineHeight: '1.7',
+                lineHeight: '1.6',
                 color: '#334155',
-                fontSize: '10pt',
+                fontSize: '9pt',
                 margin: 0
               }}>
                 {startupData.aiSummary?.investmentThesis}
@@ -597,67 +629,86 @@ const PDFExport = ({ startupData, onClose }) => {
           </div>
 
           {/* AI Insights Page */}
-          <div className="html2pdf__page-break" style={{ 
-            padding: '40px', 
-            minHeight: '1050px',
+          <div style={{ 
+            padding: '30px', 
             pageBreakAfter: 'always',
             boxSizing: 'border-box'
           }}>
             <div style={{ 
-              borderBottom: '2px solid #e2e8f0',
-              paddingBottom: '8px',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              borderBottom: '2px solid #667eea',
+              paddingBottom: '10px',
               marginBottom: '20px'
             }}>
-              <p style={{ 
-                fontSize: '10pt', 
-                color: '#64748b',
-                margin: 0
+              <div>
+                <div style={{ 
+                  fontSize: '12pt', 
+                  fontWeight: 'bold',
+                  color: '#667eea',
+                  marginBottom: '3px'
+                }}>
+                  LetsAnalyse
+                </div>
+                <div style={{ 
+                  fontSize: '8pt', 
+                  color: '#64748b'
+                }}>
+                  Investment Analysis • {startupData.name}
+                </div>
+              </div>
+              <div style={{ 
+                fontSize: '8pt', 
+                color: '#94a3b8',
+                textAlign: 'right'
               }}>
-                Investment Analysis Report • {startupData.name}
-              </p>
+                Page 2
+              </div>
             </div>
 
             <h1 style={{ 
-              fontSize: '24pt', 
+              fontSize: '22pt', 
               fontWeight: 'bold',
               color: '#1e293b',
-              marginBottom: '25px'
+              marginBottom: '20px'
             }}>
               Strengths & Concerns
             </h1>
 
             {/* Key Highlights */}
-            <div style={{ marginBottom: '30px' }}>
+            <div className="page-break-avoid" style={{ marginBottom: '20px', pageBreakInside: 'avoid' }}>
               <h2 style={{ 
-                fontSize: '16pt', 
+                fontSize: '14pt', 
                 fontWeight: 'bold',
                 color: '#10b981',
-                marginBottom: '15px'
+                marginBottom: '12px'
               }}>
                 ✓ Key Highlights
               </h2>
-              <div style={{ display: 'grid', gap: '10px' }}>
+              <div style={{ display: 'grid', gap: '8px' }}>
                 {(startupData.aiSummary?.keyHighlights || []).map((highlight, idx) => (
-                  <div key={idx} style={{ 
-                    padding: '12px 15px',
+                  <div key={idx} className="page-break-avoid" style={{ 
+                    padding: '10px 12px',
                     background: 'linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%)',
-                    borderLeft: '4px solid #10b981',
-                    borderRadius: '8px',
+                    borderLeft: '3px solid #10b981',
+                    borderRadius: '6px',
                     display: 'flex',
-                    gap: '10px',
-                    alignItems: 'start'
+                    gap: '8px',
+                    alignItems: 'start',
+                    pageBreakInside: 'avoid'
                   }}>
                     <span style={{
                       color: '#10b981',
-                      fontSize: '12pt',
+                      fontSize: '11pt',
                       fontWeight: 'bold',
-                      marginTop: '2px'
+                      marginTop: '1px'
                     }}>✓</span>
                     <p style={{ 
-                      lineHeight: '1.6', 
+                      lineHeight: '1.5', 
                       color: '#065f46',
                       margin: 0,
-                      fontSize: '10pt'
+                      fontSize: '9pt'
                     }}>
                       {highlight}
                     </p>
@@ -667,37 +718,38 @@ const PDFExport = ({ startupData, onClose }) => {
             </div>
 
             {/* Main Concerns */}
-            <div style={{ marginBottom: '30px' }}>
+            <div className="page-break-avoid" style={{ marginBottom: '20px', pageBreakInside: 'avoid' }}>
               <h2 style={{ 
-                fontSize: '16pt', 
+                fontSize: '14pt', 
                 fontWeight: 'bold',
                 color: '#f59e0b',
-                marginBottom: '15px'
+                marginBottom: '12px'
               }}>
                 ⚠ Main Concerns
               </h2>
-              <div style={{ display: 'grid', gap: '10px' }}>
+              <div style={{ display: 'grid', gap: '8px' }}>
                 {(startupData.aiSummary?.mainConcerns || []).map((concern, idx) => (
-                  <div key={idx} style={{ 
-                    padding: '12px 15px',
+                  <div key={idx} className="page-break-avoid" style={{ 
+                    padding: '10px 12px',
                     background: 'linear-gradient(135deg, #fef3c7 0%, #fde68a 100%)',
-                    borderLeft: '4px solid #f59e0b',
-                    borderRadius: '8px',
+                    borderLeft: '3px solid #f59e0b',
+                    borderRadius: '6px',
                     display: 'flex',
-                    gap: '10px',
-                    alignItems: 'start'
+                    gap: '8px',
+                    alignItems: 'start',
+                    pageBreakInside: 'avoid'
                   }}>
                     <span style={{
                       color: '#f59e0b',
-                      fontSize: '12pt',
+                      fontSize: '11pt',
                       fontWeight: 'bold',
-                      marginTop: '2px'
+                      marginTop: '1px'
                     }}>⚠</span>
                     <p style={{ 
-                      lineHeight: '1.6', 
+                      lineHeight: '1.5', 
                       color: '#78350f',
                       margin: 0,
-                      fontSize: '10pt'
+                      fontSize: '9pt'
                     }}>
                       {concern}
                     </p>
@@ -708,35 +760,36 @@ const PDFExport = ({ startupData, onClose }) => {
 
             {/* Growth Potential */}
             <h2 style={{ 
-              fontSize: '16pt', 
+              fontSize: '14pt', 
               fontWeight: 'bold',
               color: '#1e293b',
-              marginBottom: '15px'
+              marginBottom: '12px'
             }}>
               Growth Potential
             </h2>
-            <div style={{ 
+            <div className="page-break-avoid" style={{ 
               background: 'linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%)',
-              padding: '20px',
-              borderRadius: '10px',
+              padding: '16px',
+              borderRadius: '8px',
               border: '2px solid #a855f7',
-              marginBottom: '20px'
+              marginBottom: '15px',
+              pageBreakInside: 'avoid'
             }}>
               <div style={{ 
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                marginBottom: '15px'
+                marginBottom: '12px'
               }}>
                 <span style={{ 
-                  fontSize: '13pt',
+                  fontSize: '12pt',
                   fontWeight: 'bold',
                   color: '#1e293b'
                 }}>
                   Overall Score
                 </span>
                 <span style={{ 
-                  fontSize: '28pt',
+                  fontSize: '24pt',
                   fontWeight: 'bold',
                   color: '#a855f7'
                 }}>
@@ -745,58 +798,77 @@ const PDFExport = ({ startupData, onClose }) => {
               </div>
               <div style={{ 
                 width: '100%',
-                height: '10px',
+                height: '8px',
                 backgroundColor: 'rgba(168, 85, 247, 0.2)',
-                borderRadius: '5px',
+                borderRadius: '4px',
                 overflow: 'hidden'
               }}>
                 <div style={{ 
                   width: `${(startupData.growthPotential?.score || 0) * 10}%`,
                   height: '100%',
                   backgroundColor: '#a855f7',
-                  borderRadius: '5px'
+                  borderRadius: '4px'
                 }}></div>
               </div>
             </div>
           </div>
 
           {/* Competitor Analysis Page */}
-          <div className="html2pdf__page-break" style={{ 
-            padding: '40px', 
-            minHeight: '1050px',
+          <div style={{ 
+            padding: '30px', 
             pageBreakAfter: 'always',
             boxSizing: 'border-box'
           }}>
             <div style={{ 
-              borderBottom: '2px solid #e2e8f0',
-              paddingBottom: '8px',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              borderBottom: '2px solid #667eea',
+              paddingBottom: '10px',
               marginBottom: '20px'
             }}>
-              <p style={{ 
-                fontSize: '10pt', 
-                color: '#64748b',
-                margin: 0
+              <div>
+                <div style={{ 
+                  fontSize: '12pt', 
+                  fontWeight: 'bold',
+                  color: '#667eea',
+                  marginBottom: '3px'
+                }}>
+                  LetsAnalyse
+                </div>
+                <div style={{ 
+                  fontSize: '8pt', 
+                  color: '#64748b'
+                }}>
+                  Investment Analysis • {startupData.name}
+                </div>
+              </div>
+              <div style={{ 
+                fontSize: '8pt', 
+                color: '#94a3b8',
+                textAlign: 'right'
               }}>
-                Investment Analysis Report • {startupData.name}
-              </p>
+                Page 3
+              </div>
             </div>
 
             <h1 style={{ 
-              fontSize: '24pt', 
+              fontSize: '22pt', 
               fontWeight: 'bold',
               color: '#1e293b',
-              marginBottom: '25px'
+              marginBottom: '20px'
             }}>
               Competitive Landscape
             </h1>
 
             {/* Competitor Table */}
-            <div style={{ 
+            <div className="page-break-avoid" style={{ 
               backgroundColor: '#ffffff',
-              borderRadius: '10px',
+              borderRadius: '8px',
               border: '2px solid #e2e8f0',
               overflow: 'hidden',
-              marginBottom: '20px'
+              marginBottom: '16px',
+              pageBreakInside: 'avoid'
             }}>
               <table style={{ 
                 width: '100%', 
@@ -807,34 +879,34 @@ const PDFExport = ({ startupData, onClose }) => {
                     backgroundColor: '#f8fafc'
                   }}>
                     <th style={{ 
-                      padding: '12px',
+                      padding: '10px',
                       textAlign: 'left',
                       fontWeight: 'bold',
-                      fontSize: '10pt',
+                      fontSize: '9pt',
                       color: '#1e293b',
                       borderBottom: '2px solid #e2e8f0'
                     }}>Competitor</th>
                     <th style={{ 
-                      padding: '12px',
+                      padding: '10px',
                       textAlign: 'left',
                       fontWeight: 'bold',
-                      fontSize: '10pt',
+                      fontSize: '9pt',
                       color: '#1e293b',
                       borderBottom: '2px solid #e2e8f0'
                     }}>Funding</th>
                     <th style={{ 
-                      padding: '12px',
+                      padding: '10px',
                       textAlign: 'left',
                       fontWeight: 'bold',
-                      fontSize: '10pt',
+                      fontSize: '9pt',
                       color: '#1e293b',
                       borderBottom: '2px solid #e2e8f0'
                     }}>ARR</th>
                     <th style={{ 
-                      padding: '12px',
+                      padding: '10px',
                       textAlign: 'left',
                       fontWeight: 'bold',
-                      fontSize: '10pt',
+                      fontSize: '9pt',
                       color: '#1e293b',
                       borderBottom: '2px solid #e2e8f0'
                     }}>Key Strength</th>
@@ -846,25 +918,25 @@ const PDFExport = ({ startupData, onClose }) => {
                       borderBottom: idx < (startupData.competitorAnalysis || []).length - 1 ? '1px solid #e2e8f0' : 'none'
                     }}>
                       <td style={{ 
-                        padding: '12px',
+                        padding: '10px',
                         fontWeight: 'bold',
-                        fontSize: '10pt',
+                        fontSize: '9pt',
                         color: '#1e293b'
                       }}>{competitor.name}</td>
                       <td style={{ 
-                        padding: '12px',
-                        fontSize: '9pt',
+                        padding: '10px',
+                        fontSize: '8pt',
                         color: '#64748b'
                       }}>{competitor.funding}</td>
                       <td style={{ 
-                        padding: '12px',
-                        fontSize: '10pt',
+                        padding: '10px',
+                        fontSize: '9pt',
                         color: '#10b981',
                         fontWeight: '600'
                       }}>{competitor.arr}</td>
                       <td style={{ 
-                        padding: '12px',
-                        fontSize: '9pt',
+                        padding: '10px',
+                        fontSize: '8pt',
                         color: '#64748b'
                       }}>{competitor.strength}</td>
                     </tr>
@@ -874,25 +946,26 @@ const PDFExport = ({ startupData, onClose }) => {
             </div>
 
             {/* Competitive Advantage Box */}
-            <div style={{ 
+            <div className="page-break-avoid" style={{ 
               background: 'linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%)',
-              padding: '18px',
-              borderRadius: '10px',
+              padding: '14px',
+              borderRadius: '8px',
               border: '2px solid #a855f7',
-              borderLeft: '4px solid #a855f7'
+              borderLeft: '3px solid #a855f7',
+              pageBreakInside: 'avoid'
             }}>
               <h3 style={{ 
-                fontSize: '12pt',
+                fontSize: '11pt',
                 fontWeight: 'bold',
                 color: '#1e293b',
-                marginBottom: '10px'
+                marginBottom: '8px'
               }}>
                 Competitive Advantage
               </h3>
               <p style={{ 
-                fontSize: '10pt',
+                fontSize: '9pt',
                 color: '#581c87',
-                lineHeight: '1.6',
+                lineHeight: '1.5',
                 margin: 0
               }}>
                 {startupData.name}'s unique positioning in the market provides a defensible moat through 
@@ -903,31 +976,49 @@ const PDFExport = ({ startupData, onClose }) => {
           </div>
 
           {/* Risk Assessment Page */}
-          <div className="html2pdf__page-break" style={{ 
-            padding: '40px', 
-            minHeight: '1050px',
+          <div style={{ 
+            padding: '30px', 
             pageBreakAfter: 'always',
             boxSizing: 'border-box'
           }}>
             <div style={{ 
-              borderBottom: '2px solid #e2e8f0',
-              paddingBottom: '8px',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              borderBottom: '2px solid #667eea',
+              paddingBottom: '10px',
               marginBottom: '20px'
             }}>
-              <p style={{ 
-                fontSize: '10pt', 
-                color: '#64748b',
-                margin: 0
+              <div>
+                <div style={{ 
+                  fontSize: '12pt', 
+                  fontWeight: 'bold',
+                  color: '#667eea',
+                  marginBottom: '3px'
+                }}>
+                  LetsAnalyse
+                </div>
+                <div style={{ 
+                  fontSize: '8pt', 
+                  color: '#64748b'
+                }}>
+                  Investment Analysis • {startupData.name}
+                </div>
+              </div>
+              <div style={{ 
+                fontSize: '8pt', 
+                color: '#94a3b8',
+                textAlign: 'right'
               }}>
-                Investment Analysis Report • {startupData.name}
-              </p>
+                Page 4
+              </div>
             </div>
 
             <h1 style={{ 
-              fontSize: '24pt', 
+              fontSize: '22pt', 
               fontWeight: 'bold',
               color: '#1e293b',
-              marginBottom: '25px'
+              marginBottom: '20px'
             }}>
               Risk Assessment
             </h1>
@@ -942,11 +1033,11 @@ const PDFExport = ({ startupData, onClose }) => {
               
               return (
                 <div key={idx} className="page-break-avoid" style={{ 
-                  marginBottom: '15px',
-                  padding: '16px',
+                  marginBottom: '12px',
+                  padding: '14px',
                   background: color.bg,
-                  borderLeft: `4px solid ${color.border}`,
-                  borderRadius: '10px',
+                  borderLeft: `3px solid ${color.border}`,
+                  borderRadius: '8px',
                   border: `2px solid ${color.border}`,
                   pageBreakInside: 'avoid'
                 }}>
@@ -954,19 +1045,19 @@ const PDFExport = ({ startupData, onClose }) => {
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'start',
-                    marginBottom: '10px'
+                    marginBottom: '8px'
                   }}>
                     <div style={{ flex: 1 }}>
                       <h3 style={{ 
-                        fontSize: '13pt', 
+                        fontSize: '11pt', 
                         fontWeight: 'bold',
                         color: '#1e293b',
-                        marginBottom: '5px'
+                        marginBottom: '4px'
                       }}>
                         {risk.issue}
                       </h3>
                       <div style={{ 
-                        fontSize: '9pt',
+                        fontSize: '8pt',
                         color: '#64748b',
                         fontWeight: '600'
                       }}>
@@ -974,23 +1065,23 @@ const PDFExport = ({ startupData, onClose }) => {
                       </div>
                     </div>
                     <span style={{ 
-                      padding: '5px 12px',
+                      padding: '4px 10px',
                       backgroundColor: color.badge,
                       color: '#ffffff',
-                      borderRadius: '5px',
-                      fontSize: '9pt',
+                      borderRadius: '4px',
+                      fontSize: '8pt',
                       fontWeight: 'bold',
                       whiteSpace: 'nowrap',
-                      marginLeft: '12px'
+                      marginLeft: '10px'
                     }}>
                       {risk.severity}
                     </span>
                   </div>
                   
                   <p style={{ 
-                    marginBottom: '12px',
-                    lineHeight: '1.6',
-                    fontSize: '10pt',
+                    marginBottom: '10px',
+                    lineHeight: '1.5',
+                    fontSize: '9pt',
                     color: color.text
                   }}>
                     {risk.description}
@@ -998,23 +1089,23 @@ const PDFExport = ({ startupData, onClose }) => {
                   
                   <div style={{ 
                     backgroundColor: 'rgba(255, 255, 255, 0.7)',
-                    padding: '10px',
-                    borderRadius: '6px',
+                    padding: '8px',
+                    borderRadius: '5px',
                     border: '1px solid rgba(0, 0, 0, 0.05)'
                   }}>
                     <div style={{ 
-                      fontSize: '9pt',
+                      fontSize: '8pt',
                       fontWeight: '600',
                       color: '#10b981',
-                      marginBottom: '5px'
+                      marginBottom: '4px'
                     }}>
                       Mitigation
                     </div>
                     <p style={{ 
                       margin: 0,
-                      fontSize: '9pt',
+                      fontSize: '8pt',
                       color: '#334155',
-                      lineHeight: '1.6'
+                      lineHeight: '1.5'
                     }}>
                       {risk.mitigation}
                     </p>
@@ -1025,55 +1116,74 @@ const PDFExport = ({ startupData, onClose }) => {
           </div>
 
           {/* Growth Potential Page */}
-          <div className="html2pdf__page-break" style={{ 
-            padding: '40px', 
-            minHeight: '1050px',
+          <div style={{ 
+            padding: '30px', 
             pageBreakAfter: 'always',
             boxSizing: 'border-box'
           }}>
             <div style={{ 
-              borderBottom: '2px solid #e2e8f0',
-              paddingBottom: '8px',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              borderBottom: '2px solid #667eea',
+              paddingBottom: '10px',
               marginBottom: '20px'
             }}>
-              <p style={{ 
-                fontSize: '10pt', 
-                color: '#64748b',
-                margin: 0
+              <div>
+                <div style={{ 
+                  fontSize: '12pt', 
+                  fontWeight: 'bold',
+                  color: '#667eea',
+                  marginBottom: '3px'
+                }}>
+                  LetsAnalyse
+                </div>
+                <div style={{ 
+                  fontSize: '8pt', 
+                  color: '#64748b'
+                }}>
+                  Investment Analysis • {startupData.name}
+                </div>
+              </div>
+              <div style={{ 
+                fontSize: '8pt', 
+                color: '#94a3b8',
+                textAlign: 'right'
               }}>
-                Investment Analysis Report • {startupData.name}
-              </p>
+                Page 5
+              </div>
             </div>
 
             <h1 style={{ 
-              fontSize: '24pt', 
+              fontSize: '22pt', 
               fontWeight: 'bold',
               color: '#1e293b',
-              marginBottom: '25px'
+              marginBottom: '20px'
             }}>
               Growth Potential
             </h1>
 
             {/* Growth Score */}
-            <div style={{ 
+            <div className="page-break-avoid" style={{ 
               textAlign: 'center',
-              padding: '30px',
+              padding: '24px',
               background: 'linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%)',
-              borderRadius: '12px',
-              marginBottom: '30px',
-              border: '2px solid #a855f7'
+              borderRadius: '10px',
+              marginBottom: '20px',
+              border: '2px solid #a855f7',
+              pageBreakInside: 'avoid'
             }}>
               <div style={{ 
-                fontSize: '48pt',
+                fontSize: '42pt',
                 fontWeight: 'bold',
                 color: '#a855f7',
                 lineHeight: '1',
-                marginBottom: '10px'
+                marginBottom: '8px'
               }}>
                 {startupData.growthPotential?.score}/10
               </div>
               <div style={{ 
-                fontSize: '14pt',
+                fontSize: '13pt',
                 color: '#581c87',
                 fontWeight: '600'
               }}>
@@ -1081,10 +1191,10 @@ const PDFExport = ({ startupData, onClose }) => {
               </div>
               <div style={{ 
                 width: '70%',
-                height: '8px',
+                height: '7px',
                 backgroundColor: 'rgba(168, 85, 247, 0.2)',
                 borderRadius: '4px',
-                margin: '15px auto 0',
+                margin: '12px auto 0',
                 overflow: 'hidden'
               }}>
                 <div style={{ 
@@ -1098,10 +1208,10 @@ const PDFExport = ({ startupData, onClose }) => {
 
             {/* Growth Factors */}
             <h2 style={{ 
-              fontSize: '16pt', 
+              fontSize: '14pt', 
               fontWeight: 'bold',
               color: '#1e293b',
-              marginBottom: '18px'
+              marginBottom: '12px'
             }}>
               Growth Drivers
             </h2>
@@ -1111,10 +1221,10 @@ const PDFExport = ({ startupData, onClose }) => {
               
               return (
                 <div key={idx} className="page-break-avoid" style={{ 
-                  marginBottom: '12px',
-                  padding: '14px',
+                  marginBottom: '10px',
+                  padding: '12px',
                   backgroundColor: '#f8fafc',
-                  borderRadius: '8px',
+                  borderRadius: '6px',
                   border: '1px solid #e2e8f0',
                   pageBreakInside: 'avoid'
                 }}>
@@ -1122,19 +1232,19 @@ const PDFExport = ({ startupData, onClose }) => {
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'start',
-                    marginBottom: '10px'
+                    marginBottom: '8px'
                   }}>
                     <div style={{ flex: 1 }}>
                       <h3 style={{ 
-                        fontSize: '11pt',
+                        fontSize: '10pt',
                         fontWeight: 'bold',
                         color: '#1e293b',
-                        marginBottom: '5px'
+                        marginBottom: '4px'
                       }}>
                         {factor.name}
                       </h3>
                       <span style={{ 
-                        fontSize: '9pt',
+                        fontSize: '8pt',
                         color: '#64748b',
                         fontWeight: '600'
                       }}>
@@ -1142,10 +1252,10 @@ const PDFExport = ({ startupData, onClose }) => {
                       </span>
                     </div>
                     <div style={{ 
-                      fontSize: '16pt',
+                      fontSize: '14pt',
                       fontWeight: 'bold',
                       color: scoreColor,
-                      marginLeft: '12px'
+                      marginLeft: '10px'
                     }}>
                       {factor.score}/10
                     </div>
@@ -1154,24 +1264,24 @@ const PDFExport = ({ startupData, onClose }) => {
                   {/* Progress Bar */}
                   <div style={{ 
                     width: '100%',
-                    height: '8px',
+                    height: '6px',
                     backgroundColor: '#e2e8f0',
-                    borderRadius: '4px',
-                    marginBottom: '10px',
+                    borderRadius: '3px',
+                    marginBottom: '8px',
                     overflow: 'hidden'
                   }}>
                     <div style={{ 
                       width: `${factor.score * 10}%`,
                       height: '100%',
                       backgroundColor: scoreColor,
-                      borderRadius: '4px'
+                      borderRadius: '3px'
                     }}></div>
                   </div>
                   
                   <p style={{ 
-                    fontSize: '9pt',
+                    fontSize: '8pt',
                     color: '#64748b',
-                    lineHeight: '1.6',
+                    lineHeight: '1.5',
                     margin: 0
                   }}>
                     {factor.description}
@@ -1182,36 +1292,54 @@ const PDFExport = ({ startupData, onClose }) => {
           </div>
 
           {/* Strategic Recommendations Page */}
-          <div className="html2pdf__page-break" style={{ 
-            padding: '40px', 
-            minHeight: '1050px',
+          <div style={{ 
+            padding: '30px', 
             pageBreakAfter: 'always',
             boxSizing: 'border-box'
           }}>
             <div style={{ 
-              borderBottom: '2px solid #e2e8f0',
-              paddingBottom: '8px',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              borderBottom: '2px solid #667eea',
+              paddingBottom: '10px',
               marginBottom: '20px'
             }}>
-              <p style={{ 
-                fontSize: '10pt', 
-                color: '#64748b',
-                margin: 0
+              <div>
+                <div style={{ 
+                  fontSize: '12pt', 
+                  fontWeight: 'bold',
+                  color: '#667eea',
+                  marginBottom: '3px'
+                }}>
+                  LetsAnalyse
+                </div>
+                <div style={{ 
+                  fontSize: '8pt', 
+                  color: '#64748b'
+                }}>
+                  Investment Analysis • {startupData.name}
+                </div>
+              </div>
+              <div style={{ 
+                fontSize: '8pt', 
+                color: '#94a3b8',
+                textAlign: 'right'
               }}>
-                Investment Analysis Report • {startupData.name}
-              </p>
+                Page 6
+              </div>
             </div>
 
             <h1 style={{ 
-              fontSize: '24pt', 
+              fontSize: '22pt', 
               fontWeight: 'bold',
               color: '#1e293b',
-              marginBottom: '25px'
+              marginBottom: '20px'
             }}>
               Strategic Recommendations
             </h1>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
               {(startupData.growthPotential?.recommendations || []).map((rec, idx) => {
                 const priorityColors = {
                   'High': { bg: 'linear-gradient(135deg, #fee2e2 0%, #fecaca 100%)', badge: '#dc2626' },
@@ -1222,34 +1350,34 @@ const PDFExport = ({ startupData, onClose }) => {
                 
                 return (
                   <div key={idx} className="page-break-avoid" style={{ 
-                    padding: '14px',
+                    padding: '12px',
                     background: color.bg,
-                    borderRadius: '8px',
+                    borderRadius: '6px',
                     border: '2px solid #e2e8f0',
                     pageBreakInside: 'avoid'
                   }}>
                     <div style={{ 
                       display: 'flex',
                       flexWrap: 'wrap',
-                      gap: '6px',
-                      marginBottom: '10px'
+                      gap: '5px',
+                      marginBottom: '8px'
                     }}>
                       <span style={{ 
-                        padding: '4px 10px',
+                        padding: '3px 8px',
                         backgroundColor: color.badge,
                         color: '#ffffff',
-                        borderRadius: '4px',
-                        fontSize: '9pt',
+                        borderRadius: '3px',
+                        fontSize: '8pt',
                         fontWeight: 'bold'
                       }}>
                         {rec.priority}
                       </span>
                       <span style={{ 
-                        padding: '4px 10px',
+                        padding: '3px 8px',
                         backgroundColor: 'rgba(255, 255, 255, 0.8)',
                         color: '#64748b',
-                        borderRadius: '4px',
-                        fontSize: '9pt',
+                        borderRadius: '3px',
+                        fontSize: '8pt',
                         fontWeight: '600'
                       }}>
                         {rec.timeline}
@@ -1257,7 +1385,7 @@ const PDFExport = ({ startupData, onClose }) => {
                     </div>
                     
                     <h3 style={{ 
-                      fontSize: '11pt', 
+                      fontSize: '10pt', 
                       fontWeight: 'bold',
                       color: '#1e293b',
                       margin: 0
@@ -1271,31 +1399,49 @@ const PDFExport = ({ startupData, onClose }) => {
           </div>
 
           {/* Financial Data Page */}
-          <div className="html2pdf__page-break" style={{ 
-            padding: '40px', 
-            minHeight: '1050px',
+          <div style={{ 
+            padding: '30px', 
             pageBreakAfter: 'always',
             boxSizing: 'border-box'
           }}>
             <div style={{ 
-              borderBottom: '2px solid #e2e8f0',
-              paddingBottom: '8px',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              borderBottom: '2px solid #667eea',
+              paddingBottom: '10px',
               marginBottom: '20px'
             }}>
-              <p style={{ 
-                fontSize: '10pt', 
-                color: '#64748b',
-                margin: 0
+              <div>
+                <div style={{ 
+                  fontSize: '12pt', 
+                  fontWeight: 'bold',
+                  color: '#667eea',
+                  marginBottom: '3px'
+                }}>
+                  LetsAnalyse
+                </div>
+                <div style={{ 
+                  fontSize: '8pt', 
+                  color: '#64748b'
+                }}>
+                  Investment Analysis • {startupData.name}
+                </div>
+              </div>
+              <div style={{ 
+                fontSize: '8pt', 
+                color: '#94a3b8',
+                textAlign: 'right'
               }}>
-                Investment Analysis Report • {startupData.name}
-              </p>
+                Page 7
+              </div>
             </div>
 
             <h1 style={{ 
-              fontSize: '24pt', 
+              fontSize: '22pt', 
               fontWeight: 'bold',
               color: '#1e293b',
-              marginBottom: '25px'
+              marginBottom: '20px'
             }}>
               Financial Performance
             </h1>
@@ -1555,19 +1701,49 @@ const PDFExport = ({ startupData, onClose }) => {
           </div>
 
           {/* Team Analysis Page */}
-          <div className="page-break-after" style={{ 
-            padding: '35px 35px', 
-            minHeight: '1050px',
+          <div style={{ 
+            padding: '30px', 
             pageBreakAfter: 'always',
             boxSizing: 'border-box'
           }}>
+            <div style={{ 
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              borderBottom: '2px solid #667eea',
+              paddingBottom: '10px',
+              marginBottom: '20px'
+            }}>
+              <div>
+                <div style={{ 
+                  fontSize: '12pt', 
+                  fontWeight: 'bold',
+                  color: '#667eea',
+                  marginBottom: '3px'
+                }}>
+                  LetsAnalyse
+                </div>
+                <div style={{ 
+                  fontSize: '8pt', 
+                  color: '#64748b'
+                }}>
+                  Investment Analysis • {startupData.name}
+                </div>
+              </div>
+              <div style={{ 
+                fontSize: '8pt', 
+                color: '#94a3b8',
+                textAlign: 'right'
+              }}>
+                Page 8
+              </div>
+            </div>
+
             <h1 style={{ 
-              fontSize: '24pt', 
+              fontSize: '22pt', 
               fontWeight: 'bold',
-              color: '#192452',
-              marginBottom: '30px',
-              borderBottom: '3px solid #0099ff',
-              paddingBottom: '10px'
+              color: '#1e293b',
+              marginBottom: '20px'
             }}>
               Team Analysis
             </h1>
@@ -1711,19 +1887,49 @@ const PDFExport = ({ startupData, onClose }) => {
           </div>
 
           {/* Market Analysis Page */}
-          <div className="page-break-after" style={{ 
-            padding: '35px 35px', 
-            minHeight: '1050px',
+          <div style={{ 
+            padding: '30px', 
             pageBreakAfter: 'always',
             boxSizing: 'border-box'
           }}>
+            <div style={{ 
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              borderBottom: '2px solid #667eea',
+              paddingBottom: '10px',
+              marginBottom: '20px'
+            }}>
+              <div>
+                <div style={{ 
+                  fontSize: '12pt', 
+                  fontWeight: 'bold',
+                  color: '#667eea',
+                  marginBottom: '3px'
+                }}>
+                  LetsAnalyse
+                </div>
+                <div style={{ 
+                  fontSize: '8pt', 
+                  color: '#64748b'
+                }}>
+                  Investment Analysis • {startupData.name}
+                </div>
+              </div>
+              <div style={{ 
+                fontSize: '8pt', 
+                color: '#94a3b8',
+                textAlign: 'right'
+              }}>
+                Page 9
+              </div>
+            </div>
+
             <h1 style={{ 
-              fontSize: '24pt', 
+              fontSize: '22pt', 
               fontWeight: 'bold',
-              color: '#192452',
-              marginBottom: '30px',
-              borderBottom: '3px solid #8d51ff',
-              paddingBottom: '10px'
+              color: '#1e293b',
+              marginBottom: '20px'
             }}>
               Market Analysis
             </h1>
@@ -1900,19 +2106,49 @@ const PDFExport = ({ startupData, onClose }) => {
         </div>
 
           {/* Benchmarks Page */}
-          <div className="page-break-after" style={{ 
-            padding: '35px 35px', 
-            minHeight: '1050px',
+          <div style={{ 
+            padding: '30px', 
             pageBreakAfter: 'always',
             boxSizing: 'border-box'
           }}>
+            <div style={{ 
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              borderBottom: '2px solid #667eea',
+              paddingBottom: '10px',
+              marginBottom: '20px'
+            }}>
+              <div>
+                <div style={{ 
+                  fontSize: '12pt', 
+                  fontWeight: 'bold',
+                  color: '#667eea',
+                  marginBottom: '3px'
+                }}>
+                  LetsAnalyse
+                </div>
+                <div style={{ 
+                  fontSize: '8pt', 
+                  color: '#64748b'
+                }}>
+                  Investment Analysis • {startupData.name}
+                </div>
+              </div>
+              <div style={{ 
+                fontSize: '8pt', 
+                color: '#94a3b8',
+                textAlign: 'right'
+              }}>
+                Page 10
+              </div>
+            </div>
+
             <h1 style={{ 
-              fontSize: '24pt', 
+              fontSize: '22pt', 
               fontWeight: 'bold',
-              color: '#192452',
-              marginBottom: '30px',
-              borderBottom: '3px solid #0099ff',
-              paddingBottom: '10px'
+              color: '#1e293b',
+              marginBottom: '20px'
             }}>
               Performance Benchmarks
             </h1>
@@ -1988,48 +2224,67 @@ const PDFExport = ({ startupData, onClose }) => {
 
           {/* Final Summary Page */}
           <div style={{ 
-            padding: '40px', 
-            minHeight: '1050px',
+            padding: '30px', 
             boxSizing: 'border-box'
           }}>
             <div style={{ 
-              borderBottom: '2px solid #e2e8f0',
-              paddingBottom: '8px',
-              marginBottom: '30px'
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              borderBottom: '2px solid #667eea',
+              paddingBottom: '10px',
+              marginBottom: '25px'
             }}>
-              <p style={{ 
-                fontSize: '10pt', 
-                color: '#64748b',
-                margin: 0
+              <div>
+                <div style={{ 
+                  fontSize: '12pt', 
+                  fontWeight: 'bold',
+                  color: '#667eea',
+                  marginBottom: '3px'
+                }}>
+                  LetsAnalyse
+                </div>
+                <div style={{ 
+                  fontSize: '8pt', 
+                  color: '#64748b'
+                }}>
+                  Investment Analysis • {startupData.name}
+                </div>
+              </div>
+              <div style={{ 
+                fontSize: '8pt', 
+                color: '#94a3b8',
+                textAlign: 'right'
               }}>
-                Investment Analysis Report • {startupData.name}
-              </p>
+                Final Page
+              </div>
             </div>
 
             <h1 style={{ 
-              fontSize: '28pt', 
+              fontSize: '24pt', 
               fontWeight: 'bold',
               color: '#1e293b',
               margin: 0,
               textAlign: 'center',
-              marginBottom: '30px'
+              marginBottom: '25px'
             }}>
               Investment Summary
             </h1>
 
             {/* Investment Summary Box */}
-            <div style={{ 
+            <div className="page-break-avoid" style={{ 
               textAlign: 'center',
-              padding: '40px',
+              padding: '30px',
               background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-              borderRadius: '16px',
-              marginBottom: '30px',
-              color: '#ffffff'
+              borderRadius: '12px',
+              marginBottom: '25px',
+              color: '#ffffff',
+              pageBreakInside: 'avoid'
             }}>
               <h2 style={{ 
-                fontSize: '20pt',
+                fontSize: '18pt',
                 fontWeight: 'bold',
-                marginBottom: '25px',
+                marginBottom: '20px',
                 color: '#ffffff'
               }}>
                 Investment Recommendation
@@ -2039,15 +2294,15 @@ const PDFExport = ({ startupData, onClose }) => {
                 display: 'inline-flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                width: '130px',
-                height: '130px',
+                width: '120px',
+                height: '120px',
                 borderRadius: '50%',
                 background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',
-                marginBottom: '20px'
+                marginBottom: '16px'
               }}>
                 <div style={{ textAlign: 'center' }}>
                   <div style={{ 
-                    fontSize: '42pt',
+                    fontSize: '38pt',
                     fontWeight: 'bold',
                     color: '#ffffff',
                     lineHeight: '1'
@@ -2055,9 +2310,9 @@ const PDFExport = ({ startupData, onClose }) => {
                     {startupData.investmentScore}
                   </div>
                   <div style={{ 
-                    fontSize: '10pt',
+                    fontSize: '9pt',
                     color: '#ffffff',
-                    marginTop: '15px'
+                    marginTop: '12px'
                   }}>
                     out of 10
                   </div>
@@ -2065,10 +2320,10 @@ const PDFExport = ({ startupData, onClose }) => {
               </div>
               
               <div style={{ 
-                fontSize: '18pt',
+                fontSize: '16pt',
                 fontWeight: 'bold',
                 color: '#ffffff',
-                marginBottom: '20px'
+                marginBottom: '16px'
               }}>
                 {startupData.aiSummary?.investmentRecommendation || startupData.recommendation}
               </div>
@@ -2076,62 +2331,63 @@ const PDFExport = ({ startupData, onClose }) => {
               <div style={{ 
                 display: 'grid',
                 gridTemplateColumns: '1fr 1fr 1fr',
-                gap: '15px',
-                marginTop: '25px'
+                gap: '12px',
+                marginTop: '20px'
               }}>
                 <div style={{ 
                   backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                  padding: '15px',
-                  borderRadius: '10px'
+                  padding: '12px',
+                  borderRadius: '8px'
                 }}>
-                  <div style={{ fontSize: '24pt', fontWeight: 'bold', color: '#ffffff', marginBottom: '5px' }}>
+                  <div style={{ fontSize: '20pt', fontWeight: 'bold', color: '#ffffff', marginBottom: '4px' }}>
                     {startupData.investmentScore}/10
                   </div>
-                  <div style={{ fontSize: '9pt', color: '#ffffff', opacity: 0.9 }}>Investment Score</div>
+                  <div style={{ fontSize: '8pt', color: '#ffffff', opacity: 0.9 }}>Investment Score</div>
                 </div>
                 <div style={{ 
                   backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                  padding: '15px',
-                  borderRadius: '10px'
+                  padding: '12px',
+                  borderRadius: '8px'
                 }}>
-                  <div style={{ fontSize: '24pt', fontWeight: 'bold', color: '#ffffff', marginBottom: '5px' }}>
+                  <div style={{ fontSize: '20pt', fontWeight: 'bold', color: '#ffffff', marginBottom: '4px' }}>
                     {startupData.growthPotential?.score}/10
                   </div>
-                  <div style={{ fontSize: '9pt', color: '#ffffff', opacity: 0.9 }}>Growth Potential</div>
+                  <div style={{ fontSize: '8pt', color: '#ffffff', opacity: 0.9 }}>Growth Potential</div>
                 </div>
                 <div style={{ 
                   backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                  padding: '15px',
-                  borderRadius: '10px'
+                  padding: '12px',
+                  borderRadius: '8px'
                 }}>
-                  <div style={{ fontSize: '24pt', fontWeight: 'bold', color: '#ffffff', marginBottom: '5px' }}>
+                  <div style={{ fontSize: '20pt', fontWeight: 'bold', color: '#ffffff', marginBottom: '4px' }}>
                     {startupData.aiSummary?.confidenceScore || startupData.investmentScore}/10
                   </div>
-                  <div style={{ fontSize: '9pt', color: '#ffffff', opacity: 0.9 }}>Confidence</div>
+                  <div style={{ fontSize: '8pt', color: '#ffffff', opacity: 0.9 }}>Confidence</div>
                 </div>
               </div>
             </div>
 
             {/* Final Investment Thesis */}
-            <div style={{ 
+            <div className="page-break-avoid" style={{ 
               background: 'linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%)',
-              padding: '25px',
-              borderRadius: '12px',
+              padding: '18px',
+              borderRadius: '10px',
               border: '2px solid #3b82f6',
-              borderLeft: '4px solid #3b82f6',
-              marginBottom: '30px'
+              borderLeft: '3px solid #3b82f6',
+              marginBottom: '25px',
+              pageBreakInside: 'avoid'
             }}>
               <h3 style={{ 
-                fontSize: '16pt', 
+                fontSize: '14pt', 
                 fontWeight: 'bold',
                 color: '#1e293b',
-                marginBottom: '15px'
+                marginBottom: '12px'
               }}>
                 Investment Thesis
               </h3>
               <p style={{ 
-                lineHeight: '1.7',
-                fontSize: '10pt',
+                lineHeight: '1.6',
+                fontSize: '9pt',
                 color: '#1e40af',
                 margin: 0
               }}>
@@ -2140,49 +2396,50 @@ const PDFExport = ({ startupData, onClose }) => {
       </div>
 
             {/* Report Metadata */}
-            <div style={{ 
-              borderTop: '3px solid #e2e8f0',
-              paddingTop: '25px',
-              marginTop: '40px'
-            }}>
+              <div className="page-break-avoid" style={{ 
+                borderTop: '2px solid #e2e8f0',
+                paddingTop: '20px',
+                marginTop: '30px',
+                pageBreakInside: 'avoid'
+              }}>
               <div style={{ 
                 backgroundColor: '#f8fafc',
-                padding: '20px',
-                borderRadius: '12px',
-                marginBottom: '25px'
+                padding: '16px',
+                borderRadius: '10px',
+                marginBottom: '20px'
               }}>
                 <h3 style={{ 
-                  fontSize: '12pt',
+                  fontSize: '11pt',
                   fontWeight: 'bold',
                   color: '#192452',
-                  marginBottom: '15px'
+                  marginBottom: '12px'
                 }}>
                   📋 Report Information
                 </h3>
                 <div style={{ 
                   display: 'grid',
                   gridTemplateColumns: '1fr 1fr',
-                  gap: '15px',
-                  fontSize: '9pt'
+                  gap: '12px',
+                  fontSize: '8pt'
                 }}>
                   <div style={{ 
-                    padding: '10px',
+                    padding: '8px',
                     backgroundColor: '#ffffff',
-                    borderRadius: '6px',
+                    borderRadius: '5px',
                     border: '1px solid #e2e8f0'
                   }}>
-                    <div style={{ color: '#64748b', marginBottom: '4px' }}>Report ID</div>
+                    <div style={{ color: '#64748b', marginBottom: '3px' }}>Report ID</div>
                     <div style={{ color: '#192452', fontWeight: '600' }}>
                       {startupData.metadata?.analysisId || 'N/A'}
                     </div>
     </div>
                   <div style={{ 
-                    padding: '10px',
+                    padding: '8px',
                     backgroundColor: '#ffffff',
-                    borderRadius: '6px',
+                    borderRadius: '5px',
                     border: '1px solid #e2e8f0'
                   }}>
-                    <div style={{ color: '#64748b', marginBottom: '4px' }}>Analysis Date</div>
+                    <div style={{ color: '#64748b', marginBottom: '3px' }}>Analysis Date</div>
                     <div style={{ color: '#192452', fontWeight: '600' }}>
                       {startupData.metadata?.analysisDate || new Date().toLocaleDateString('en-US', { 
                         year: 'numeric', 
@@ -2192,23 +2449,23 @@ const PDFExport = ({ startupData, onClose }) => {
                     </div>
                 </div>
                   <div style={{ 
-                    padding: '10px',
+                    padding: '8px',
                     backgroundColor: '#ffffff',
-                    borderRadius: '6px',
+                    borderRadius: '5px',
                     border: '1px solid #e2e8f0'
                   }}>
-                    <div style={{ color: '#64748b', marginBottom: '4px' }}>Processing Time</div>
+                    <div style={{ color: '#64748b', marginBottom: '3px' }}>Processing Time</div>
                     <div style={{ color: '#192452', fontWeight: '600' }}>
                       {startupData.metadata?.processingTime || 'N/A'}
                     </div>
                 </div>
                   <div style={{ 
-                    padding: '10px',
+                    padding: '8px',
                     backgroundColor: '#ffffff',
-                    borderRadius: '6px',
+                    borderRadius: '5px',
                     border: '1px solid #e2e8f0'
                   }}>
-                    <div style={{ color: '#64748b', marginBottom: '4px' }}>AI Confidence</div>
+                    <div style={{ color: '#64748b', marginBottom: '3px' }}>AI Confidence</div>
                     <div style={{ color: '#10b981', fontWeight: 'bold' }}>
                       {((startupData.metadata?.confidence || startupData.investmentScore / 10) * 100).toFixed(0)}%
                     </div>
@@ -2216,20 +2473,21 @@ const PDFExport = ({ startupData, onClose }) => {
               </div>
               </div>
               
-              <div style={{ 
-                marginBottom: '25px',
-                padding: '18px',
+              <div className="page-break-avoid" style={{ 
+                marginBottom: '20px',
+                padding: '14px',
                 background: 'linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)',
-                borderRadius: '10px',
-                border: '2px solid #0099ff'
+                borderRadius: '8px',
+                border: '2px solid #0099ff',
+                pageBreakInside: 'avoid'
               }}>
                 <p style={{ 
-                  fontSize: '9pt',
+                  fontSize: '8pt',
                   color: '#1e40af',
-                  lineHeight: '1.7',
+                  lineHeight: '1.6',
                   margin: 0
                 }}>
-                  <strong style={{ color: '#0099ff', fontSize: '10pt' }}>⚠️ Disclaimer:</strong> This report has been generated by LetsAnalyse's AI-powered startup analysis platform. 
+                  <strong style={{ color: '#0099ff', fontSize: '9pt' }}>⚠️ Disclaimer:</strong> This report has been generated by LetsAnalyse's AI-powered startup analysis platform. 
                   The information contained herein is based on available data and AI analysis, and should be used as part of a comprehensive 
                   due diligence process. Investment decisions should not be made solely based on this analysis. Always consult with 
                   qualified financial advisors before making investment decisions.
@@ -2240,33 +2498,33 @@ const PDFExport = ({ startupData, onClose }) => {
             {/* Footer */}
             <div style={{ 
               borderTop: '2px solid #e2e8f0',
-              paddingTop: '20px',
-              marginTop: '30px',
+              paddingTop: '16px',
+              marginTop: '25px',
               textAlign: 'center'
             }}>
               <div style={{ 
-                fontSize: '11pt',
+                fontSize: '10pt',
                 fontWeight: '600',
                 color: '#1e293b',
-                marginBottom: '8px'
+                marginBottom: '6px'
               }}>
                 CONFIDENTIAL & PROPRIETARY
               </div>
               <p style={{ 
-                fontSize: '9pt',
+                fontSize: '8pt',
                 color: '#64748b',
-                lineHeight: '1.6',
-                margin: '0 0 15px 0'
+                lineHeight: '1.5',
+                margin: '0 0 12px 0'
               }}>
                 This document contains confidential information intended solely for the use of the recipient.<br/>
-                Investment Analysis Report • Generated: {new Date().toLocaleDateString('en-US', { 
+                LetsAnalyse Investment Analysis Report • Generated: {new Date().toLocaleDateString('en-US', { 
                   year: 'numeric', 
                   month: 'long', 
                   day: 'numeric'
                 })} • Version 1.0
               </p>
               <p style={{ 
-                fontSize: '8pt',
+                fontSize: '7pt',
                 color: '#94a3b8',
                 margin: 0
               }}>
