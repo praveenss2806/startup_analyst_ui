@@ -16,8 +16,23 @@ const apiClient = axios.create({
 export const uploadFile = async (file) => {
   try {
     // Validate file
-    if (!file || file.type !== 'application/pdf') {
-      throw new Error('Invalid file type. Please upload a PDF file.');
+    const allowedTypes = [
+      'application/pdf',
+      'audio/mpeg',
+      'audio/mp3',
+      'audio/wav',
+      'audio/wave',
+      'audio/x-wav',
+      'audio/mp4',
+      'audio/m4a',
+      'audio/x-m4a',
+      'audio/ogg',
+      'audio/flac',
+      'audio/webm'
+    ];
+    
+    if (!file || !allowedTypes.includes(file.type)) {
+      throw new Error('Invalid file type. Please upload a PDF or audio file (MP3, WAV, M4A, OGG, FLAC).');
     }
     
     if (file.size > 50 * 1024 * 1024) { // 50MB limit

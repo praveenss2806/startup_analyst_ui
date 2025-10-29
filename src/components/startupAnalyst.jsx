@@ -235,8 +235,23 @@ const StartupAnalystPlatform = () => {
   }, [appState, uploadResponse?.gcsUri, loadingStages.length]);
 
   const handleFileUpload = async (file) => {
-    if (!file || file.type !== 'application/pdf') {
-      setUploadError('Please upload a PDF file');
+    const allowedTypes = [
+      'application/pdf',
+      'audio/mpeg',
+      'audio/mp3',
+      'audio/wav',
+      'audio/wave',
+      'audio/x-wav',
+      'audio/mp4',
+      'audio/m4a',
+      'audio/x-m4a',
+      'audio/ogg',
+      'audio/flac',
+      'audio/webm'
+    ];
+    
+    if (!file || !allowedTypes.includes(file.type)) {
+      setUploadError('Please upload a PDF or audio file (MP3, WAV, M4A, OGG, FLAC)');
       return;
     }
     
@@ -375,7 +390,7 @@ const StartupAnalystPlatform = () => {
               </h3>
               
               <p className="mb-6 sm:mb-7 lg:mb-8 text-sm sm:text-base lg:text-lg px-2 leading-relaxed" style={{color: '#192452', opacity: 0.7}}>
-                Drag and drop your PDF here, or click to browse
+                Drag and drop your PDF or audio file here, or click to browse
               </p>
               
               <label className="inline-flex items-center px-6 sm:px-7 lg:px-8 py-3 sm:py-3.5 lg:py-4 text-white font-semibold rounded-xl lg:rounded-2xl cursor-pointer transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-lg text-base sm:text-base lg:text-base min-h-[48px] touch-manipulation"
@@ -385,14 +400,14 @@ const StartupAnalystPlatform = () => {
                 <input 
                   type="file" 
                   className="hidden" 
-                  accept=".pdf"
+                  accept=".pdf,.mp3,.wav,.m4a,.ogg,.flac,.webm"
                   onChange={(e) => e.target.files[0] && handleFileUpload(e.target.files[0])}
                 />
               </label>
               
               <p className="text-xs sm:text-sm lg:text-sm mt-4 sm:mt-5 lg:mt-6 flex items-center justify-center space-x-2 px-2" style={{color: '#192452', opacity: 0.6}}>
                 <Shield size={12} style={{color: '#08ce6b'}} />
-                <span>Supports PDF files up to 50MB</span>
+                <span>Supports PDF & audio files (MP3, WAV, M4A, OGG, FLAC) up to 50MB</span>
               </p>
               
               {uploadError && (
