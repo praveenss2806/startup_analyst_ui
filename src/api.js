@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'https://startup-analyst-agent-125386015888.europe-west1.run.app';
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'https://analyst-agent-125386015888.europe-west1.run.app';
 
 // Create axios instance instead of modifying defaults
 const apiClient = axios.create({
