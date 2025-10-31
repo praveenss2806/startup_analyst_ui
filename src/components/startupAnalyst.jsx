@@ -110,6 +110,7 @@ const StartupAnalystPlatform = () => {
   const [activeTab, setActiveTab] = useState('overview');
   const [selectedRisk, setSelectedRisk] = useState(null);
   const [showPDFExport, setShowPDFExport] = useState(false);
+  const [showRecommendationTooltip, setShowRecommendationTooltip] = useState(false);
   const [scenarioValues, setScenarioValues] = useState({
     growthRate: 150,
     cac: 450,
