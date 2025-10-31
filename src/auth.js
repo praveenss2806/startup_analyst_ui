@@ -19,9 +19,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   // Allow non-standard host headers during local/dev
   trustHost: true,
   // This is used by the middleware to determine if the request is authorized
-  callbacks: {
-    authorized({ auth }) {
-      return !!auth?.user;
-    },
+  authorized({ request, auth }) {
+    return !!auth?.user;
   },
 });

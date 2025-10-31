@@ -1,10 +1,11 @@
-import { getServerSession } from "next-auth";
-import { authConfig } from "../../lib/auth";
+import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 
 export default async function UploadPage() {
-  const session = await getServerSession(authConfig);
-  if (!session) return redirect("/");
+  const session = await auth();
+  if (!session?.user) {
+    redirect("/login");
+  }
 
   return (
     <main className="min-h-screen flex flex-col items-center justify-center gap-6 p-8">
