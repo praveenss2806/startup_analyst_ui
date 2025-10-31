@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect, useRef } from 'react';
 import PDFExport from './PDFExport';
 import { uploadFile, analyzeStartup } from '../api';
