@@ -251,7 +251,7 @@ const PDFExport = ({ startupData, onClose }) => {
           
           {/* Cover Page */}
           <div style={{ 
-            padding: '60px 50px', 
+            padding: '40px 50px 60px', 
             backgroundColor: '#192452',
             color: '#f7ffff',
             pageBreakAfter: 'always',
@@ -264,13 +264,13 @@ const PDFExport = ({ startupData, onClose }) => {
           }}>
             {/* Header Section */}
             <div>
-              <div style={{ marginBottom: '50px' }}>
+              <div style={{ marginBottom: '35px' }}>
                 <div style={{ 
                   fontSize: '72pt',
                   fontWeight: 'bold',
                   color: '#f7ffff',
                   letterSpacing: '8px',
-                  marginBottom: '25px',
+                  marginBottom: '20px',
                   lineHeight: '1'
                 }}>
                   LetsAnalyse
@@ -296,7 +296,7 @@ const PDFExport = ({ startupData, onClose }) => {
                 fontWeight: '700',
                 color: '#0099ff',
                 letterSpacing: '2px',
-                marginBottom: '80px'
+                marginBottom: '30px'
               }}>
                 CONFIDENTIAL INVESTMENT ANALYSIS
               </div>
@@ -321,7 +321,7 @@ const PDFExport = ({ startupData, onClose }) => {
                 justifyContent: 'center',
                 gap: '15px',
                 flexWrap: 'wrap',
-                marginTop: '40px'
+                marginTop: '20px'
               }}>
                 <span style={{ 
                   padding: '14px 28px',
@@ -352,22 +352,6 @@ const PDFExport = ({ startupData, onClose }) => {
                 }}>{startupData.location}</span>
               </div>
 
-              {/* Recommendation */}
-              <div style={{ marginTop: '60px' }}>
-                <div style={{ 
-                  display: 'inline-block',
-                  padding: '20px 50px',
-                  backgroundColor: '#08ce6b',
-                  borderRadius: '12px',
-                  fontSize: '20pt',
-                  fontWeight: '700',
-                  color: '#f7ffff',
-                  letterSpacing: '1px',
-                  boxShadow: '0 6px 20px rgba(8, 206, 107, 0.4)'
-                }}>
-                  {startupData.recommendation || startupData.aiSummary?.investmentRecommendation}
-                </div>
-              </div>
             </div>
 
             {/* Footer Section */}
@@ -623,7 +607,7 @@ const PDFExport = ({ startupData, onClose }) => {
 
           {/* AI Insights Page */}
           <div style={{ 
-            padding: '24px 22px', 
+            padding: '20px 22px', 
             pageBreakAfter: 'always',
             boxSizing: 'border-box',
             backgroundColor: '#192452',
@@ -632,49 +616,49 @@ const PDFExport = ({ startupData, onClose }) => {
             <PageHeader pageNum={2} />
 
             <h1 style={{ 
-              fontSize: '22pt', 
+              fontSize: '18pt', 
               fontWeight: 'bold',
               color: '#f7ffff',
-              marginBottom: '14px',
+              marginBottom: '10px',
               marginTop: '0'
             }}>
               Strengths & Concerns
             </h1>
 
             {/* Key Highlights */}
-            <div style={{ marginBottom: '14px' }}>
+            <div style={{ marginBottom: '10px' }}>
               <h2 style={{ 
-                fontSize: '14pt', 
+                fontSize: '13pt', 
                 fontWeight: 'bold',
                 color: '#08ce6b',
-                marginBottom: '10px',
+                marginBottom: '8px',
                 marginTop: '0'
               }}>
                 ✓ Key Highlights
               </h2>
-              <div style={{ display: 'grid', gap: '10px' }}>
+              <div style={{ display: 'grid', gap: '7px' }}>
                 {(startupData.aiSummary?.keyHighlights || []).map((highlight, idx) => (
                   <div key={idx} style={{ 
-                    padding: '12px 14px',
+                    padding: '10px 12px',
                     backgroundColor: 'rgba(8, 206, 107, 0.15)',
                     borderLeft: '3px solid #08ce6b',
                     borderRadius: '6px',
                     display: 'flex',
-                    gap: '10px',
+                    gap: '8px',
                     alignItems: 'start'
                   }}>
                     <span style={{
                       color: '#08ce6b',
-                      fontSize: '13pt',
+                      fontSize: '11pt',
                       fontWeight: 'bold',
                       marginTop: '1px'
                     }}>✓</span>
                     <p style={{ 
-                      lineHeight: '1.6', 
+                      lineHeight: '1.5', 
                       color: '#f7ffff',
                       opacity: 0.9,
                       margin: 0,
-                      fontSize: '11pt'
+                      fontSize: '10pt'
                     }}>
                       {highlight}
                     </p>
@@ -684,39 +668,39 @@ const PDFExport = ({ startupData, onClose }) => {
             </div>
 
             {/* Main Concerns */}
-            <div style={{ marginBottom: '14px' }}>
+            <div style={{ marginBottom: '10px' }}>
               <h2 style={{ 
-                fontSize: '14pt', 
+                fontSize: '13pt', 
                 fontWeight: 'bold',
                 color: '#fa8524',
-                marginBottom: '10px',
+                marginBottom: '8px',
                 marginTop: '0'
               }}>
                 ⚠ Main Concerns
               </h2>
-              <div style={{ display: 'grid', gap: '10px' }}>
+              <div style={{ display: 'grid', gap: '7px' }}>
                 {(startupData.aiSummary?.mainConcerns || []).map((concern, idx) => (
                   <div key={idx} style={{ 
-                    padding: '12px 14px',
+                    padding: '10px 12px',
                     backgroundColor: 'rgba(250, 133, 36, 0.15)',
                     borderLeft: '3px solid #fa8524',
                     borderRadius: '6px',
                     display: 'flex',
-                    gap: '10px',
+                    gap: '8px',
                     alignItems: 'start'
                   }}>
                     <span style={{
                       color: '#fa8524',
-                      fontSize: '13pt',
+                      fontSize: '11pt',
                       fontWeight: 'bold',
                       marginTop: '1px'
                     }}>⚠</span>
                     <p style={{ 
-                      lineHeight: '1.6', 
+                      lineHeight: '1.5', 
                       color: '#f7ffff',
                       opacity: 0.9,
                       margin: 0,
-                      fontSize: '11pt'
+                      fontSize: '10pt'
                     }}>
                       {concern}
                     </p>
@@ -727,36 +711,36 @@ const PDFExport = ({ startupData, onClose }) => {
 
             {/* Growth Potential */}
             <h2 style={{ 
-              fontSize: '14pt', 
+              fontSize: '13pt', 
               fontWeight: 'bold',
               color: '#f7ffff',
-              marginBottom: '10px',
+              marginBottom: '8px',
               marginTop: '0'
             }}>
               Growth Potential
             </h2>
             <div style={{ 
               backgroundColor: 'rgba(141, 81, 255, 0.15)',
-              padding: '18px',
+              padding: '12px',
               borderRadius: '8px',
               border: '2px solid #8d51ff',
-              marginBottom: '10px'
+              marginBottom: '8px'
             }}>
               <div style={{ 
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                marginBottom: '14px'
+                marginBottom: '10px'
               }}>
                 <span style={{ 
-                  fontSize: '14pt',
+                  fontSize: '12pt',
                   fontWeight: 'bold',
                   color: '#f7ffff'
                 }}>
                   Overall Score
                 </span>
                 <span style={{ 
-                  fontSize: '28pt',
+                  fontSize: '24pt',
                   fontWeight: 'bold',
                   color: '#8d51ff'
                 }}>
@@ -765,7 +749,7 @@ const PDFExport = ({ startupData, onClose }) => {
               </div>
               <div style={{ 
                 width: '100%',
-                height: '12px',
+                height: '10px',
                 backgroundColor: 'rgba(141, 81, 255, 0.3)',
                 borderRadius: '6px',
                 overflow: 'hidden'
