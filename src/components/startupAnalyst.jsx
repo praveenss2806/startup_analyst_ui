@@ -554,9 +554,7 @@ const StartupAnalystPlatform = () => {
                 style={{backgroundColor: '#08ce6b'}}
               >
                 <Download size={12} className="sm:w-3.5 sm:h-3.5 lg:w-4 lg:h-4" />
-                <span className="hidden xs:inline sm:hidden md:inline">PDF</span>
-                <span className="hidden sm:inline md:hidden">Export</span>
-                <span className="hidden md:inline">Export PDF</span>
+                <span className="hidden md:inline">Export as PDF</span>
               </button>
               <button 
                 onClick={() => setAppState('upload')}
@@ -564,7 +562,7 @@ const StartupAnalystPlatform = () => {
                 style={{backgroundColor: '#0099ff'}}
               >
                 <Upload size={12} className="sm:w-3.5 sm:h-3.5 lg:w-4 lg:h-4" />
-                <span>New</span>
+                <span>New Analysis</span>
               </button>
             </div>
           </div>
