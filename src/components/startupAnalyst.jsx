@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PDFExport from './PDFExport';
 import { uploadFile, analyzeStartup } from '../api';
+import { PDFDocument } from 'pdf-lib';
 import { 
   FileText, 
   TrendingUp, 
@@ -193,6 +194,19 @@ const StartupAnalystPlatform = () => {
     setShowPDFExport(true);
   };
 
+  // Reset all state for new analysis
+  const handleNewAnalysis = () => {
+    setAppState('upload');
+    setUploadedFile(null);
+    setUploadResponse(null);
+    setUploadError(null);
+    setAnalysisData(null);
+    setAnalysisError(null);
+    analysisStartedRef.current = false;
+    setLoadingStage(0);
+    setLoadingProgress(0);
+  };
+
   // Loading and analysis effect
   useEffect(() => {
     if (appState === 'loading' && uploadResponse?.gcsUri && !analysisStartedRef.current) {
@@ -235,6 +249,46 @@ const StartupAnalystPlatform = () => {
     }
   }, [appState, uploadResponse?.gcsUri, loadingStages.length]);
 
+  // Helper function to check and truncate PDF to 30 pages
+  const truncatePDFTo30Pages = async (file) => {
+    try {
+      // Read the PDF file
+      const arrayBuffer = await file.arrayBuffer();
+      const pdfDoc = await PDFDocument.load(arrayBuffer);
+      
+      const pageCount = pdfDoc.getPageCount();
+      
+      // If PDF has 30 or fewer pages, return the original file
+      if (pageCount <= 30) {
+        return file;
+      }
+      
+      // Create a new PDF with only the first 30 pages
+      const newPdfDoc = await PDFDocument.create();
+      const pages = await newPdfDoc.copyPages(pdfDoc, Array.from({length: 30}, (_, i) => i));
+      
+      pages.forEach(page => {
+        newPdfDoc.addPage(page);
+      });
+      
+      // Save the truncated PDF
+      const pdfBytes = await newPdfDoc.save();
+      
+      // Create a new File object with the truncated PDF
+      const truncatedFile = new File(
+        [pdfBytes], 
+        file.name, 
+        { type: 'application/pdf' }
+      );
+      
+      return truncatedFile;
+    } catch (error) {
+      console.error('Error truncating PDF:', error);
+      // If there's an error, return the original file
+      return file;
+    }
+  };
+
   const handleFileUpload = async (file) => {
     const allowedTypes = [
       'application/pdf',
@@ -262,7 +316,6 @@ const StartupAnalystPlatform = () => {
     }
 
     setUploadError(null);
-    setUploadedFile(file);
     setLoadingStage(0);
     setLoadingProgress(0);
     setAnalysisData(null);
@@ -271,8 +324,17 @@ const StartupAnalystPlatform = () => {
     setAppState('loading');
 
     try {
+      let fileToUpload = file;
+      
+      // If it's a PDF, check and truncate to 30 pages if needed
+      if (file.type === 'application/pdf') {
+        fileToUpload = await truncatePDFTo30Pages(file);
+      }
+      
+      setUploadedFile(fileToUpload);
+      
       // Call the real upload API
-      const result = await uploadFile(file);
+      const result = await uploadFile(fileToUpload);
       
       if (result.success) {
         setUploadResponse(result.data);
@@ -516,7 +578,7 @@ const StartupAnalystPlatform = () => {
             <h2 className="text-2xl font-bold mb-4" style={{color: '#f7ffff'}}>Analysis Failed</h2>
             <p className="mb-6" style={{color: '#f7ffff', opacity: 0.8}}>{analysisError}</p>
             <button 
-              onClick={() => setAppState('upload')}
+              onClick={handleNewAnalysis}
               className="text-white px-6 py-3 rounded-xl flex items-center space-x-2 mx-auto transition-all duration-300 font-medium"
               style={{backgroundColor: '#0099ff'}}
             >
@@ -557,7 +619,7 @@ const StartupAnalystPlatform = () => {
                 <span className="hidden md:inline">Export as PDF</span>
               </button>
               <button 
-                onClick={() => setAppState('upload')}
+                onClick={handleNewAnalysis}
                 className="text-white px-2.5 sm:px-3 lg:px-4 py-2 rounded-lg sm:rounded-xl flex items-center space-x-1 lg:space-x-2 transition-all duration-300 font-medium shadow-lg hover:scale-105 active:scale-95 text-xs sm:text-sm lg:text-base min-h-[36px] sm:min-h-[40px] touch-manipulation"
                 style={{backgroundColor: '#0099ff'}}
               >
