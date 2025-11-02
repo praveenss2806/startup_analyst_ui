@@ -35,8 +35,8 @@ export const uploadFile = async (file) => {
       throw new Error('Invalid file type. Please upload a PDF or audio file (MP3, WAV, M4A, OGG, FLAC).');
     }
     
-    if (file.size > 50 * 1024 * 1024) { // 50MB limit
-      throw new Error('File size exceeds 50MB limit.');
+    if (file.size > 20 * 1024 * 1024) { // 20MB limit
+      throw new Error('File size exceeds 20MB limit.');
     }
 
     // Real API call to upload endpoint

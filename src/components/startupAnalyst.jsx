@@ -310,8 +310,8 @@ const StartupAnalystPlatform = () => {
       return;
     }
     
-    if (file.size > 50 * 1024 * 1024) {
-      setUploadError('File size exceeds 50MB limit');
+    if (file.size > 20 * 1024 * 1024) {
+      setUploadError('File size exceeds 20MB limit');
       return;
     }
 
@@ -470,7 +470,7 @@ const StartupAnalystPlatform = () => {
               
               <p className="text-xs sm:text-sm lg:text-sm mt-4 sm:mt-5 lg:mt-6 flex items-center justify-center space-x-2 px-2" style={{color: '#192452', opacity: 0.6}}>
                 <Shield size={12} style={{color: '#08ce6b'}} />
-                <span>Supports PDF & audio files (MP3, WAV, M4A, OGG, FLAC) up to 50MB</span>
+                <span>Supports PDF & audio files (MP3, WAV, M4A, OGG, FLAC) up to 20MB</span>
               </p>
               
               {uploadError && (
